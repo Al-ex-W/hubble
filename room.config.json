@@ -1,0 +1,56 @@
+{
+  "_about": "Hubble's settings for the room's devices (organisers' spec Draft 0.4: every device has its own API). One file so the same setup can be re-applied whenever another team or the organisers change something. Check: npm run room:check (read-only). Apply: npm run room:apply (writes to shared devices: only in our slot, with the owner's go). Every value below was measured or chosen on site; the _why next to it says which.",
+
+  "laptop": {
+    "ip": "192.168.42.18",
+    "_why": "This laptop's address on the room wifi, 7 Oct (it was .17 on 6 Oct: DHCP can change it). Pages shown on the room's displays load from here."
+  },
+
+  "camera": {
+    "base": "http://192.168.42.21",
+    "mode": "1080p",
+    "controls": {
+      "focus_absolute": 0
+    },
+    "_why": {
+      "mode": "1080p (60 fps) is the organisers' default and what our calibration (apps/server/fixtures/calibration-2026-10-07) was measured in. 720p and 4K frame the same area, but a mode change affects every team.",
+      "focus_absolute": "Autofocus OFF, fixed at 0 (far). On the plain white table the Brio's autofocus kept hunting: about every second frame was blurred, which broke both contrast measurement and hand tracking. Swept 0/5/10/15/20/30 on 7 Oct 06:35Z: sharpness (Laplacian variance over the table) 10.9 / 10.3 / 8.9 / 5.8 / 1.6 / 0.6, and 0 stayed at 34-35 frame after frame once fixed. Setting a value turns that control's automatic off (spec). Undo: POST /camera/controls {\"auto\": true}."
+    }
+  },
+
+  "projector": {
+    "base": "http://192.168.42.21",
+    "show": { "url": "http://192.168.42.18:5173/table" },
+    "_why": "Our /table page from this laptop, full screen on the 1920x1200 projector (the 1920x1080 page sits centred: 60 px bars). If the projected page stops updating (it froze on 7 Oct after dev-server restarts), re-applying this reloads it."
+  },
+
+  "pitch": {
+    "youtube": "https://www.youtube.com/watch?v=SIQi_TqkiEk",
+    "_why": "TV 2 loops this video, muted (apps/web/src/pitch/PitchPage.tsx). A YouTube id or link; unlisted works. Edit and reload the TV, no restart."
+  },
+
+  "displays": {
+    "table": "table",
+    "tv-1": "datawall",
+    "tv-2": "manual",
+    "_why": "What each display shows when output is armed (apps/server/displays.ts owns the choices: table, mirror, datawall, tv, off). Owner, 7 Oct: TV 1 is the data wall with Hubble's voice (orb + bubble, 14:40), TV 2 the control panel mirror. Setup on / re-points a display live; this is what the server starts with."
+  },
+
+  "tvs": {
+    "tv-1": { "base": "http://192.168.42.22", "show": null },
+    "tv-2": { "base": "http://192.168.42.23", "show": null },
+    "_why": "Nothing of ours on the TVs yet (the voice orb that was meant for tv-1 is archived). null = leave whatever is showing."
+  },
+
+  "lidar": {
+    "base": "http://192.168.42.24",
+    "scan": "ws://192.168.42.24/scan",
+    "_why": "The lidar Pi has no settings to apply: GET /status and the /scan WebSocket are read-only. Its placement on the table (middle of the back edge by default) and 0° direction are the organisers' to measure; our side of the mapping is the spatial service (H41). Listed so room:check reports whether it is up."
+  },
+
+  "lights": {
+    "bridge": "http://192.168.42.11",
+    "apply": false,
+    "_why": "The Hue lights are left alone: the runtime's light moods drive them during a show, and the organisers reset them between slots. The bridge's API user is in the organisers' spec, not here (no credentials in the repo). room:check only reports whether the bridge answers."
+  }
+}

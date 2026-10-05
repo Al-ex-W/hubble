@@ -1,0 +1,16 @@
+node_modules/
+dist/
+.env
+*.log
+.DS_Store
+tsconfig.tsbuildinfo
+.worktrees/
+.pi/
+.hubble/
+# MediaPipe's hand-tracking assets (npm run hands:assets): fetched per laptop, ~8 MB.
+apps/web/public/mediapipe/
+# Local scratch: the loop manager's ledger and review probes (temp/), lab code
+# (experiments/). Never imported, and excluded from vitest (vitest.config.ts).
+# Listed here, not only in a clone's .git/info/exclude, so a fresh clone agrees.
+temp/
+experiments/
