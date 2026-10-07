@@ -1,0 +1,242 @@
+/* The operator page: the show's control surface on the laptop beside the
+   stage (#34), now wearing the shared Liquid Studio language. It is read at
+   arm's length in a dark hall, so status is colour first and words second;
+   the glass, rounding and lavender accent are cosmetic and must never encode
+   state on their own.
+
+   Why tokens with fallbacks: the parent puts `.liquid-theme` on #root and
+   imports studio/liquid.css, so `--liquid-*` and Outfit are normally present.
+   The fallbacks keep this page legible if it is ever rendered without that
+   wrapper (a focused test, a future embed), and they mirror the exact values
+   in liquid.css so the two can drift no further than the token itself.
+
+   The ok/warn/bad colours live here, not in liquid.css: they are operator
+   safety signals (room down, brain failed, MIDI silent), and a later design
+   pass must not quietly recolour them into decoration. */
+.op {
+  height: 100%;
+  min-height: 0;
+  overflow-y: auto;
+  box-sizing: border-box;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  position: relative;
+  isolation: isolate;
+  color: var(--liquid-ink, #edf0ff);
+  font-family: 'Outfit', system-ui, sans-serif;
+  font-weight: 400;
+  line-height: 1.5;
+  background: #0c1020;
+}
+/* The same three-lobe aurora as the studio, kept on its own fixed layer: on
+   `.op` it would scroll with the content and read as a flat panel rather than
+   atmosphere behind the controls. */
+.op-aurora {
+  position: fixed;
+  z-index: -1;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse at 15% 40%, #53639724, transparent 50%),
+    radial-gradient(ellipse at 76% 9%, #72578022, transparent 45%),
+    radial-gradient(ellipse at 88% 76%, #28596618, transparent 45%);
+}
+.op :focus-visible {
+  outline: 2px solid var(--liquid-accent, #becaff);
+  outline-offset: 3px;
+}
+
+.op-head {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  flex-wrap: wrap;
+  letter-spacing: 0.04em;
+}
+.op-head strong {
+  text-transform: uppercase;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--liquid-accent, #becaff);
+}
+.op-pill {
+  padding: 5px 12px;
+  border-radius: 999px;
+  font-size: 12px;
+  border: 1px solid var(--liquid-line, rgba(216, 224, 255, 0.15));
+  background: rgba(255, 255, 255, 0.05);
+}
+/* Semantic status pills: the tinted glass says which state at a glance, the
+   words confirm it. Kept high-contrast against the dark hall. */
+.op-pill.ok {
+  background: rgba(88, 255, 150, 0.1);
+  color: #9fefff;
+  border-color: rgba(88, 255, 150, 0.28);
+}
+.op-pill.bad {
+  background: rgba(255, 80, 80, 0.14);
+  color: #ffb0b0;
+  border-color: rgba(255, 80, 80, 0.34);
+}
+.op-note {
+  color: var(--liquid-muted, #a8aec8);
+  font-size: 12px;
+}
+
+.op-tiles {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 10px;
+}
+/* Glass status tiles with a coloured left edge. The 4px stripe is the part
+   that survives a glance from across the stage; everything else is surface. */
+.op-tile {
+  border: 1px solid var(--liquid-line, rgba(216, 224, 255, 0.15));
+  border-left-width: 4px;
+  border-radius: 18px;
+  padding: 14px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.07), rgba(255, 255, 255, 0.015)), var(--liquid-glass, rgba(33, 39, 64, 0.68));
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12), 0 12px 34px rgba(3, 5, 17, 0.22);
+  backdrop-filter: blur(22px) saturate(130%);
+}
+.op-tile-name {
+  text-transform: uppercase;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  color: var(--liquid-muted, #a8aec8);
+}
+.op-tile.ok {
+  border-left-color: #5dff9f;
+}
+.op-tile.warn {
+  border-left-color: #ffd36c;
+}
+.op-tile.bad {
+  border-left-color: #ff5b5b;
+}
+
+/* Each control group is its own rounded glass card so the operator can aim at
+   a whole block of related actions without reading. */
+.op-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+  padding: 16px 18px;
+  border-radius: 22px;
+  border: 1px solid var(--liquid-line, rgba(216, 224, 255, 0.15));
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.012)), var(--liquid-glass, rgba(33, 39, 64, 0.68));
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1), 0 16px 44px rgba(3, 5, 17, 0.2);
+  backdrop-filter: blur(24px) saturate(130%);
+}
+.op-group h2 {
+  flex-basis: 100%;
+  margin: 0;
+  font-size: 11px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--liquid-muted, #a8aec8);
+}
+/* The embedded instrument belongs below the group heading. Flex's automatic
+   minimum otherwise moves the wide keyboard beside it and clips mobile keys. */
+.op-midi > .lesson-panel {
+  flex-basis: auto;
+  min-width: 0;
+  max-width: 100%;
+}
+/* Large touch targets survive the restyle: an operator in a hurry may be
+   reaching past the laptop, and a 52px target forgives a poor aim. */
+.op-group > button {
+  min-height: 52px;
+  min-width: 150px;
+  padding: 10px 18px;
+  font: inherit;
+  font-size: 15px;
+  font-weight: 500;
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.13);
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--liquid-ink, #edf0ff);
+  cursor: pointer;
+  transition: transform 0.2s, background 0.2s, border-color 0.2s;
+}
+.op-group > button:hover {
+  transform: translateY(-1px);
+  border-color: var(--liquid-accent, #becaff);
+  background: rgba(190, 202, 255, 0.1);
+}
+/* The act currently on the table: filled primary, matching the studio's
+   primary button, so "which act is live" reads without the status pill. */
+.op-group > button.on {
+  border-color: transparent;
+  color: #191f3b;
+  background: linear-gradient(145deg, #e0e5ff, #acbdf9);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.6), 0 4px 16px rgba(162, 184, 255, 0.12);
+}
+/* Destructive actions keep their red even when primary-styled: an operator
+   must not learn to fear the filled button, only the red one. */
+.op-group > button.danger {
+  border-color: rgba(255, 80, 80, 0.4);
+  color: #ffb0b0;
+}
+.op-group > button.danger:hover {
+  border-color: #ff6b6b;
+  background: rgba(255, 80, 80, 0.12);
+}
+.op-midi {
+  align-items: stretch;
+  flex-direction: column;
+}
+.op-midi h2 { flex-basis: auto; }
+/* The embedded MiniLab (lesson.css) is itself a glass card; as a flex child
+   it must fill the group rather than shrink to its content. */
+.op-midi .lesson-panel {
+  width: 100%;
+}
+@media (max-width: 600px) {
+  .op-group > button {
+    flex: 1 1 100%;
+  }
+}
+
+/* --- Added by Julius's main (iPad worksheet and embedded show column, #60, #66).
+   Their structure and 48 px targets stay; colours borrow the Liquid tokens
+   with the same fallbacks as above. */
+.op-check { display: flex; gap: 8px; align-items: center; min-height: 48px; padding: 0 14px; border: 1px solid rgba(255, 255, 255, 0.13); border-radius: 14px; background: rgba(255, 255, 255, 0.05); font-size: 15px; cursor: pointer; }
+.op-check input { width: 20px; height: 20px; accent-color: #36ff7a; }
+.op-sheet select { min-height: 48px; padding: 0 10px; font: inherit; font-size: 15px; border-radius: 14px; border: 1px solid rgba(255, 255, 255, 0.13); background: rgba(255, 255, 255, 0.05); color: #cfe7f5; max-width: 100%; }
+.op-url a { color: var(--liquid-accent, #becaff); font-size: 17px; }
+.op-err { color: #ff9a9a; font-size: 13px; }
+
+.op-pill.warn { background: #ffd36c18; color: #ffd36c; }
+.op-piano { border: 1px solid #1f3a52; border-radius: 12px; background: #0b1524; overflow: hidden; }
+.op-piano-head { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 16px; flex-wrap: wrap; }
+.op-piano-toggle { display: flex; align-items: center; gap: 12px; font-size: 18px; cursor: pointer; }
+.op-piano-toggle input { width: 24px; height: 24px; accent-color: #36ff7a; }
+.op-piano-toggle small { display: block; color: #8aa4b8; font-size: 12px; font-weight: normal; margin-top: 2px; }
+.op-piano-preview { position: relative; background: #02060c; display: flex; justify-content: center; }
+.op-piano-preview svg { display: block; width: 100%; max-height: 60vh; }
+.op-piano-preview .piano-boundary { fill: none; stroke: #6cf0ff; stroke-width: 3; }
+.op-piano-preview .piano-key { stroke-width: 1.5; }
+.op-piano-preview .piano-key.white { fill: #36ff7a18; stroke: #36ff7a; }
+.op-piano-preview .piano-key.black { fill: #ffd36c24; stroke: #ffd36c; }
+.op-piano-preview text { fill: white; stroke: #02060c; stroke-width: 2px; paint-order: stroke; font-family: system-ui, sans-serif; pointer-events: none; }
+.op-piano-preview.stale .piano-key, .op-piano-preview.stale .piano-boundary { stroke-dasharray: 5 4; }
+.op-piano-frozen { position: absolute; top: 12px; left: 12px; background: #111c; border: 1px solid #ffd36c; color: #ffd36c; padding: 5px 10px; border-radius: 6px; }
+.op-piano-empty { display: grid; place-items: center; min-height: 140px; padding: 24px; background: #050b14; color: #8aa4b8; text-align: center; }
+.op-piano-footer { display: flex; gap: 10px 20px; flex-wrap: wrap; align-items: center; padding: 12px 16px; color: #8aa4b8; font-size: 12px; }
+.op-piano-message { margin: 0; padding: 0 16px 14px; color: #ffd36c; }
+/* Embedded as the bench's show column (#66): the bench owns the page height
+   and the column is about a quarter of the screen, so buttons share rows
+   instead of each claiming 150 px, and the tiles stack. Targets stay 48 px
+   tall: the operator still presses them at arm's length. */
+.op-embedded { min-height: 0; padding: 12px; gap: 12px; }
+.op-embedded .op-tiles { grid-template-columns: 1fr; gap: 6px; }
+.op-embedded .op-tile { padding: 6px 10px; }
+.op-embedded .op-group > button { flex: 1 1 130px; min-width: 0; font-size: 14px; }

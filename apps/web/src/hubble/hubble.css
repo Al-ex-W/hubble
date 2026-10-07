@@ -1,0 +1,189 @@
+* {
+  box-sizing: border-box;
+}
+
+/* Variables live on the root element too, not :root, so the parked orb's
+   accent does not repaint the render bench (same CSS bundle). */
+.hubble-root {
+  --fg: var(--liquid-ink, #edf0ff);
+  --muted: var(--liquid-muted, #a8aec8);
+  --accent: var(--liquid-accent, #becaff);
+  height: 100%;
+  background: radial-gradient(ellipse at 20% 15%, #7378cf22, transparent 55%), radial-gradient(ellipse at 85% 60%, #8b62ac18, transparent 55%), #0c1020;
+  color: var(--fg);
+  font-family: 'Outfit', sans-serif;
+  overflow: hidden;
+}
+
+.hubble-root .app {
+  height: 100%;
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr) auto auto;
+  padding: 24px clamp(16px, 5vw, 64px);
+  gap: 8px;
+}
+
+.hubble-root .header {
+  text-align: center;
+}
+.hubble-root .header h1 {
+  margin: 0;
+  font-size: 1.4rem;
+  letter-spacing: -0.045em;
+  font-weight: 500;
+  color: var(--accent);
+  text-shadow: none;
+}
+.hubble-root .stage {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 0;
+}
+
+/* The canvas fills the whole stage so the halo and ripples are never cut off
+   by a box; the orb's size is decided in gl.ts relative to this area. */
+.hubble-root .orb {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Shown only when WebGL2 is unavailable. */
+.hubble-root .orb-fallback {
+  width: min(40vw, 40vh);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  cursor: pointer;
+  background: radial-gradient(circle, #edf0ff 0%, var(--accent) 25%, #33385d 70%, transparent 72%);
+  box-shadow: 0 0 80px #becaff40;
+  opacity: 0.5;
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.hubble-root .orb-fallback:not(.idle) {
+  opacity: 1;
+  animation: orb-breathe 2.4s ease-in-out infinite;
+}
+@keyframes orb-breathe {
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+.hubble-root .status {
+  position: absolute;
+  bottom: 8px;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  color: var(--muted);
+  pointer-events: none;
+  transition: color 0.4s ease;
+}
+.hubble-root .status.listening,
+.hubble-root .status.speaking {
+  color: var(--accent);
+}
+.hubble-root .status.thinking,
+.hubble-root .status.connecting {
+  color: #a99bff;
+}
+
+.hubble-root .warning {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(120, 40, 40, 0.35);
+  border: 1px solid rgba(255, 120, 120, 0.4);
+  color: #ffd7d7;
+  padding: 8px 14px;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  max-width: calc(100% - 32px);
+  text-align: center;
+  z-index: 1;
+}
+
+.hubble-root .transcript {
+  height: 18vh;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 16px 20px;
+  border: 1px solid var(--liquid-line, #d8e0ff26);
+  border-radius: 24px;
+  background: linear-gradient(145deg, #ffffff0c, #ffffff03), var(--liquid-glass, #212740ad);
+  box-shadow: inset 0 1px 0 #ffffff20;
+  backdrop-filter: blur(28px) saturate(130%);
+  font-size: 0.95rem;
+}
+.hubble-root .hint {
+  color: var(--muted);
+  text-align: center;
+  margin: auto 0;
+}
+.hubble-root .turn {
+  margin: 0;
+  line-height: 1.4;
+}
+.hubble-root .turn .who {
+  display: inline-block;
+  min-width: 64px;
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.hubble-root .turn.user .who {
+  color: var(--accent);
+}
+.hubble-root .turn.assistant {
+  color: var(--fg);
+  opacity: 0.92;
+}
+
+.hubble-root .controls {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  padding-bottom: 8px;
+}
+.hubble-root .controls .voice-select { display: flex; align-items: center; gap: 8px; margin-right: 14px; font-size: 0.75rem; color: #9aa9cb; }
+.hubble-root .controls .voice-select select { background: #0b102966; color: #c5d4ff; border: 1px solid #ffffff21; border-radius: 10px; padding: 8px 10px; font-size: 0.75rem; min-width: 0; max-width: 140px; }
+.hubble-root .controls button {
+  background: linear-gradient(145deg, #e0e5ff, #acbdf9);
+  border: 1px solid #ffffff21;
+  color: #191f3b;
+  padding: 12px 28px;
+  border-radius: 14px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  min-height: 44px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.hubble-root .controls button:hover:not(:disabled) {
+  box-shadow: inset 0 1px 0 #ffffffa0, 0 4px 16px #a2b8ff25;
+  transform: translateY(-1px);
+}
+.hubble-root .controls button:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+.hubble-root .controls button.stop {
+  background: #ff7a7a12;
+  border-color: #ff7a7a;
+  color: #ff9a9a;
+}
+
+/* The text box: Hubble has no speech input (owner, 7 Oct 2026), so this is how the person talks to it. */
+.hubble-root .controls .composer { display: flex; gap: 8px; flex: 1 1 auto; min-width: 0; max-width: 420px; }
+.hubble-root .controls .composer input { flex: 1 1 auto; min-width: 0; background: #0b102966; color: #e8eeff; border: 1px solid #ffffff21; border-radius: 14px; padding: 12px 14px; font-size: 0.9rem; min-height: 44px; box-sizing: border-box; }
+.hubble-root .controls .composer input:focus { outline: none; border-color: #a2b8ff80; }
+.hubble-root .controls .composer button { padding: 12px 20px; }

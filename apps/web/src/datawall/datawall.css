@@ -1,0 +1,48 @@
+/* TV 2's data wall: 1920×1080, read across a room. Liquid palette (studio/liquid.css
+   tokens, inherited from .liquid-theme on #root), dark, monospace for the data. */
+.dw {
+  position: fixed; inset: 0; overflow: hidden;
+  display: grid; gap: 16px; padding: 20px 24px;
+  grid-template-columns: 480px 1fr 520px;
+  grid-template-rows: 44px 1fr 260px;
+  grid-template-areas: 'head head head' 'radar model fire' 'nums nums cal';
+  background: var(--liquid-aurora, none), var(--liquid-bg, #0c1020);
+  color: var(--liquid-ink, #edf0ff);
+  font-family: ui-monospace, 'SF Mono', 'JetBrains Mono', Menlo, monospace;
+}
+.dw-head { grid-area: head; display: flex; align-items: center; gap: 14px; font-size: 26px; letter-spacing: .3em; }
+.dw-head span { color: var(--liquid-muted, #a8aec8); letter-spacing: .1em; font-size: 18px; }
+.dw-pulse { width: 12px; height: 12px; border-radius: 50%; background: var(--liquid-live, #98d2b7); box-shadow: 0 0 16px var(--liquid-live, #98d2b7); animation: dw-pulse 2.4s ease-in-out infinite; margin-left: auto; }
+@keyframes dw-pulse { 50% { opacity: .25; transform: scale(.7); } }
+.dw-panel { position: relative; min-height: 0; overflow: hidden; border: 1px solid var(--liquid-line, rgba(216,224,255,.15)); border-radius: 16px; padding: 14px 16px; background: var(--liquid-panel, rgba(33,39,64,.68)); }
+.dw-panel h3 { margin: 0 0 8px; font-size: 13px; font-weight: 500; letter-spacing: .25em; text-transform: uppercase; color: var(--liquid-accent, #becaff); }
+.dw-sub { position: absolute; left: 16px; right: 16px; bottom: 10px; font-size: 15px; color: var(--liquid-muted, #a8aec8); }
+.dw-radar { grid-area: radar; }
+.dw-radar canvas { display: block; margin: 0 auto; width: 440px; height: 440px; border-radius: 50%; }
+.dw-model { grid-area: model; display: flex; flex-direction: column; }
+.dw-pipeline { font-size: 18px; color: var(--liquid-live, #98d2b7); margin-bottom: 10px; min-height: 24px; }
+.dw-code { flex: 1; margin: 0 0 28px; overflow: hidden; white-space: pre-wrap; word-break: break-all; font-size: 15px; line-height: 1.45; color: #cdd6ff; }
+.dw-code:empty::before { content: 'waiting for the model…'; color: var(--liquid-muted, #a8aec8); animation: dw-pulse 3s ease-in-out infinite; }
+.dw-firehose { grid-area: fire; }
+.dw-feed { font-size: 13px; line-height: 1.5; white-space: nowrap; }
+.dw-row { overflow: hidden; text-overflow: ellipsis; }
+.dw-nums { grid-area: nums; display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px 24px; align-content: center; }
+.dw-num { display: flex; flex-direction: column; }
+.dw-num span { font-size: 40px; font-variant-numeric: tabular-nums; color: var(--liquid-ink, #edf0ff); text-shadow: 0 0 18px rgba(190,202,255,.35); white-space: nowrap; }
+.dw-num small { font-size: 13px; letter-spacing: .2em; text-transform: uppercase; color: var(--liquid-muted, #a8aec8); }
+.dw-num.dw-idle span { color: var(--liquid-muted, #a8aec8); text-shadow: none; animation: dw-pulse 4s ease-in-out infinite; }
+.dw-cal { grid-area: cal; display: grid; grid-template-columns: auto 1fr; grid-template-rows: auto 1fr; column-gap: 12px; }
+.dw-cal h3 { grid-column: 1 / -1; }
+.dw-matrix { margin: 0; font-size: 14px; line-height: 1.6; color: var(--liquid-live, #98d2b7); }
+.dw-cal canvas { width: 100%; height: 170px; }
+/* The rms tile can hold two values ("camera 4.6 · lidar 2.1"): smaller, and allowed to wrap. */
+.dw-num span[data-num='rms'] { font-size: 28px; white-space: normal; line-height: 1.15; }
+
+/* Hubble's voice in the radar's cell (7 Oct): the orb, and the line being said. */
+.dw-voice { position: absolute; inset: 44px 16px 16px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 18px; }
+.dw-orb { position: relative; flex: none; width: 240px; height: 240px; }
+/* The Orb sizes itself for the full-screen /tv page; pin every layer to this cell. */
+.dw-orb > *, .dw-orb canvas { position: absolute !important; inset: 0 !important; width: 100% !important; height: 100% !important; }
+.dw-bubble { max-width: 100%; padding: 14px 18px; border-radius: 18px; font-family: Outfit, system-ui, sans-serif; font-size: 24px; line-height: 1.3;
+  color: var(--liquid-ink, #edf0ff); background: rgba(190, 202, 255, .12); border: 1px solid rgba(190, 202, 255, .35); opacity: .45; transition: opacity .4s; }
+.dw-bubble-on { opacity: 1; }

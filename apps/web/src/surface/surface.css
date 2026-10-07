@@ -1,0 +1,205 @@
+/* The operating surface (#75) in the owner's Liquid design (7 Oct: "update all css and
+   design to use our design"). Julius's class names and markup are untouched; only the
+   look comes from the shared tokens in studio/liquid.css (`--liquid-*`, defined once on
+   `.liquid-theme`, which main.tsx puts on #root). Fallbacks mirror the token values so
+   the page still reads in a test or embed without the wrapper.
+   Show is read at arm's length in a dark hall, so status is colour first, targets are
+   at least 44 px and the steps are numbered; the glass and lavender are cosmetic and
+   never encode state on their own. The projector preview inside stays black: black is
+   "no light" on the real projector. */
+.surface { position: relative; isolation: isolate; height: 100%; display: grid; grid-template-rows: auto minmax(0, 1fr); background: var(--liquid-bg, #0c1020); color: var(--liquid-ink, #edf0ff); font-family: 'Outfit', ui-sans-serif, system-ui, sans-serif; }
+.surface::before { content: ''; position: absolute; inset: 0; z-index: -1; pointer-events: none; background: var(--liquid-aurora); }
+.surface-bar { display: flex; align-items: center; flex-wrap: wrap; gap: 14px; padding: 10px 20px; border-bottom: 1px solid var(--liquid-line); background: var(--liquid-panel); backdrop-filter: blur(28px) saturate(130%); }
+.surface-bar strong { font-size: 19px; font-weight: 500; letter-spacing: -.04em; color: var(--liquid-ink); }
+.surface-bar small { color: var(--liquid-muted); font-size: 12px; }
+.surface-modes { display: flex; padding: 4px; gap: 3px; border-radius: 14px; background: #080b1b66; border: 1px solid var(--liquid-line); }
+.surface-modes button { font: inherit; font-size: 13px; padding: 7px 18px; background: transparent; color: var(--liquid-muted); border: 1px solid transparent; border-radius: 10px; cursor: pointer; }
+.surface-modes button.on { color: var(--liquid-ink); border-color: #ffffff15; background: #ffffff0f; box-shadow: 0 2px 8px #0002; font-weight: 500; }
+.surface-main { min-height: 0; overflow: hidden; }
+.surface :focus-visible { outline: 2px solid var(--liquid-accent, #becaff); outline-offset: 3px; }
+
+.show { height: 100%; display: grid; grid-template-rows: auto minmax(0, 1fr); font-size: 15px; line-height: 1.45; }
+.show-status { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; padding: 10px 20px; border-bottom: 1px solid var(--liquid-line); }
+.show-light { display: inline-flex; gap: 6px; align-items: center; padding: 4px 12px; border-radius: 999px; background: #ffffff07; border: 1px solid var(--liquid-line); font-size: 13px; }
+.show-light::before { content: ''; width: 9px; height: 9px; border-radius: 50%; background: currentColor; }
+.show-light b { font-weight: 500; font-size: 10px; letter-spacing: .13em; text-transform: uppercase; color: var(--liquid-muted); }
+.show-light.ok { color: var(--liquid-ok); }
+.show-light.warn { color: var(--liquid-warn); }
+.show-light.bad { color: var(--liquid-bad); }
+/* "Full server not running" is an expected state on the Studio server, not a fault: calm, muted, no alarm colour. */
+.show-light.idle { color: var(--liquid-muted); }
+.show-arm { font: inherit; font-size: 13px; padding: 6px 14px; border-radius: 999px; border: 1px solid var(--liquid-line); background: #ffffff07; color: var(--liquid-ink); cursor: pointer; }
+.show-arm.armed { border-color: var(--liquid-bad); color: var(--liquid-bad); background: #ffb9b61a; }
+.show-note { color: var(--liquid-muted); font-size: 12px; margin-left: auto; }
+.show-offline { margin: 0; flex-basis: 100%; font-size: 12px; color: var(--liquid-muted); }
+
+.show-body { min-height: 0; display: grid; grid-template-columns: minmax(360px, 40%) minmax(0, 1fr); }
+.show-acts { overflow-y: auto; padding: 18px 20px; display: flex; flex-direction: column; gap: 16px; border-right: 1px solid var(--liquid-line); }
+.show-act { border: 1px solid var(--liquid-line); border-radius: var(--liquid-radius); padding: 16px 18px; background: var(--liquid-panel); box-shadow: inset 0 1px 0 #ffffff13, 0 14px 38px #03051133; backdrop-filter: blur(22px) saturate(130%); }
+.show-act.live { border-color: var(--liquid-accent); box-shadow: 0 0 0 3px #becaff14, inset 0 1px 0 #ffffff13; }
+.show-act h2 { margin: 0 0 12px; font-size: 11px; font-weight: 500; text-transform: uppercase; letter-spacing: .15em; color: var(--liquid-accent); display: flex; gap: 8px; align-items: center; }
+.show-act h2 em { font-style: normal; font-size: 10px; letter-spacing: .08em; color: #191f3b; background: var(--liquid-live); border-radius: 999px; padding: 1px 9px; }
+.show-act ol { margin: 0; padding: 0; list-style: none; counter-reset: step; display: flex; flex-direction: column; gap: 14px; }
+/* Numbered badges, not list markers: the items are flex columns, and a flex
+   item loses its ::marker. The numbers are the point of Show: do 1, then 2. */
+.show-act li { counter-increment: step; position: relative; padding-left: 36px; display: flex; flex-direction: column; gap: 6px; }
+.show-act li::before { content: counter(step); position: absolute; left: 0; top: 0; width: 24px; height: 24px; border-radius: 50%; display: grid; place-items: center; font-size: 12px; font-weight: 600; color: #191f3b; background: linear-gradient(145deg, #e0e5ff, #acbdf9); }
+.show-step { font-size: 10px; font-weight: 500; text-transform: uppercase; letter-spacing: .13em; color: var(--liquid-muted); }
+.show-act small { color: var(--liquid-muted); font-size: 12px; }
+.show-act .show-err, .show-err { color: var(--liquid-bad); background: #fa8d830b; border-radius: 10px; padding: 8px 10px; overflow-wrap: anywhere; }
+.show-url { color: var(--liquid-accent) !important; }
+.show-row, .show-presets { display: flex; flex-wrap: wrap; gap: 8px; }
+.show button, .show select, .show input { font: inherit; min-height: 44px; border-radius: 14px; border: 1px solid var(--liquid-line); background: #ffffff07; color: var(--liquid-ink); padding: 0 16px; transition: background .2s, border-color .2s, transform .2s; }
+.show input, .show select { background: var(--liquid-field); border-radius: var(--liquid-radius-sm); }
+.show select option { background: #20273b; color: var(--liquid-ink); }
+.show button { cursor: pointer; font-weight: 500; font-size: 13px; }
+.show button:hover:not(:disabled) { border-color: var(--liquid-accent); transform: translateY(-1px); }
+.show button:disabled { opacity: .45; cursor: default; }
+.show button.on { border-color: var(--liquid-ok); color: var(--liquid-ok); }
+.show button.danger { border-color: #ffb9b640; color: var(--liquid-bad); }
+.show .show-primary { color: #191f3b; background: linear-gradient(145deg, #e0e5ff, #acbdf9); border-color: #ffffff21; box-shadow: inset 0 1px 0 #ffffffa0; }
+.show .show-primary:hover:not(:disabled) { border-color: #ffffff21; }
+.show select { width: 100%; }
+.show-ask { display: flex; gap: 8px; }
+.show-ask input { flex: 1; min-width: 0; }
+.show-presets button { min-height: 36px; font-size: 13px; }
+.show-turn { font-size: 13px; padding: 8px 10px; border-radius: 8px; background: #0b1524; border-left: 3px solid #6cf0ff; }
+/* The iPad's problems menu (#88): a button, then the list inline under it
+   rather than a floating popover, which the scrolling acts column would clip. */
+.show-picks { display: flex; flex-direction: column; gap: 6px; }
+.show-picks > button { align-self: flex-start; }
+.show-picks-count { display: inline-grid; place-items: center; min-width: 20px; height: 20px; margin-left: 4px; border-radius: 999px; background: #36ff7a; color: #04060c; font-size: 12px; font-weight: 700; }
+.show-picks-list { display: flex; flex-direction: column; gap: 4px; padding: 8px; border: 1px solid #1f3a52; border-radius: 8px; background: #0b1524; }
+.show-pick { display: grid; grid-template-columns: 22px 22px 1fr; align-items: center; gap: 8px; min-height: 40px; padding: 2px 6px; border-radius: 6px; cursor: pointer; font-size: 14px; }
+.show-pick:hover { background: #10203a; }
+.show-pick.on { color: #7dffa8; }
+.show-pick.off { opacity: 0.45; cursor: default; }
+.show .show-pick input { min-height: 0; width: 18px; height: 18px; padding: 0; margin: 0; accent-color: #36ff7a; }
+.show-pick-n { font-weight: 700; text-align: center; }
+.show .show-link { min-height: 36px; align-self: flex-start; font-size: 13px; }
+.show-presets button { min-height: 36px; font-size: 12px; border-radius: 999px; }
+.show-turn, .show-convo { font-size: 13px; padding: 10px 12px; border-radius: var(--liquid-radius-sm); background: #becaff0c; border: 1px solid #becaff20; }
+.show-convo { display: flex; flex-direction: column; gap: 6px; max-height: 220px; overflow-y: auto; overflow-wrap: anywhere; }
+.show-convo p { margin: 0; }
+.show-convo .you { color: var(--liquid-muted); }
+.show-convo .hubble { color: var(--liquid-ink); }
+.show-activity { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; font-size: 12px; color: var(--liquid-accent); }
+.show-voice { display: flex; align-items: center; gap: 8px; font-size: 12px; color: var(--liquid-muted); }
+.show-voice select { min-height: 32px; width: auto; font-size: 12px; padding: 0 8px; }
+.show .show-link { min-height: 36px; align-self: flex-start; font-size: 12px; }
+
+.show-stage { min-height: 0; display: flex; flex-direction: column; gap: 12px; padding: 18px 20px; }
+.show-stage-head { display: flex; align-items: baseline; gap: 10px; }
+.show-stage h2 { margin: 0; font-size: 11px; font-weight: 500; text-transform: uppercase; letter-spacing: .15em; color: var(--liquid-accent); }
+.show-stage small { color: var(--liquid-muted); }
+/* The projector is 16:9; the preview keeps that shape so positions read true. Its
+   inside is Julius's renderer on black, untouched: the frame is the only chrome. */
+.show-preview { width: 100%; aspect-ratio: 16 / 9; max-height: calc(100% - 110px); border: 1px solid var(--liquid-line); border-radius: var(--liquid-radius); background: #000; box-shadow: 0 20px 50px #05081633; }
+
+@media (max-width: 1000px) {
+  .show-body { grid-template-columns: 1fr; overflow-y: auto; }
+  .show-acts { border-right: none; overflow: visible; }
+}
+
+/* The reference-points button and its one-line localization state (#91). */
+.reference-points { display: inline-flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+.reference-points small { opacity: 0.8; }
+/* Pinch typing on (#75): green, not the room-output switch's red, because on is the good state here. */
+.show-arm.pinch-on { border-color: #36ff7a; color: #7dffa8; background: rgba(54, 255, 122, 0.1); }
+@media (max-width: 600px) {
+  .surface-bar { padding: 10px 16px; gap: 10px; }
+  .surface-bar small { flex-basis: 100%; }
+  .show-status, .show-acts, .show-stage { padding-left: 16px; padding-right: 16px; }
+  .show-act { padding: 14px; }
+}
+
+/* Show's step list (docs/plans/2026-10-07-show-steps.md) in the Liquid design (owner, 7 Oct:
+   "restyle the runner, no actual logic change"). CSS only: ShowSteps.tsx markup and
+   stepRuns.ts are untouched. Each step is a glass card: a round numbered badge, title,
+   one-line place instruction, a Run pill and a status line. State is colour AND the
+   status text (idle/running/done/error), never colour alone. */
+.show-steps { list-style: none; margin: 12px 0; padding: 0; display: grid; gap: 12px; }
+.show-stepcard { display: flex; gap: 16px; align-items: flex-start; padding: 18px 20px; border-radius: var(--liquid-radius, 20px); border: 1px solid var(--liquid-line); background: var(--liquid-panel); box-shadow: inset 0 1px 0 #ffffff13, 0 14px 38px #03051133; backdrop-filter: blur(22px) saturate(130%); transition: border-color .2s, box-shadow .2s; }
+.show-stepcard.active { border-color: var(--liquid-accent); box-shadow: 0 0 0 3px #becaff14, inset 0 1px 0 #ffffff13, 0 14px 38px #03051133; }
+.show-stepcard.coming { opacity: .45; border-style: dashed; }
+.show-stepnum { flex: none; width: 40px; height: 40px; border-radius: 50%; display: grid; place-items: center; font-size: 18px; font-weight: 600; line-height: 1; color: #191f3b; background: linear-gradient(145deg, #e0e5ff, #acbdf9); box-shadow: inset 0 1px 0 #ffffffa0; }
+.show-stepbody { display: grid; gap: 8px; flex: 1; min-width: 0; }
+.show-stepbody h2 { margin: 0; font-size: 19px; font-weight: 500; letter-spacing: -.03em; color: var(--liquid-ink); }
+.show-place { margin: 0; font-size: 14px; color: var(--liquid-muted); }
+.show-stepbody small { color: var(--liquid-muted); font-size: 12px; overflow-wrap: anywhere; }
+/* Run is the primary pill (same gradient as .show-primary); Reset and the rest stay quiet glass. */
+.show .show-run { font-size: 15px; font-weight: 600; padding: 0 30px; border-radius: 999px; color: #191f3b; background: linear-gradient(145deg, #e0e5ff, #acbdf9); border-color: #ffffff21; box-shadow: inset 0 1px 0 #ffffffa0, 0 4px 16px #a2b8ff18; }
+.show .show-run:hover:not(:disabled) { border-color: #ffffff21; }
+.show .show-stepbody .show-row > button:not(.show-run) { border-radius: 999px; }
+/* The status line is a pill with a state dot; the word itself is the text content. */
+.show .show-stepstatus { display: inline-flex; align-items: center; gap: 8px; width: fit-content; max-width: 100%; padding: 4px 12px; border-radius: 999px; border: 1px solid var(--liquid-line); background: #ffffff07; font-size: 13px; color: var(--liquid-muted); }
+.show-stepstatus::before { content: ''; flex: none; width: 9px; height: 9px; border-radius: 50%; background: currentColor; }
+.show-stepstatus.done { color: var(--liquid-ok); }
+.show-stepstatus.error { color: var(--liquid-bad); background: #fa8d830b; }
+.show-stepstatus.running { color: var(--liquid-warn); }
+.show-stepstatus.running::before { animation: show-step-pulse 1.2s ease-in-out infinite; }
+@keyframes show-step-pulse { 50% { opacity: .35; } }
+.show-read { margin: 0; white-space: pre-wrap; overflow-wrap: anywhere; font-size: 13px; padding: 10px 12px; border-radius: var(--liquid-radius-sm); background: #becaff0c; border: 1px solid #becaff20; color: var(--liquid-ink); }
+.show-more { margin-top: 12px; border: 1px solid var(--liquid-line); border-radius: var(--liquid-radius, 20px); background: #ffffff05; }
+.show-more > summary { cursor: pointer; color: var(--liquid-muted); font-size: 13px; padding: 12px 18px; }
+@media (max-width: 600px) {
+  .show-stepcard { padding: 14px; gap: 12px; }
+  .show-stepnum { width: 34px; height: 34px; font-size: 16px; }
+  .show .show-run { flex: 1; }
+}
+
+/* Show's activity feed (owner, 7 Oct: "all channels … so we can see what is happening").
+   A right column on wide screens, below the steps on narrow ones. */
+.show-main { min-height: 0; display: grid; grid-template-columns: minmax(0, 1fr) minmax(340px, 34%); gap: 16px; padding: 0 20px; }
+.show-main-steps { min-height: 0; overflow-y: auto; }
+@media (max-width: 1100px) {
+  .show-main { grid-template-columns: 1fr; overflow-y: auto; }
+  .show-main-steps { overflow: visible; }
+  .feed { height: 50vh; }
+}
+.feed { min-height: 0; display: flex; flex-direction: column; margin: 12px 0; border: 1px solid var(--liquid-line); border-radius: 14px; background: #ffffff05; }
+.feed-head { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; padding: 8px 10px; border-bottom: 1px solid var(--liquid-line); }
+.feed-head h2 { margin: 0 6px 0 0; font-size: 11px; font-weight: 500; letter-spacing: .13em; text-transform: uppercase; color: var(--liquid-muted); }
+.feed-chip, .feed-pause { font: inherit; font-size: 11px; padding: 2px 9px; border-radius: 999px; border: 1px solid currentColor; background: transparent; color: var(--ch, var(--liquid-ink)); cursor: pointer; }
+.feed-chip.off { opacity: .35; text-decoration: line-through; }
+.feed-pause { margin-left: auto; --ch: var(--liquid-ink); }
+.feed-log { flex: 1; min-height: 0; overflow-y: auto; padding: 6px 10px; font: 12px/1.5 ui-monospace, SFMono-Regular, Menlo, monospace; }
+.feed-line { display: grid; grid-template-columns: auto 74px minmax(0, 1fr); gap: 8px; }
+.feed-line time { color: var(--liquid-muted); }
+.feed-tag { color: var(--ch); text-transform: uppercase; font-size: 10px; letter-spacing: .08em; padding-top: 2px; }
+.feed-text { overflow-wrap: anywhere; }
+.feed-empty { color: var(--liquid-muted); margin: 8px 0; }
+.ch-stage { --ch: #8ab4ff; }
+.ch-assistant { --ch: #c79bff; }
+.ch-input { --ch: #6fdc8c; }
+.ch-spatial { --ch: #5fd3d3; }
+.ch-operator { --ch: #f0c36b; }
+.ch-error { --ch: var(--liquid-bad, #ff7b7b); }
+.feed-line.ch-error .feed-text { color: var(--liquid-bad, #ff7b7b); }
+/* TV 1's mirror of the control panel (uiSync.ts): read across a room, no input.
+   pointer-events off on the content, so a stray touch on a kiosk TV can't act. */
+.surface-mirror .surface-main, .surface-mirror .surface-modes { pointer-events: none; }
+.surface-mirror { font-size: 125%; }
+.surface-mirror-badge { margin-left: auto; padding: 6px 14px; border-radius: 999px; border: 1px solid var(--liquid-line); color: var(--liquid-ink); font-size: 18px; letter-spacing: .04em; text-transform: uppercase; animation: surface-mirror-pulse 3s ease-in-out infinite; }
+@keyframes surface-mirror-pulse { 50% { opacity: .55; } }
+.surface-mirror-setup { padding: 80px 40px; text-align: center; color: var(--liquid-muted); }
+.surface-mirror-setup h2 { font-size: 48px; font-weight: 400; color: var(--liquid-ink); }
+
+/* The piano speaker toggle (PianoSpeaker.tsx): pushed to the bar's right edge. */
+.piano-sound { margin-left: auto; display: flex; align-items: center; gap: 8px; }
+.piano-sound button { font: inherit; font-size: 16px; padding: 4px 8px; background: transparent; border: 1px solid var(--liquid-line); border-radius: 10px; cursor: pointer; }
+.piano-sound input { width: 90px; }
+
+/* Screens: scaled live previews of the projector and both TVs (ScreensPreview.tsx). */
+.screens { padding: 8px 20px; }
+.screens-toggle { background: none; border: 0; padding: 4px 0; color: var(--liquid-muted); font-size: 13px; letter-spacing: .08em; text-transform: uppercase; }
+.screens-row { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 6px; }
+.screens-item { margin: 0; display: flex; flex-direction: column; gap: 4px; }
+.screens-item figcaption { font-size: 12px; color: var(--liquid-muted); }
+.screens-item figcaption b { color: var(--liquid-ink); font-weight: 500; margin-right: 6px; }
+.screens-frame { position: relative; display: block; overflow: hidden; border: 1px solid var(--liquid-line); border-radius: 8px; background: #000; }
+/* The iframe takes no pointer: the link around it opens the page full size. */
+.screens-frame iframe { position: absolute; top: 0; left: 0; border: 0; transform-origin: 0 0; pointer-events: none; }
+.screens-off { display: grid; place-items: center; color: var(--liquid-muted); font-size: 12px; }
+.screens-compact { padding: 0; }
+.screens-compact .screens-row { flex-wrap: nowrap; }

@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>hubble</title>
+    <!-- Startup errors to the server log (7 Oct): the iPad's Safari showed a
+         white /ipad-camera with no way to see its console from the laptop.
+         A classic script, so it runs even when a module fails to load. -->
+    <script>
+      ;(function () {
+        function send(kind, msg) {
+          try { navigator.sendBeacon('/api/client-log', JSON.stringify({ kind: kind, msg: String(msg).slice(0, 2000), url: location.href, ua: navigator.userAgent })) } catch (e) {}
+        }
+        addEventListener('error', function (e) { send('error', (e.message || e.type) + ' @ ' + (e.filename || (e.target && (e.target.src || e.target.href)) || '') + ':' + (e.lineno || '')) }, true)
+        addEventListener('unhandledrejection', function (e) { send('rejection', e.reason && (e.reason.stack || e.reason.message) || e.reason) })
+        send('boot', 'page start')
+      })()
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

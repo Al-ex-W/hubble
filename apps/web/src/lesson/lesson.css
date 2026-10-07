@@ -1,0 +1,124 @@
+/* The lesson panel (#34) in the shared Liquid language. It is mounted two
+   ways: uncontrolled on the bench (preview/ChatPreview) and controlled inside
+   the operator page; the hand tracker reuses the same panel/row classes for
+   its own controls. One stylesheet keeps all three reading as one product.
+
+   Tokens fall back to the literal liquid.css values so the panel still reads
+   if it is ever rendered outside `.liquid-theme` (a focused test), matching
+   operator.css's reasoning. The lavender accent is used only for interaction
+   (focus, hover, active tab); the one colour that means something is the lit
+   key (`--next`, green = play this one), and it must stay green. */
+.lesson-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 14px 16px;
+  font-size: 12px;
+  color: var(--liquid-muted, #a8aec8);
+  border: 1px solid var(--liquid-line, rgba(216, 224, 255, 0.15));
+  border-radius: 20px;
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.055), rgba(255, 255, 255, 0.012)), var(--liquid-glass, rgba(33, 39, 64, 0.68));
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1), 0 14px 38px rgba(3, 5, 17, 0.2);
+  backdrop-filter: blur(22px) saturate(130%);
+  /* Local alias so the lit-key rule reads as a semantic name, not a hex. */
+  --next: #5dff9f;
+}
+.lesson-row {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.lesson-row strong {
+  color: var(--liquid-ink, #edf0ff);
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+/* Coordinated controls: same rounded glass as the operator buttons, sized for
+   a real touch. Kept at the row's scale (not the operator's 52px) because the
+   bench packs several panels together. */
+.lesson-row button,
+.lesson-row select {
+  font: inherit;
+  font-size: 12px;
+  min-height: 40px;
+  padding: 8px 14px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.13);
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--liquid-ink, #edf0ff);
+  cursor: pointer;
+  transition: transform 0.2s, background 0.2s, border-color 0.2s;
+}
+.lesson-row select {
+  padding-right: 10px;
+}
+.lesson-row button:hover,
+.lesson-row select:hover {
+  transform: translateY(-1px);
+  border-color: var(--liquid-accent, #becaff);
+  background: rgba(190, 202, 255, 0.1);
+}
+.lesson-row :focus-visible {
+  outline: 2px solid var(--liquid-accent, #becaff);
+  outline-offset: 3px;
+}
+.lesson-status {
+  color: var(--liquid-muted, #a8aec8);
+}
+
+/* The virtual MiniLab keeps its exact physical key geometry — the operator
+   learns the real key positions here, so the widths/heights are a
+   measurement, not a style. Only the finish is Liquid: soft rounding and a
+   highlight that matches the physical keystroke. */
+.virtual-minilab {
+  display: flex;
+  height: 54px;
+  align-items: flex-start;
+  gap: 1px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  min-height: 64px;
+}
+.vkey {
+  /* Scrolling preserves key proportions on a narrow phone; shrinking the
+     white keys would change their relationship to overlapping black keys. */
+  flex-shrink: 0;
+  border: 0;
+  cursor: pointer;
+  border-radius: 0 0 6px 6px;
+  transition: transform 0.08s, background 0.12s, box-shadow 0.12s;
+}
+.vkey:active {
+  transform: translateY(1px);
+}
+.vkey:focus-visible {
+  outline: 2px solid var(--liquid-accent, #becaff);
+  outline-offset: 2px;
+}
+.vkey.white {
+  width: 22px;
+  height: 54px;
+  background: linear-gradient(180deg, #f4f2ea, #dcd8ca);
+  box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.18);
+}
+.vkey.black {
+  width: 14px;
+  height: 32px;
+  background: linear-gradient(180deg, #2b2d38, #121319);
+  margin: 0 -7px;
+  position: relative;
+  z-index: 1;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+/* The one semantic colour in the panel: this is the key the player should
+   press next. Success-green, glowing, unchanged in meaning by the restyle. */
+.vkey.after {
+  /* The key after the green one: the projector's lavender ring, mirrored. */
+  outline: 2px solid #becaff;
+  outline-offset: -2px;
+}
+.vkey.next {
+  background: var(--next);
+  box-shadow: 0 0 10px var(--next);
+}

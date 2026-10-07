@@ -1,0 +1,635 @@
+/* Rendering test bench: the Liquid Studio look, so the bench reads as the same
+   product as /studio without changing how any of it behaves. The parent adds
+   `liquid-theme` to #root and imports liquid.css app-wide, so `--liquid-*`
+   are inherited here; every one is read with a fallback so the bench still
+   renders correctly when previewed on its own (tests, isolated routes).
+
+   Two rules hold the design together:
+   1. Chrome (panes, cards, fields, buttons) is liquid glass: translucent,
+      rounded, Outfit, one periwinkle accent.
+   2. The table simulator stays a physical object. Its black cloth and the
+      projection over it are never tinted by the aurora or the glass tokens —
+      the bench is a window onto the room, not part of the UI. */
+
+.chat {
+  /* Status semantics are local, not from liquid.css, but borrow its palette:
+     the bench must still say "streaming / done / error" at a glance. */
+  --bench-accent: var(--liquid-accent, #becaff);
+  --bench-ok: #98d2b7;
+  --bench-warn: #d4a16b;
+  --bench-danger: #ffb9b6;
+  --bench-glass: var(--liquid-glass, rgba(33, 39, 64, 0.68));
+  --bench-line: var(--liquid-line, rgba(216, 224, 255, 0.15));
+  --bench-ink: var(--liquid-ink, #edf0ff);
+  --bench-muted: var(--liquid-muted, #a8aec8);
+
+  position: relative;
+  height: 100%;
+  display: grid;
+  /* chat | table | show controls (#66). The table takes what is left: it is
+     drawn to scale, so it shrinks cleanly, while the two side columns hold
+     text and buttons that must stay readable. */
+  grid-template-columns: minmax(300px, 26%) minmax(0, 1fr) minmax(300px, 24%);
+  background: #0c1020;
+  color: var(--bench-ink);
+  font-family: 'Outfit', ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  overflow: hidden;
+}
+
+/* Gentle aurora on the bench chrome only. It is painted behind the panes but
+   in front of the base colour; the opaque sim-table and its projection sit
+   above it, so the room's table never picks up the tint. */
+.chat::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse at 15% 40%, #53639724, transparent 50%),
+    radial-gradient(ellipse at 76% 9%, #72578022, transparent 45%),
+    radial-gradient(ellipse at 88% 76%, #28596618, transparent 45%);
+}
+
+/* ---- left pane: chat ---- */
+
+.chat-left {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr) auto;
+  border-right: 1px solid var(--bench-line);
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.012)), var(--bench-glass);
+  backdrop-filter: blur(28px) saturate(130%);
+  min-height: 0;
+  min-width: 0;
+}
+
+.chat-title {
+  padding: 16px 18px;
+  font-size: 0.72rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--bench-accent);
+  border-bottom: 1px solid var(--bench-line);
+}
+.chat-title small {
+  display: block;
+  margin-top: 5px;
+  letter-spacing: 0.05em;
+  text-transform: none;
+  color: var(--bench-muted);
+  font-size: 0.68rem;
+}
+
+.chat-log {
+  overflow-y: auto;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-height: 0;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.system-line {
+  align-self: center;
+  color: var(--bench-muted);
+  font-size: 0.72rem;
+  font-style: italic;
+}
+
+.empty-hint {
+  color: var(--bench-muted);
+  font-size: 0.82rem;
+  text-align: center;
+  margin: auto 8px;
+  line-height: 1.6;
+}
+
+.suggestions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
+  justify-content: center;
+}
+.suggestions button {
+  background: #ffffff07;
+  border: 1px solid var(--bench-line);
+  color: var(--bench-ink);
+  border-radius: 999px;
+  padding: 7px 13px;
+  font-size: 0.72rem;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.2s, border-color 0.2s;
+}
+.suggestions button:hover {
+  border-color: var(--bench-accent);
+  color: var(--bench-accent);
+  transform: translateY(-1px);
+}
+
+.run-card {
+  align-self: stretch;
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.012)), var(--bench-glass);
+  border: 1px solid var(--bench-line);
+  border-radius: 18px;
+  padding: 10px 12px;
+  font-size: 0.78rem;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+.run-card .row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.run-card .status {
+  font-size: 0.66rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 3px 8px;
+  border-radius: 999px;
+  border: 1px solid var(--bench-line);
+  color: var(--bench-muted);
+}
+/* Semantic status is kept, only recoloured to the Liquid palette: the whole
+   point of the bench is to see at a glance whether a render finished. */
+.run-card .status.streaming {
+  color: var(--bench-accent);
+  border-color: #becaff40;
+  background: #becaff0c;
+}
+.run-card .status.done {
+  color: var(--bench-ok);
+  border-color: #98d2b740;
+  background: #98d2b70b;
+}
+.run-card .status.error {
+  color: var(--bench-danger);
+  border-color: #ffb9b640;
+  background: #fa8d830b;
+}
+.run-card .meta {
+  color: var(--bench-muted);
+  font-size: 0.7rem;
+}
+.run-card .meta .drop {
+  color: var(--bench-danger);
+}
+.run-card .answer {
+  color: var(--bench-ink);
+  opacity: 0.82;
+  line-height: 1.45;
+  max-height: 4.5em;
+  overflow: hidden;
+}
+.run-card button {
+  align-self: flex-start;
+  background: #ffffff07;
+  border: 1px solid #ffffff21;
+  color: var(--bench-ink);
+  border-radius: 12px;
+  padding: 5px 12px;
+  font-size: 0.7rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.2s, border-color 0.2s;
+}
+.run-card button:hover {
+  border-color: var(--bench-accent);
+  color: var(--bench-accent);
+  transform: translateY(-1px);
+}
+
+/* ---- composer ---- */
+
+.composer {
+  min-width: 0;
+  border-top: 1px solid var(--bench-line);
+  padding: 12px 14px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+.composer textarea {
+  width: 100%;
+  min-width: 0;
+  resize: none;
+  min-height: 58px;
+  max-height: 160px;
+  background: #080d2266;
+  border: 1px solid var(--bench-line);
+  border-radius: 12px;
+  color: var(--bench-ink);
+  padding: 10px 12px;
+  font: inherit;
+  font-size: 0.86rem;
+  line-height: 1.5;
+  outline: none;
+}
+.composer textarea::placeholder {
+  color: var(--bench-muted);
+}
+.composer textarea:focus {
+  border-color: var(--bench-accent);
+}
+
+.chip-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  align-items: center;
+}
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #becaff0c;
+  border: 1px solid #becaff20;
+  border-radius: 999px;
+  padding: 3px 4px 3px 7px;
+  font-size: 0.7rem;
+  color: var(--bench-accent);
+}
+.chip img {
+  width: 26px;
+  height: 26px;
+  object-fit: cover;
+  border-radius: 6px;
+}
+.chip button {
+  background: transparent;
+  border: none;
+  color: var(--bench-muted);
+  cursor: pointer;
+  font-size: 0.9rem;
+  line-height: 1;
+  padding: 2px 4px;
+}
+.chip button:hover {
+  color: var(--bench-danger);
+}
+
+.notebook-strip {
+  min-width: 0;
+  max-width: 100%;
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  overflow-x: auto;
+  padding-bottom: 2px;
+}
+.notebook-strip .thumb {
+  border: 2px solid transparent;
+  border-radius: 8px;
+  padding: 0;
+  background: none;
+  cursor: pointer;
+  flex: 0 0 auto;
+}
+.notebook-strip .thumb img {
+  display: block;
+  width: 42px;
+  height: 42px;
+  object-fit: cover;
+  border-radius: 6px;
+  opacity: 0.7;
+}
+.notebook-strip .thumb:hover img {
+  opacity: 1;
+}
+.notebook-strip .thumb.selected {
+  border-color: var(--bench-accent);
+  box-shadow: 0 0 0 3px #b2c6ff0c;
+}
+.notebook-strip .upload {
+  flex: 0 0 auto;
+  background: #ffffff03;
+  border: 1px dashed var(--bench-line);
+  color: var(--bench-ink);
+  border-radius: 10px;
+  height: 42px;
+  padding: 0 11px;
+  font-size: 0.7rem;
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s;
+}
+.notebook-strip .upload:hover {
+  background: #ffffff07;
+  border-color: #c5d2ff44;
+}
+
+.controls-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  font-size: 0.72rem;
+  color: var(--bench-muted);
+}
+.controls-row label {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+.controls-row select {
+  background: #080d2266;
+  border: 1px solid var(--bench-line);
+  color: var(--bench-ink);
+  border-radius: 10px;
+  padding: 4px 7px;
+  font: inherit;
+  font-size: 0.72rem;
+}
+.controls-row select:focus {
+  outline: none;
+  border-color: var(--bench-accent);
+}
+.controls-row button.send {
+  margin-left: auto;
+  /* Primary action mirrors .liquid-button--primary. */
+  background: linear-gradient(145deg, #e0e5ff, #acbdf9);
+  border: 1px solid #ffffff21;
+  color: #191f3b;
+  border-radius: 14px;
+  padding: 8px 20px;
+  cursor: pointer;
+  font-size: 0.76rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  box-shadow: inset 0 1px 0 #ffffffa0, 0 4px 16px #a2b8ff18;
+  transition: transform 0.2s, filter 0.2s;
+}
+.controls-row button.send:hover:not(:disabled) {
+  transform: translateY(-1px);
+}
+.controls-row button.send:disabled {
+  opacity: 0.45;
+  cursor: default;
+}
+.controls-row button.send.stop {
+  background: #fa8d830b;
+  border-color: #ffb9b640;
+  color: var(--bench-danger);
+  box-shadow: none;
+}
+
+/* ---- right pane: table ---- */
+
+.chat-right {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  /* Table, hand controls, lesson, room status and debug drawer each own a
+     row. Implicit rows previously competed with the simulator for height. */
+  grid-template-rows: minmax(220px, 1fr) auto auto auto auto;
+  min-height: 0;
+  min-width: 0;
+  overflow-y: auto;
+  background: transparent;
+}
+.table-pane {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
+  padding: 18px;
+  min-height: 0;
+  min-width: 0;
+  padding-bottom: 40px;
+}
+.table-label {
+  text-align: center;
+  overflow-wrap: anywhere;
+  font-size: 0.66rem;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--bench-muted);
+}
+.sim-area { position: relative; flex: 1; width: 100%; min-height: 0; }
+/* ---- debug drawer ---- */
+
+.drawer {
+  min-width: 0;
+  border-top: 1px solid var(--bench-line);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), transparent), var(--bench-glass);
+  backdrop-filter: blur(28px) saturate(130%);
+}
+.drawer-head {
+  flex-wrap: wrap;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 7px 10px;
+}
+.drawer-head .tab {
+  background: transparent;
+  border: 1px solid transparent;
+  color: var(--bench-muted);
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  padding: 5px 11px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+.drawer-head .tab:hover {
+  color: var(--bench-ink);
+}
+.drawer-head .tab.active {
+  background: #ffffff0f;
+  border-color: #ffffff15;
+  color: var(--bench-accent);
+  box-shadow: 0 2px 8px #0002;
+}
+.drawer-head .spacer {
+  flex: 1;
+}
+.drawer-head .toggle {
+  background: transparent;
+  border: none;
+  color: var(--bench-muted);
+  cursor: pointer;
+  font-size: 0.72rem;
+}
+.drawer-head .toggle:hover {
+  color: var(--bench-ink);
+}
+.drawer-body {
+  max-height: 240px;
+  overflow: auto;
+  padding: 0 12px 12px;
+  font-size: 0.72rem;
+}
+.raw-stream {
+  margin: 0;
+  white-space: pre-wrap;
+  word-break: break-word;
+  color: var(--bench-ink);
+  opacity: 0.85;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.7rem;
+  line-height: 1.5;
+}
+.event-list {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.68rem;
+}
+.event-list .ev {
+  display: grid;
+  grid-template-columns: 56px 70px minmax(0, 1fr);
+  gap: 8px;
+  color: var(--bench-ink);
+  opacity: 0.85;
+  border-bottom: 1px solid var(--bench-line);
+  padding: 2px 0;
+}
+.event-list .ev .tag {
+  color: var(--bench-accent);
+}
+.event-list .ev .body {
+  overflow-wrap: anywhere;
+}
+.event-list .ev.drop {
+  color: var(--bench-danger);
+}
+.event-list .ev.drop .tag {
+  color: var(--bench-danger);
+}
+.timing {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 8px;
+}
+.timing div {
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.012)), var(--bench-glass);
+  border: 1px solid var(--bench-line);
+  border-radius: 14px;
+  padding: 9px 11px;
+}
+.timing .k {
+  color: var(--bench-muted);
+  font-size: 0.66rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.timing .v {
+  color: var(--bench-ink);
+  font-size: 1.02rem;
+  margin-top: 3px;
+}
+
+/* ---- to-scale table simulation ----
+   Everything in this block is a physical stand-in for the room. It is
+   deliberately NOT glass: black cloth, real paper, a screen-blended
+   projection. Do not add aurora or liquid tinting here. */
+.sim-wrap { position: absolute; inset: 0; display: grid; place-items: center; }
+.sim-table {
+  position: relative;
+  border-radius: 6px;
+  /* Black cloth: never quite black, with a faint weave. */
+  background:
+    repeating-linear-gradient(45deg, rgba(255, 255, 255, 0.012) 0 2px, transparent 2px 4px),
+    radial-gradient(120% 120% at 50% 40%, #121316, #08090a);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.7), inset 0 0 0 1px rgba(255, 255, 255, 0.04);
+}
+.sim-object { position: absolute; cursor: grab; touch-action: none; user-select: none; }
+.sim-object:active { cursor: grabbing; }
+.sim-object img { width: 100%; height: 100%; object-fit: cover; display: block; border-radius: 2px; box-shadow: 0 6px 18px rgba(0, 0, 0, 0.6); }
+.sim-paper { width: 100%; height: 100%; background: #e9e6dc; border-radius: 2px; box-shadow: 0 6px 18px rgba(0, 0, 0, 0.6); }
+.sim-cup { width: 100%; height: 100%; border-radius: 50%; background: radial-gradient(circle, #3a2a20 0 60%, #e8e4dc 62%); box-shadow: 0 6px 16px rgba(0, 0, 0, 0.6); }
+.sim-projection { position: absolute; mix-blend-mode: screen; pointer-events: none; filter: blur(0.4px); }
+/* The projected content must still take clicks (Buttons). */
+.sim-projection .st-button { pointer-events: auto; }
+.sim-black-level { position: absolute; inset: 0; background: rgba(70, 80, 95, 0.07); }
+.sim-projection-edge { position: absolute; left: 0; border: 1px dashed rgba(108, 240, 255, 0.25); pointer-events: none; box-sizing: border-box; }
+.sim-scale { position: absolute; left: 12px; bottom: 10px; border-top: 2px solid rgba(255, 255, 255, 0.35); color: rgba(255, 255, 255, 0.45); font: 11px ui-monospace, monospace; padding-top: 3px; }
+.sim-user { position: absolute; left: 0; right: 0; top: 100%; margin-top: 8px; text-align: center; color: rgba(255, 255, 255, 0.35); font: 11px ui-monospace, monospace; letter-spacing: 0.08em; }
+.sim-tools { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; font-size: 12px; color: var(--bench-muted); }
+.sim-tools { justify-content: center; max-width: 100%; }
+.chat-right > .lesson-panel { min-width: 0; }
+.sim-tools label { display: inline-flex; gap: 4px; align-items: center; cursor: pointer; }
+.sim-tools input[type="checkbox"] { accent-color: var(--bench-accent); }
+
+/* ---- agent tab: the brain's draft → verify → repair loop ---- */
+.agent-trace { display: flex; flex-direction: column; gap: 8px; font-size: 12px; }
+.agent-trace .step { border-left: 3px solid var(--bench-line); padding: 4px 10px; }
+.agent-trace .step.bad { border-color: var(--bench-danger); }
+.agent-trace .step-verify:not(.bad) { border-color: var(--bench-ok); }
+.agent-trace .step-edit { border-color: var(--bench-accent); }
+.agent-trace .step-head { display: flex; gap: 10px; align-items: baseline; }
+.agent-trace .t { color: var(--bench-muted); font-family: ui-monospace, monospace; min-width: 56px; }
+.agent-trace .name { color: var(--bench-accent); text-transform: uppercase; letter-spacing: 0.12em; font-size: 10px; min-width: 48px; }
+.agent-trace ul { margin: 4px 0 0 66px; padding: 0; color: var(--bench-danger); }
+.agent-trace .edits { margin: 4px 0 0 66px; display: flex; flex-direction: column; gap: 3px; }
+.agent-trace .edit { display: flex; gap: 8px; align-items: baseline; flex-wrap: wrap; }
+.agent-trace code { font-size: 11px; padding: 1px 5px; border-radius: 6px; }
+.agent-trace code.del { background: #fa8d830b; color: var(--bench-danger); }
+.agent-trace code.ins { background: #98d2b70b; color: var(--bench-ok); }
+
+/* ---- show column (the operator controls, #66) ---- */
+
+.chat-ops {
+  position: relative;
+  z-index: 1;
+  min-height: 0;
+  overflow-y: auto;
+  border-left: 1px solid var(--bench-line);
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.01)), var(--bench-glass);
+}
+/* Narrower laptops: the show column drops under chat and table instead of
+   squeezing the table to a sliver. It keeps a bounded height so the table
+   above it stays on screen. */
+@media (max-width: 1200px) {
+  .chat {
+    grid-template-columns: minmax(300px, 34%) minmax(0, 1fr);
+    grid-template-rows: minmax(0, 1fr) minmax(0, 42vh);
+  }
+  .chat-ops {
+    grid-column: 1 / -1;
+    border-left: none;
+    border-top: 1px solid var(--bench-line);
+  }
+}
+
+/* ---- responsive ----
+   The bench is two panes on a desk, one pane on a phone. Below the desk
+   width the columns stack and each pane gets its own scroll so the table
+   and the log stay reachable instead of overflowing horizontally. */
+@media (max-width: 820px) {
+  .chat {
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
+  }
+  .chat-left {
+    flex: none;
+    border-right: none;
+    border-bottom: 1px solid var(--bench-line);
+  }
+  .chat-log {
+    max-height: 40vh;
+    min-height: 160px;
+  }
+  .chat-right {
+    flex: none;
+    grid-template-rows: minmax(360px, auto) auto auto auto auto;
+    overflow: visible;
+  }
+  .table-pane { padding-bottom: 64px; }
+  /* The show column (#66) stacks last, below the table. */
+  .chat-ops {
+    flex: none;
+    border-left: none;
+    border-top: 1px solid var(--bench-line);
+  }
+}
