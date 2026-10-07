@@ -1,0 +1,250 @@
+{
+ "provenance": "recording: real gateway answers on crops of the recorded room frames (temp/math-read/results3.jsonl, 7 Oct, research for #86, Swedish-hint prompt)",
+ "gt": {
+  "ipad-final1": [
+   "Beräkna integralen:",
+   "∫ x·eˣ dx"
+  ],
+  "ipad-final2": [
+   "Beräkna integralen:",
+   "∫ x·eˣ dx"
+  ],
+  "ipad-f0": [
+   "Lös ekvationen:",
+   "5(2x - 3) = 4x + 9"
+  ]
+ },
+ "answers": [
+  {
+   "model": "aixia-labs",
+   "case": "ipad-f0",
+   "input": "crop",
+   "rep": 0,
+   "text": "Lös ekvationen:\n5(2x - 3) = 4x + 9"
+  },
+  {
+   "model": "aixia-labs",
+   "case": "ipad-f0",
+   "input": "up",
+   "rep": 0,
+   "text": "Lös ekvationen:\n5(2x - 3) = 4x + 9"
+  },
+  {
+   "model": "aixia-labs",
+   "case": "ipad-final1",
+   "input": "crop",
+   "rep": 0,
+   "text": "Förenkla integralen\n∫ x eˣ dx"
+  },
+  {
+   "model": "aixia-labs",
+   "case": "ipad-final1",
+   "input": "up",
+   "rep": 0,
+   "text": "Beräkna integralen\n∫ x e^x dx"
+  },
+  {
+   "model": "aixia-labs",
+   "case": "ipad-final2",
+   "input": "crop",
+   "rep": 0,
+   "text": "Beräkna integralen\n∫ x e^x dx"
+  },
+  {
+   "model": "aixia-code",
+   "case": "ipad-f0",
+   "input": "crop",
+   "rep": 0,
+   "text": " Lös ekvationen:\n5|2x - 3| = 4x + 9"
+  },
+  {
+   "model": "aixia-code",
+   "case": "ipad-f0",
+   "input": "up",
+   "rep": 0,
+   "text": " Lös ekvationen:\n5(2x - 3) = 4x + 9"
+  },
+  {
+   "model": "aixia-code",
+   "case": "ipad-final1",
+   "input": "crop",
+   "rep": 0,
+   "text": " Beräkna integralen\n∫ x·eˣ dx"
+  },
+  {
+   "model": "aixia-code",
+   "case": "ipad-final1",
+   "input": "up",
+   "rep": 0,
+   "text": " Beräkna integralen\n∫ x·eˣ dx"
+  },
+  {
+   "model": "aixia-code",
+   "case": "ipad-final2",
+   "input": "crop",
+   "rep": 0,
+   "text": " Beräkna integralen\n∫ x eˣ dx"
+  },
+  {
+   "model": "aixia-code",
+   "case": "ipad-final2",
+   "input": "up",
+   "rep": 0,
+   "text": " Beräkna integralen\n\n∫ x·eˣ dx"
+  },
+  {
+   "model": "aixia-labs",
+   "case": "ipad-f0",
+   "input": "crop",
+   "rep": 1,
+   "text": "Lös ekvationen\n5(2x - 3) = 4x + 9"
+  },
+  {
+   "model": "aixia-labs",
+   "case": "ipad-f0",
+   "input": "up",
+   "rep": 1,
+   "text": "Lös ekvationen:\n5(2x - 3) = 4x + 9"
+  },
+  {
+   "model": "aixia-labs",
+   "case": "ipad-final1",
+   "input": "up",
+   "rep": 1,
+   "text": "Förenkla integralen\n∫ x e^x dx"
+  },
+  {
+   "model": "aixia-labs",
+   "case": "ipad-final2",
+   "input": "crop",
+   "rep": 1,
+   "text": "Beräkna integralen\n∫ x e^x dx"
+  },
+  {
+   "model": "aixia-labs",
+   "case": "ipad-final2",
+   "input": "up",
+   "rep": 1,
+   "text": "Beräkna integralen\n∫ x e^x dx"
+  },
+  {
+   "model": "aixia-code",
+   "case": "ipad-f0",
+   "input": "crop",
+   "rep": 1,
+   "text": " Lös ekvationen:\n5|2x - 3| = 4x + 9"
+  },
+  {
+   "model": "aixia-code",
+   "case": "ipad-f0",
+   "input": "up",
+   "rep": 1,
+   "text": " Lös ekvationen:\n5(2x - 3) = 4x + 9"
+  },
+  {
+   "model": "aixia-code",
+   "case": "ipad-final1",
+   "input": "crop",
+   "rep": 1,
+   "text": " Beräkna integralen\n∫ x·eˣ dx"
+  },
+  {
+   "model": "aixia-code",
+   "case": "ipad-final1",
+   "input": "up",
+   "rep": 1,
+   "text": " Beräkna integralen\n∫ x eˣ dx"
+  },
+  {
+   "model": "aixia-code",
+   "case": "ipad-final2",
+   "input": "crop",
+   "rep": 1,
+   "text": " Beräkna integralen\n∫ x eˣ dx"
+  },
+  {
+   "model": "aixia-code",
+   "case": "ipad-final2",
+   "input": "up",
+   "rep": 1,
+   "text": " Beräkna integralen\n\n∫ x·eˣ dx"
+  },
+  {
+   "model": "aixia-labs",
+   "case": "ipad-f0",
+   "input": "crop",
+   "rep": 2,
+   "text": "Lös ekvationen:\n5(2x - 3) = 4x + 9"
+  },
+  {
+   "model": "aixia-labs",
+   "case": "ipad-f0",
+   "input": "up",
+   "rep": 2,
+   "text": "Lös ekvationen:\n5(2x - 3) = 4x + 9"
+  },
+  {
+   "model": "aixia-labs",
+   "case": "ipad-final1",
+   "input": "crop",
+   "rep": 2,
+   "text": "Förenkla integralen\n∫ x eˣ dx"
+  },
+  {
+   "model": "aixia-labs",
+   "case": "ipad-final1",
+   "input": "up",
+   "rep": 2,
+   "text": "Beräkna integralen\n∫ x e^x dx"
+  },
+  {
+   "model": "aixia-labs",
+   "case": "ipad-final2",
+   "input": "crop",
+   "rep": 2,
+   "text": "Beräkna integralen\n∫ x e^x dx"
+  },
+  {
+   "model": "aixia-labs",
+   "case": "ipad-final2",
+   "input": "up",
+   "rep": 2,
+   "text": "Beräkna integralen\n∫ x² dx"
+  },
+  {
+   "model": "aixia-code",
+   "case": "ipad-f0",
+   "input": "up",
+   "rep": 2,
+   "text": " Lös ekvationen:\n5(2x - 3) = 4x + 9"
+  },
+  {
+   "model": "aixia-code",
+   "case": "ipad-final1",
+   "input": "crop",
+   "rep": 2,
+   "text": " Beräkna integralen\n∫ x·eˣ dx"
+  },
+  {
+   "model": "aixia-code",
+   "case": "ipad-final1",
+   "input": "up",
+   "rep": 2,
+   "text": " Beräkna integralen\n∫ x eˣ dx"
+  },
+  {
+   "model": "aixia-code",
+   "case": "ipad-final2",
+   "input": "crop",
+   "rep": 2,
+   "text": " Beräkna integralen\n∫ x eˣ dx"
+  },
+  {
+   "model": "aixia-code",
+   "case": "ipad-final2",
+   "input": "up",
+   "rep": 2,
+   "text": " Beräkna integralen\n\n∫ x·eˣ dx"
+  }
+ ]
+}

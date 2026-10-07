@@ -1,0 +1,23 @@
+{
+  "name": "@hubble/server",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "ai": "^7.0.127",
+    "@ai-sdk/openai-compatible": "^3.0.62",
+    "@hubble/brain": "*",
+    "@hubble/room": "*",
+    "@hubble/stage": "*",
+    "dotenv": "^16.4.5",
+    "express": "^4.21.2",
+    "js-aruco2": "2.0.0",
+    "esbuild": "^0.25.0",
+    "typescript": "^5.7.2",
+    "playwright-core": "1.63.0",
+    "zod": "^4.6.5",
+    "@xmldom/xmldom": "^0.9.10"
+  },
+  "devDependencies": {
+    "jpeg-js": "^0.4.4"
+  }
+}
