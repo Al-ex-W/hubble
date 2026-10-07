@@ -1,0 +1,39 @@
+{"meta":{"case":"general-buttons","label":"recording","recordedAt":"2026-10-05T12:22:36.314Z","model":"aixia-labs","thinking":false,"intent":"Give me three study tips and let me tap to see the next one.","image":null,"promptSha":"c0e80e69430f"}}
+{"t":69,"data":"{\"id\":\"chatcmpl-81f17a68\",\"object\":\"chat.completion.chunk\",\"created\":1791202956,\"model\":\"aixia-labs\",\"choices\":[{\"index\":0,\"delta\":{\"role\":\"assistant\"}}]}"}
+{"t":75,"data":"{\"id\":\"chatcmpl-81f17a68\",\"object\":\"chat.completion.chunk\",\"created\":1791202956,\"model\":\"aixia-labs\",\"choices\":[{\"index\":0,\"delta\":{\"content\":\"<Canvas anchor=\\\"right-of\"}}]}"}
+{"t":130,"data":"{\"id\":\"chatcmpl-81f17a68\",\"object\":\"chat.completion.chunk\",\"created\":1791202956,\"model\":\"aixia-labs\",\"choices\":[{\"index\":0,\"delta\":{\"content\":\":notebook\\\">\\n\"}}]}"}
+{"t":130,"data":"{\"id\":\"chatcmpl-81f17a68\",\"object\":\"chat.completion.chunk\",\"created\":1791202956,\"model\":\"aixia-labs\",\"choices\":[{\"index\":0,\"delta\":{\"content\":\"<Heading>Three study\"}}]}"}
+{"t":130,"data":"{\"id\":\"chatcmpl-81f17a68\",\"object\":\"chat.completion.chunk\",\"created\":1791202956,\"model\":\"aixia-labs\",\"choices\":[{\"index\":0,\"delta\":{\"content\":\" tips</Heading>\\n<List>\\n\"}}]}"}
+{"t":130,"data":"{\"id\":\"chatcmpl-81f17a68\",\"object\":\"chat.completion.chunk\",\"created\":1791202956,\"model\":\"aixia-labs\",\"choices\":[{\"index\":0,\"delta\":{\"content\":\"<Item>One:\"}}]}"}
+{"t":132,"data":"{\"id\":\"chatcmpl-81f17a68\",\"object\":\"chat.completion.chunk\",\"created\":1791202956,\"model\":\"aixia-labs\",\"choices\":[{\"index\":0,\"delta\":{\"content\":\" work in\"}}]}"}
+{"t":231,"data":"{\"id\":\"chatcmpl-81f17a68\",\"object\":\"chat.completion.chunk\",\"created\":1791202956,\"model\":\"aixia-labs\",\"choices\":[{\"index\":0,\"delta\":{\"content\":\" 25 minute\"}}]}"}
+{"t":231,"data":"{\"id\":\"chatcmpl-81f17a68\",\"object\":\"chat.completion.chunk\",\"created\":1791202956,\"model\":\"aixia-labs\",\"choices\":[{\"index\":0,\"delta\":{\"content\":\" blocks\"}}]}"}
+{"t":231,"data":"{\"id\":\"chatcmpl-81f17a68\",\"object\":\"chat.completion.chunk\",\"created\":1791202956,\"model\":\"aixia-labs\",\"choices\":[{\"index\":0,\"delta\":{\"content\":\", then\"}}]}"}
+{"t":231,"data":"{\"id\":\"chatcmpl-81f17a68\",\"object\":\"chat.completion.chunk\",\"created\":1791202956,\"model\":\"aixia-labs\",\"choices\":[{\"index\":0,\"delta\":{\"content\":\" rest\"}}]}"}
+{"t":231,"data":"{\"id\":\"chatcmpl-81f17a68\",\"object\":\"chat.completion.chunk\",\"created\":1791202956,\"model\":\"aixia-labs\",\"choices\":[{\"index\":0,\"delta\":{\"content\":\".\"}}]}"}
+{"t":231,"data":"{\"id\":\"chatcmpl-81f17a68\",\"object\":\"chat.completion.chunk\",\"created\":1791202956,\"model\":\"aixia-labs\",\"choices\":[{\"index\":0,\"delta\":{\"content\":\"</Item>\\n<P\"}}]}"}
+{"t":232,"data":"{\"id\":\"chatcmpl-81f17a68\",\"object\":\"chat.completion.chunk\",\"created\":1791202956,\"model\":\"aixia-labs\",\"choices\":[{\"index\":0,\"delta\":{\"content\":\"ause ms\"}}]}"}
+{"t":232,"data":"{\"id\":\"chatcmpl-81f17a68\",\"object\":\"chat.completion.chunk\",\"created\":1791202956,\"model\":\"aixia-labs\",\"choices\":[{\"index\":0,\"delta\":{\"content\":\"={400\"}}]}"}
+{"t":239,"data":"{\"id\":\"chatcmpl-81f17a68\",\"object\":\"chat.completion.chunk\",\"created\":1791202956,\"model\":\"aixia-labs\",\"choices\":[{\"index\":0,\"delta\":{\"content\":\"}/>\\n<Item>Two\"}}]}"}
+{"t":252,"data":"{\"id\":\"chatcmpl-81f17a68\",\"object\":\"chat.completion.chunk\",\"created\":1791202956,\"model\":\"aixia-labs\",\"choices\":[{\"index\":0,\"delta\":{\"content\":\": quiz\"}}]}"}
+{"t":261,"data":"{\"id\":\"chatcmpl-81f17a68\",\"object\":\"chat.completion.chunk\",\"created\":1791202956,\"model\":\"aixia-labs\",\"choices\":[{\"index\":0,\"delta\":{\"content\":\" yourself instead\"}}]}"}
+{"t":325,"data":"{\"id\":\"chatcmpl-81f17a68\",\"object\":\"chat.completion.chunk\",\"created\":1791202956,\"model\":\"aixia-labs\",\"choices\":[{\"index\":0,\"delta\":{\"content\":\" of rere\"}}]}"}
+{"t":325,"data":"{\"id\":\"chatcmpl-81f17a68\",\"object\":\"chat.completion.chunk\",\"created\":1791202956,\"model\":\"aixia-labs\",\"choices\":[{\"index\":0,\"delta\":{\"content\":\"ading.</Item>\\n<Pause\"}}]}"}
+{"t":325,"data":"{\"id\":\"chatcmpl-81f17a68\",\"object\":\"chat.completion.chunk\",\"created\":1791202956,\"model\":\"aixia-labs\",\"choices\":[{\"index\":0,\"delta\":{\"content\":\" ms={400}/>\\n\"}}]}"}
+{"t":325,"data":"{\"id\":\"chatcmpl-81f17a68\",\"object\":\"chat.completion.chunk\",\"created\":1791202956,\"model\":\"aixia-labs\",\"choices\":[{\"index\":0,\"delta\":{\"content\":\"<Item>Three: review\"}}]}"}
+{"t":325,"data":"{\"id\":\"chatcmpl-81f17a68\",\"object\":\"chat.completion.chunk\",\"created\":1791202956,\"model\":\"aixia-labs\",\"choices\":[{\"index\":0,\"delta\":{\"content\":\" the\"}}]}"}
+{"t":333,"data":"{\"id\":\"chatcmpl-81f17a68\",\"object\":\"chat.completion.chunk\",\"created\":1791202956,\"model\":\"aixia-labs\",\"choices\":[{\"index\":0,\"delta\":{\"content\":\" same day,\"}}]}"}
+{"t":350,"data":"{\"id\":\"chatcmpl-81f17a68\",\"object\":\"chat.completion.chunk\",\"created\":1791202956,\"model\":\"aixia-labs\",\"choices\":[{\"index\":0,\"delta\":{\"content\":\" then a\"}}]}"}
+{"t":351,"data":"{\"id\":\"chatcmpl-81f17a68\",\"object\":\"chat.completion.chunk\",\"created\":1791202956,\"model\":\"aixia-labs\",\"choices\":[{\"index\":0,\"delta\":{\"content\":\" week later.</Item>\\n\"}}]}"}
+{"t":360,"data":"{\"id\":\"chatcmpl-81f17a68\",\"object\":\"chat.completion.chunk\",\"created\":1791202956,\"model\":\"aixia-labs\",\"choices\":[{\"index\":0,\"delta\":{\"content\":\"</List>\\n<Text\"}}]}"}
+{"t":371,"data":"{\"id\":\"chatcmpl-81f17a68\",\"object\":\"chat.completion.chunk\",\"created\":1791202956,\"model\":\"aixia-labs\",\"choices\":[{\"index\":0,\"delta\":{\"content\":\" tone=\\\"muted\\\">Tap\"}}]}"}
+{"t":382,"data":"{\"id\":\"chatcmpl-81f17a68\",\"object\":\"chat.completion.chunk\",\"created\":1791202956,\"model\":\"aixia-labs\",\"choices\":[{\"index\":0,\"delta\":{\"content\":\" next for\"}}]}"}
+{"t":394,"data":"{\"id\":\"chatcmpl-81f17a68\",\"object\":\"chat.completion.chunk\",\"created\":1791202956,\"model\":\"aixia-labs\",\"choices\":[{\"index\":0,\"delta\":{\"content\":\" one\"}}]}"}
+{"t":404,"data":"{\"id\":\"chatcmpl-81f17a68\",\"object\":\"chat.completion.chunk\",\"created\":1791202956,\"model\":\"aixia-labs\",\"choices\":[{\"index\":0,\"delta\":{\"content\":\" more.</Text>\\n<Button\"}}]}"}
+{"t":415,"data":"{\"id\":\"chatcmpl-81f17a68\",\"object\":\"chat.completion.chunk\",\"created\":1791202956,\"model\":\"aixia-labs\",\"choices\":[{\"index\":0,\"delta\":{\"content\":\" action\"}}]}"}
+{"t":425,"data":"{\"id\":\"chatcmpl-81f17a68\",\"object\":\"chat.completion.chunk\",\"created\":1791202956,\"model\":\"aixia-labs\",\"choices\":[{\"index\":0,\"delta\":{\"content\":\"=\\\"next\\\">Next</Button\"}}]}"}
+{"t":439,"data":"{\"id\":\"chatcmpl-81f17a68\",\"object\":\"chat.completion.chunk\",\"created\":1791202956,\"model\":\"aixia-labs\",\"choices\":[{\"index\":0,\"delta\":{\"content\":\">\\n\"}}]}"}
+{"t":452,"data":"{\"id\":\"chatcmpl-81f17a68\",\"object\":\"chat.completion.chunk\",\"created\":1791202956,\"model\":\"aixia-labs\",\"choices\":[{\"index\":0,\"delta\":{\"content\":\"</Canvas>\"}}]}"}
+{"t":452,"data":"{\"id\":\"chatcmpl-81f17a68\",\"object\":\"chat.completion.chunk\",\"created\":1791202956,\"model\":\"aixia-labs\",\"choices\":[{\"index\":0,\"delta\":{},\"finish_reason\":\"stop\"}]}"}
+{"t":452,"data":"{\"id\":\"chatcmpl-81f17a68\",\"created\":1791202956,\"model\":\"aixia-labs\",\"object\":\"chat.completion.chunk\",\"choices\":[{\"index\":0,\"delta\":{}}],\"usage\":{\"completion_tokens\":113,\"prompt_tokens\":976,\"total_tokens\":1089,\"completion_tokens_details\":{\"reasoning_tokens\":0}}}"}
+{"t":452,"data":"[DONE]"}

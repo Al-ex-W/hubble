@@ -1,0 +1,17 @@
+{
+  "name": "@hubble/stage",
+  "private": true,
+  "type": "module",
+  "description": "Rendering engine core: protocol, component catalog, streaming parser and prompt. No DOM, no React.",
+  "exports": {
+    ".": "./src/index.ts",
+    "./swipe": "./src/swipe/index.ts",
+    "./testing": "./src/testing.ts",
+    "./package.json": "./package.json"
+  },
+  "scripts": {
+    "record": "tsx scripts/record-stage-stream.ts",
+    "census": "tsx scripts/stage-census.ts",
+    "gen:lexicon": "tsx scripts/gen-lexicon.ts"
+  }
+}

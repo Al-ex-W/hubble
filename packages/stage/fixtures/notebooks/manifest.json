@@ -1,0 +1,125 @@
+{
+  "linear": {
+    "label": "synthetic",
+    "task": "Lös ekvationen: / 5(2x - 3) = 4x + 9",
+    "size": [
+      620,
+      820
+    ],
+    "lines": [
+      "Lös ekvationen:",
+      "5(2x - 3) = 4x + 9"
+    ]
+  },
+  "quadratic": {
+    "label": "synthetic",
+    "task": "Solve: / x² - 5x + 6 = 0",
+    "size": [
+      620,
+      820
+    ],
+    "lines": [
+      "Solve:",
+      "x² - 5x + 6 = 0"
+    ]
+  },
+  "fractions": {
+    "label": "synthetic",
+    "task": "Solve for x: / x/3 + 1/2 = 5/6",
+    "size": [
+      620,
+      820
+    ],
+    "lines": [
+      "Solve for x:",
+      "x/3 + 1/2 = 5/6"
+    ]
+  },
+  "inequality": {
+    "label": "synthetic",
+    "task": "Lös olikheten: / 3x - 7 < 2x + 4",
+    "size": [
+      620,
+      820
+    ],
+    "lines": [
+      "Lös olikheten:",
+      "3x - 7 < 2x + 4"
+    ]
+  },
+  "derivative": {
+    "label": "synthetic",
+    "task": "Differentiate: / f(x) = x³ · sin(x)",
+    "size": [
+      620,
+      820
+    ],
+    "lines": [
+      "Differentiate:",
+      "f(x) = x³ · sin(x)"
+    ]
+  },
+  "integral": {
+    "label": "synthetic",
+    "task": "Beräkna integralen: / ∫ x·eˣ dx",
+    "size": [
+      620,
+      820
+    ],
+    "lines": [
+      "Beräkna integralen:",
+      "∫ x·eˣ dx"
+    ]
+  },
+  "system": {
+    "label": "synthetic",
+    "task": "Solve the system: / 2x + 3y = 12 / x - y = 1",
+    "size": [
+      620,
+      820
+    ],
+    "lines": [
+      "Solve the system:",
+      "2x + 3y = 12",
+      "x - y = 1"
+    ]
+  },
+  "optimize": {
+    "label": "synthetic",
+    "task": "A farmer has 100 m of fence. / Maximize the rectangular / area against a wall.",
+    "size": [
+      620,
+      820
+    ],
+    "lines": [
+      "A farmer has 100 m of fence.",
+      "Maximize the rectangular",
+      "area against a wall."
+    ]
+  },
+  "projectile": {
+    "label": "synthetic",
+    "task": "A ball is thrown up at 20 m/s. / How high does it go? / When does it land? (g = 9.8)",
+    "size": [
+      620,
+      820
+    ],
+    "lines": [
+      "A ball is thrown up at 20 m/s.",
+      "How high does it go?",
+      "When does it land? (g = 9.8)"
+    ]
+  },
+  "limit": {
+    "label": "synthetic",
+    "task": "Evaluate: / lim (x→0) sin(3x) / x",
+    "size": [
+      620,
+      820
+    ],
+    "lines": [
+      "Evaluate:",
+      "lim (x→0) sin(3x) / x"
+    ]
+  }
+}

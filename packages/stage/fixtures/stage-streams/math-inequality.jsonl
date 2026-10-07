@@ -1,0 +1,23 @@
+{"meta":{"case":"math-inequality","label":"recording","recordedAt":"2026-10-05T12:22:33.786Z","model":"aixia-labs","thinking":false,"intent":"How do I solve this inequality?","image":{"fixture":"notebooks/inequality.jpg","label":"synthetic"},"promptSha":"90777e2ba799"}}
+{"t":311,"data":"{\"id\":\"chatcmpl-596da093\",\"object\":\"chat.completion.chunk\",\"created\":1791202954,\"model\":\"aixia-labs\",\"choices\":[{\"index\":0,\"delta\":{\"role\":\"assistant\"}}]}"}
+{"t":370,"data":"{\"id\":\"chatcmpl-596da093\",\"object\":\"chat.completion.chunk\",\"created\":1791202954,\"model\":\"aixia-labs\",\"choices\":[{\"index\":0,\"delta\":{\"content\":\"<Canvas anchor\"}}]}"}
+{"t":501,"data":"{\"id\":\"chatcmpl-596da093\",\"object\":\"chat.completion.chunk\",\"created\":1791202954,\"model\":\"aixia-labs\",\"choices\":[{\"index\":0,\"delta\":{\"content\":\"=\\\"right-of:\"}}]}"}
+{"t":510,"data":"{\"id\":\"chatcmpl-596da093\",\"object\":\"chat.completion.chunk\",\"created\":1791202954,\"model\":\"aixia-labs\",\"choices\":[{\"index\":0,\"delta\":{\"content\":\"notebook\\\">\\n\"}}]}"}
+{"t":524,"data":"{\"id\":\"chatcmpl-596da093\",\"object\":\"chat.completion.chunk\",\"created\":1791202954,\"model\":\"aixia-labs\",\"choices\":[{\"index\":0,\"delta\":{\"content\":\"<Heading>Solve the\"}}]}"}
+{"t":533,"data":"{\"id\":\"chatcmpl-596da093\",\"object\":\"chat.completion.chunk\",\"created\":1791202954,\"model\":\"aixia-labs\",\"choices\":[{\"index\":0,\"delta\":{\"content\":\" inequality</Heading>\\n<Steps\"}}]}"}
+{"t":547,"data":"{\"id\":\"chatcmpl-596da093\",\"object\":\"chat.completion.chunk\",\"created\":1791202954,\"model\":\"aixia-labs\",\"choices\":[{\"index\":0,\"delta\":{\"content\":\">\\n<Step\"}}]}"}
+{"t":563,"data":"{\"id\":\"chatcmpl-596da093\",\"object\":\"chat.completion.chunk\",\"created\":1791202954,\"model\":\"aixia-labs\",\"choices\":[{\"index\":0,\"delta\":{\"content\":\"><Text\"}}]}"}
+{"t":569,"data":"{\"id\":\"chatcmpl-596da093\",\"object\":\"chat.completion.chunk\",\"created\":1791202954,\"model\":\"aixia-labs\",\"choices\":[{\"index\":0,\"delta\":{\"content\":\">Subtract \"}}]}"}
+{"t":658,"data":"{\"id\":\"chatcmpl-596da093\",\"object\":\"chat.completion.chunk\",\"created\":1791202954,\"model\":\"aixia-labs\",\"choices\":[{\"index\":0,\"delta\":{\"content\":\"2x from both sides.\"}}]}"}
+{"t":658,"data":"{\"id\":\"chatcmpl-596da093\",\"object\":\"chat.completion.chunk\",\"created\":1791202954,\"model\":\"aixia-labs\",\"choices\":[{\"index\":0,\"delta\":{\"content\":\"</Text><Math>x\"}}]}"}
+{"t":658,"data":"{\"id\":\"chatcmpl-596da093\",\"object\":\"chat.completion.chunk\",\"created\":1791202954,\"model\":\"aixia-labs\",\"choices\":[{\"index\":0,\"delta\":{\"content\":\" - 7 \"}}]}"}
+{"t":658,"data":"{\"id\":\"chatcmpl-596da093\",\"object\":\"chat.completion.chunk\",\"created\":1791202954,\"model\":\"aixia-labs\",\"choices\":[{\"index\":0,\"delta\":{\"content\":\"< 4</Math></Step\"}}]}"}
+{"t":658,"data":"{\"id\":\"chatcmpl-596da093\",\"object\":\"chat.completion.chunk\",\"created\":1791202954,\"model\":\"aixia-labs\",\"choices\":[{\"index\":0,\"delta\":{\"content\":\">\\n<Step highlight\"}}]}"}
+{"t":658,"data":"{\"id\":\"chatcmpl-596da093\",\"object\":\"chat.completion.chunk\",\"created\":1791202954,\"model\":\"aixia-labs\",\"choices\":[{\"index\":0,\"delta\":{\"content\":\"><Text>Add 7\"}}]}"}
+{"t":658,"data":"{\"id\":\"chatcmpl-596da093\",\"object\":\"chat.completion.chunk\",\"created\":1791202954,\"model\":\"aixia-labs\",\"choices\":[{\"index\":0,\"delta\":{\"content\":\" to both sides.</Text>\"}}]}"}
+{"t":660,"data":"{\"id\":\"chatcmpl-596da093\",\"object\":\"chat.completion.chunk\",\"created\":1791202954,\"model\":\"aixia-labs\",\"choices\":[{\"index\":0,\"delta\":{\"content\":\"<Math>x < 11\"}}]}"}
+{"t":671,"data":"{\"id\":\"chatcmpl-596da093\",\"object\":\"chat.completion.chunk\",\"created\":1791202954,\"model\":\"aixia-labs\",\"choices\":[{\"index\":0,\"delta\":{\"content\":\"</Math></Step>\\n</Steps\"}}]}"}
+{"t":694,"data":"{\"id\":\"chatcmpl-596da093\",\"object\":\"chat.completion.chunk\",\"created\":1791202954,\"model\":\"aixia-labs\",\"choices\":[{\"index\":0,\"delta\":{\"content\":\">\\n</Canvas>\"}}]}"}
+{"t":694,"data":"{\"id\":\"chatcmpl-596da093\",\"object\":\"chat.completion.chunk\",\"created\":1791202954,\"model\":\"aixia-labs\",\"choices\":[{\"index\":0,\"delta\":{},\"finish_reason\":\"stop\"}]}"}
+{"t":694,"data":"{\"id\":\"chatcmpl-596da093\",\"created\":1791202954,\"model\":\"aixia-labs\",\"object\":\"chat.completion.chunk\",\"choices\":[{\"index\":0,\"delta\":{}}],\"usage\":{\"completion_tokens\":83,\"prompt_tokens\":1315,\"total_tokens\":1398,\"completion_tokens_details\":{\"reasoning_tokens\":0}}}"}
+{"t":694,"data":"[DONE]"}

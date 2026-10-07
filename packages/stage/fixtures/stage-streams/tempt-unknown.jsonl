@@ -1,0 +1,28 @@
+{"meta":{"case":"tempt-unknown","label":"recording","recordedAt":"2026-10-05T12:22:36.314Z","model":"aixia-labs","thinking":false,"intent":"What time is it in Tokyo right now?","image":null,"promptSha":"c0e80e69430f"}}
+{"t":69,"data":"{\"id\":\"chatcmpl-aa90ba43\",\"object\":\"chat.completion.chunk\",\"created\":1791202956,\"model\":\"aixia-labs\",\"choices\":[{\"index\":0,\"delta\":{\"role\":\"assistant\"}}]}"}
+{"t":75,"data":"{\"id\":\"chatcmpl-aa90ba43\",\"object\":\"chat.completion.chunk\",\"created\":1791202956,\"model\":\"aixia-labs\",\"choices\":[{\"index\":0,\"delta\":{\"content\":\"<Canvas anchor=\\\"center\"}}]}"}
+{"t":129,"data":"{\"id\":\"chatcmpl-aa90ba43\",\"object\":\"chat.completion.chunk\",\"created\":1791202956,\"model\":\"aixia-labs\",\"choices\":[{\"index\":0,\"delta\":{\"content\":\"\\\">\\n<Heading\"}}]}"}
+{"t":129,"data":"{\"id\":\"chatcmpl-aa90ba43\",\"object\":\"chat.completion.chunk\",\"created\":1791202956,\"model\":\"aixia-labs\",\"choices\":[{\"index\":0,\"delta\":{\"content\":\">Tokyo\"}}]}"}
+{"t":129,"data":"{\"id\":\"chatcmpl-aa90ba43\",\"object\":\"chat.completion.chunk\",\"created\":1791202956,\"model\":\"aixia-labs\",\"choices\":[{\"index\":0,\"delta\":{\"content\":\" Time\"}}]}"}
+{"t":129,"data":"{\"id\":\"chatcmpl-aa90ba43\",\"object\":\"chat.completion.chunk\",\"created\":1791202956,\"model\":\"aixia-labs\",\"choices\":[{\"index\":0,\"delta\":{\"content\":\"</Heading>\\n<Text tone\"}}]}"}
+{"t":132,"data":"{\"id\":\"chatcmpl-aa90ba43\",\"object\":\"chat.completion.chunk\",\"created\":1791202956,\"model\":\"aixia-labs\",\"choices\":[{\"index\":0,\"delta\":{\"content\":\"=\\\"muted\\\">Japan\"}}]}"}
+{"t":233,"data":"{\"id\":\"chatcmpl-aa90ba43\",\"object\":\"chat.completion.chunk\",\"created\":1791202956,\"model\":\"aixia-labs\",\"choices\":[{\"index\":0,\"delta\":{\"content\":\" is UTC+9,\"}}]}"}
+{"t":233,"data":"{\"id\":\"chatcmpl-aa90ba43\",\"object\":\"chat.completion.chunk\",\"created\":1791202956,\"model\":\"aixia-labs\",\"choices\":[{\"index\":0,\"delta\":{\"content\":\" no daylight\"}}]}"}
+{"t":233,"data":"{\"id\":\"chatcmpl-aa90ba43\",\"object\":\"chat.completion.chunk\",\"created\":1791202956,\"model\":\"aixia-labs\",\"choices\":[{\"index\":0,\"delta\":{\"content\":\" saving.</Text>\\n<Math\"}}]}"}
+{"t":233,"data":"{\"id\":\"chatcmpl-aa90ba43\",\"object\":\"chat.completion.chunk\",\"created\":1791202956,\"model\":\"aixia-labs\",\"choices\":[{\"index\":0,\"delta\":{\"content\":\">\"}}]}"}
+{"t":233,"data":"{\"id\":\"chatcmpl-aa90ba43\",\"object\":\"chat.completion.chunk\",\"created\":1791202956,\"model\":\"aixia-labs\",\"choices\":[{\"index\":0,\"delta\":{\"content\":\"now\"}}]}"}
+{"t":233,"data":"{\"id\":\"chatcmpl-aa90ba43\",\"object\":\"chat.completion.chunk\",\"created\":1791202956,\"model\":\"aixia-labs\",\"choices\":[{\"index\":0,\"delta\":{\"content\":\" +\"}}]}"}
+{"t":233,"data":"{\"id\":\"chatcmpl-aa90ba43\",\"object\":\"chat.completion.chunk\",\"created\":1791202956,\"model\":\"aixia-labs\",\"choices\":[{\"index\":0,\"delta\":{\"content\":\" 9h = J\"}}]}"}
+{"t":233,"data":"{\"id\":\"chatcmpl-aa90ba43\",\"object\":\"chat.completion.chunk\",\"created\":1791202956,\"model\":\"aixia-labs\",\"choices\":[{\"index\":0,\"delta\":{\"content\":\"ST\"}}]}"}
+{"t":239,"data":"{\"id\":\"chatcmpl-aa90ba43\",\"object\":\"chat.completion.chunk\",\"created\":1791202956,\"model\":\"aixia-labs\",\"choices\":[{\"index\":0,\"delta\":{\"content\":\"</Math>\\n<Text\"}}]}"}
+{"t":252,"data":"{\"id\":\"chatcmpl-aa90ba43\",\"object\":\"chat.completion.chunk\",\"created\":1791202956,\"model\":\"aixia-labs\",\"choices\":[{\"index\":0,\"delta\":{\"content\":\">\"}}]}"}
+{"t":261,"data":"{\"id\":\"chatcmpl-aa90ba43\",\"object\":\"chat.completion.chunk\",\"created\":1791202956,\"model\":\"aixia-labs\",\"choices\":[{\"index\":0,\"delta\":{\"content\":\"Ask\"}}]}"}
+{"t":325,"data":"{\"id\":\"chatcmpl-aa90ba43\",\"object\":\"chat.completion.chunk\",\"created\":1791202956,\"model\":\"aixia-labs\",\"choices\":[{\"index\":0,\"delta\":{\"content\":\" me\"}}]}"}
+{"t":325,"data":"{\"id\":\"chatcmpl-aa90ba43\",\"object\":\"chat.completion.chunk\",\"created\":1791202956,\"model\":\"aixia-labs\",\"choices\":[{\"index\":0,\"delta\":{\"content\":\" to\"}}]}"}
+{"t":326,"data":"{\"id\":\"chatcmpl-aa90ba43\",\"object\":\"chat.completion.chunk\",\"created\":1791202956,\"model\":\"aixia-labs\",\"choices\":[{\"index\":0,\"delta\":{\"content\":\" compute\"}}]}"}
+{"t":326,"data":"{\"id\":\"chatcmpl-aa90ba43\",\"object\":\"chat.completion.chunk\",\"created\":1791202956,\"model\":\"aixia-labs\",\"choices\":[{\"index\":0,\"delta\":{\"content\":\" it\"}}]}"}
+{"t":326,"data":"{\"id\":\"chatcmpl-aa90ba43\",\"object\":\"chat.completion.chunk\",\"created\":1791202956,\"model\":\"aixia-labs\",\"choices\":[{\"index\":0,\"delta\":{\"content\":\" for your local clock.\"}}]}"}
+{"t":335,"data":"{\"id\":\"chatcmpl-aa90ba43\",\"object\":\"chat.completion.chunk\",\"created\":1791202956,\"model\":\"aixia-labs\",\"choices\":[{\"index\":0,\"delta\":{\"content\":\"</Text>\\n</Canvas>\"}}]}"}
+{"t":335,"data":"{\"id\":\"chatcmpl-aa90ba43\",\"object\":\"chat.completion.chunk\",\"created\":1791202956,\"model\":\"aixia-labs\",\"choices\":[{\"index\":0,\"delta\":{},\"finish_reason\":\"stop\"}]}"}
+{"t":335,"data":"{\"id\":\"chatcmpl-aa90ba43\",\"created\":1791202956,\"model\":\"aixia-labs\",\"object\":\"chat.completion.chunk\",\"choices\":[{\"index\":0,\"delta\":{}}],\"usage\":{\"completion_tokens\":66,\"prompt_tokens\":970,\"total_tokens\":1036,\"completion_tokens_details\":{\"reasoning_tokens\":0}}}"}
+{"t":335,"data":"[DONE]"}

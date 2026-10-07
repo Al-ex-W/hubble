@@ -1,0 +1,30 @@
+{"meta":{"case":"math-fractions","label":"recording","recordedAt":"2026-10-05T12:22:33.784Z","model":"aixia-labs","thinking":false,"intent":"Help me with this fraction problem.","image":{"fixture":"notebooks/fractions.jpg","label":"synthetic"},"promptSha":"90777e2ba799"}}
+{"t":374,"data":"{\"id\":\"chatcmpl-f44e5714\",\"object\":\"chat.completion.chunk\",\"created\":1791202954,\"model\":\"aixia-labs\",\"choices\":[{\"index\":0,\"delta\":{\"role\":\"assistant\"}}]}"}
+{"t":498,"data":"{\"id\":\"chatcmpl-f44e5714\",\"object\":\"chat.completion.chunk\",\"created\":1791202954,\"model\":\"aixia-labs\",\"choices\":[{\"index\":0,\"delta\":{\"content\":\"<Canvas anchor\"}}]}"}
+{"t":514,"data":"{\"id\":\"chatcmpl-f44e5714\",\"object\":\"chat.completion.chunk\",\"created\":1791202954,\"model\":\"aixia-labs\",\"choices\":[{\"index\":0,\"delta\":{\"content\":\"=\\\"right-of:\"}}]}"}
+{"t":525,"data":"{\"id\":\"chatcmpl-f44e5714\",\"object\":\"chat.completion.chunk\",\"created\":1791202954,\"model\":\"aixia-labs\",\"choices\":[{\"index\":0,\"delta\":{\"content\":\"notebook\\\">\\n<Heading>\"}}]}"}
+{"t":537,"data":"{\"id\":\"chatcmpl-f44e5714\",\"object\":\"chat.completion.chunk\",\"created\":1791202954,\"model\":\"aixia-labs\",\"choices\":[{\"index\":0,\"delta\":{\"content\":\"Solve for x</Heading\"}}]}"}
+{"t":549,"data":"{\"id\":\"chatcmpl-f44e5714\",\"object\":\"chat.completion.chunk\",\"created\":1791202954,\"model\":\"aixia-labs\",\"choices\":[{\"index\":0,\"delta\":{\"content\":\">\\n<Steps>\\n\"}}]}"}
+{"t":565,"data":"{\"id\":\"chatcmpl-f44e5714\",\"object\":\"chat.completion.chunk\",\"created\":1791202954,\"model\":\"aixia-labs\",\"choices\":[{\"index\":0,\"delta\":{\"content\":\"<Step>\"}}]}"}
+{"t":571,"data":"{\"id\":\"chatcmpl-f44e5714\",\"object\":\"chat.completion.chunk\",\"created\":1791202954,\"model\":\"aixia-labs\",\"choices\":[{\"index\":0,\"delta\":{\"content\":\"<Text>Multiply\"}}]}"}
+{"t":661,"data":"{\"id\":\"chatcmpl-f44e5714\",\"object\":\"chat.completion.chunk\",\"created\":1791202954,\"model\":\"aixia-labs\",\"choices\":[{\"index\":0,\"delta\":{\"content\":\" every\"}}]}"}
+{"t":661,"data":"{\"id\":\"chatcmpl-f44e5714\",\"object\":\"chat.completion.chunk\",\"created\":1791202954,\"model\":\"aixia-labs\",\"choices\":[{\"index\":0,\"delta\":{\"content\":\" term by 6.\"}}]}"}
+{"t":661,"data":"{\"id\":\"chatcmpl-f44e5714\",\"object\":\"chat.completion.chunk\",\"created\":1791202954,\"model\":\"aixia-labs\",\"choices\":[{\"index\":0,\"delta\":{\"content\":\"</Text><Math>\"}}]}"}
+{"t":661,"data":"{\"id\":\"chatcmpl-f44e5714\",\"object\":\"chat.completion.chunk\",\"created\":1791202954,\"model\":\"aixia-labs\",\"choices\":[{\"index\":0,\"delta\":{\"content\":\"2\"}}]}"}
+{"t":661,"data":"{\"id\":\"chatcmpl-f44e5714\",\"object\":\"chat.completion.chunk\",\"created\":1791202954,\"model\":\"aixia-labs\",\"choices\":[{\"index\":0,\"delta\":{\"content\":\"x + 3 =\"}}]}"}
+{"t":661,"data":"{\"id\":\"chatcmpl-f44e5714\",\"object\":\"chat.completion.chunk\",\"created\":1791202954,\"model\":\"aixia-labs\",\"choices\":[{\"index\":0,\"delta\":{\"content\":\" 5\"}}]}"}
+{"t":661,"data":"{\"id\":\"chatcmpl-f44e5714\",\"object\":\"chat.completion.chunk\",\"created\":1791202954,\"model\":\"aixia-labs\",\"choices\":[{\"index\":0,\"delta\":{\"content\":\"</Math></Step>\\n\"}}]}"}
+{"t":663,"data":"{\"id\":\"chatcmpl-f44e5714\",\"object\":\"chat.completion.chunk\",\"created\":1791202954,\"model\":\"aixia-labs\",\"choices\":[{\"index\":0,\"delta\":{\"content\":\"<Step><Text>Subtract\"}}]}"}
+{"t":676,"data":"{\"id\":\"chatcmpl-f44e5714\",\"object\":\"chat.completion.chunk\",\"created\":1791202954,\"model\":\"aixia-labs\",\"choices\":[{\"index\":0,\"delta\":{\"content\":\" 3 from both\"}}]}"}
+{"t":688,"data":"{\"id\":\"chatcmpl-f44e5714\",\"object\":\"chat.completion.chunk\",\"created\":1791202954,\"model\":\"aixia-labs\",\"choices\":[{\"index\":0,\"delta\":{\"content\":\" sides.</Text><Math>\"}}]}"}
+{"t":699,"data":"{\"id\":\"chatcmpl-f44e5714\",\"object\":\"chat.completion.chunk\",\"created\":1791202954,\"model\":\"aixia-labs\",\"choices\":[{\"index\":0,\"delta\":{\"content\":\"2x = 2\"}}]}"}
+{"t":839,"data":"{\"id\":\"chatcmpl-f44e5714\",\"object\":\"chat.completion.chunk\",\"created\":1791202954,\"model\":\"aixia-labs\",\"choices\":[{\"index\":0,\"delta\":{\"content\":\"</Math></Step>\\n<Step\"}}]}"}
+{"t":840,"data":"{\"id\":\"chatcmpl-f44e5714\",\"object\":\"chat.completion.chunk\",\"created\":1791202954,\"model\":\"aixia-labs\",\"choices\":[{\"index\":0,\"delta\":{\"content\":\" highlight><Text>\"}}]}"}
+{"t":840,"data":"{\"id\":\"chatcmpl-f44e5714\",\"object\":\"chat.completion.chunk\",\"created\":1791202954,\"model\":\"aixia-labs\",\"choices\":[{\"index\":0,\"delta\":{\"content\":\"Divide both sides by \"}}]}"}
+{"t":840,"data":"{\"id\":\"chatcmpl-f44e5714\",\"object\":\"chat.completion.chunk\",\"created\":1791202954,\"model\":\"aixia-labs\",\"choices\":[{\"index\":0,\"delta\":{\"content\":\"2.</Text><Math>x\"}}]}"}
+{"t":840,"data":"{\"id\":\"chatcmpl-f44e5714\",\"object\":\"chat.completion.chunk\",\"created\":1791202954,\"model\":\"aixia-labs\",\"choices\":[{\"index\":0,\"delta\":{\"content\":\" = 1\"}}]}"}
+{"t":840,"data":"{\"id\":\"chatcmpl-f44e5714\",\"object\":\"chat.completion.chunk\",\"created\":1791202954,\"model\":\"aixia-labs\",\"choices\":[{\"index\":0,\"delta\":{\"content\":\"</Math></Step>\\n\"}}]}"}
+{"t":840,"data":"{\"id\":\"chatcmpl-f44e5714\",\"object\":\"chat.completion.chunk\",\"created\":1791202954,\"model\":\"aixia-labs\",\"choices\":[{\"index\":0,\"delta\":{\"content\":\"</Steps>\\n</Canvas>\"}}]}"}
+{"t":840,"data":"{\"id\":\"chatcmpl-f44e5714\",\"object\":\"chat.completion.chunk\",\"created\":1791202954,\"model\":\"aixia-labs\",\"choices\":[{\"index\":0,\"delta\":{},\"finish_reason\":\"stop\"}]}"}
+{"t":840,"data":"{\"id\":\"chatcmpl-f44e5714\",\"created\":1791202954,\"model\":\"aixia-labs\",\"object\":\"chat.completion.chunk\",\"choices\":[{\"index\":0,\"delta\":{}}],\"usage\":{\"completion_tokens\":110,\"prompt_tokens\":1315,\"total_tokens\":1425,\"completion_tokens_details\":{\"reasoning_tokens\":0}}}"}
+{"t":840,"data":"[DONE]"}
