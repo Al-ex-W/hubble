@@ -1,0 +1,9 @@
+{
+  "label": "recording",
+  "recorded": "2026-10-07T06:50Z, from the laptop on the room network, GET /status on each display Pi (read-only)",
+  "files": {
+    "pi-projector-status.json": "192.168.42.21: at the time it showed another laptop's /table (192.168.42.27), kiosk not connected",
+    "pi-tv-1-status.json": "192.168.42.22: idle",
+    "pi-tv-2-status.json": "192.168.42.23: idle"
+  }
+}

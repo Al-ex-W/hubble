@@ -1,0 +1,13 @@
+{
+  "name": "@hubble/room",
+  "private": true,
+  "type": "module",
+  "description": "Every hardware channel of the Aixia room behind one interface: live, legacy, emulated and replayed transports, slots, lights, lidar touches, camera and calibration.",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "dependencies": {
+    "@hubble/stage": "*",
+    "jpeg-js": "^0.4.4"
+  }
+}

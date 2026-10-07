@@ -1,0 +1,11 @@
+{
+  "provenance": "recording",
+  "recordedAt": "2026-10-07",
+  "endpoint": "Pi lidar WebSocket /scan",
+  "scene": "Unannotated room; NOT empty-table or contact ground truth",
+  "sha256": "3ab8ea3b33019f855568e73c09ff53e5334d27ca6716c93b29f761b0b1618084",
+  "scans": 116,
+  "points": 59044,
+  "positiveReturns": 36305,
+  "clock": "receivedAt is receiver epoch ms; t is device epoch ms; clocks not synchronized"
+}
