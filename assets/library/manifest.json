@@ -1,0 +1,7 @@
+{
+  "assets": [
+    { "id": "right-triangle", "kind": "image", "title": "Right triangle with legs a, b and hypotenuse c (Pythagoras)", "file": "right-triangle.svg", "widthMm": 200, "heightMm": 150, "source": "drawn for Hubble" },
+    { "id": "unit-circle", "kind": "image", "title": "Unit circle with an angle theta, its sine and cosine", "file": "unit-circle.svg", "widthMm": 180, "heightMm": 180, "source": "drawn for Hubble" },
+    { "id": "worksheet", "kind": "image", "title": "Photo of a handwritten maths worksheet (Swedish tasks)", "file": "worksheet.jpg", "widthMm": 210, "heightMm": 280, "source": "packages/brain/fixtures/photos/upgift.jpg (a real photographed worksheet)" }
+  ]
+}

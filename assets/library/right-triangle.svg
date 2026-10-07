@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" font-family="sans-serif">
+  <!-- Drawn for Hubble's asset library (#30): light lines for the black cloth. -->
+  <rect width="400" height="300" fill="#000"/>
+  <polygon points="60,250 340,250 60,60" fill="none" stroke="#6cf0ff" stroke-width="4"/>
+  <polyline points="60,225 85,225 85,250" fill="none" stroke="#6cf0ff" stroke-width="3"/>
+  <text x="200" y="282" fill="#fff" font-size="26" text-anchor="middle">a</text>
+  <text x="34" y="160" fill="#fff" font-size="26" text-anchor="middle">b</text>
+  <text x="215" y="140" fill="#ffd34d" font-size="26" text-anchor="middle">c</text>
+  <text x="300" y="60" fill="#ffd34d" font-size="24" text-anchor="middle">a² + b² = c²</text>
+</svg>

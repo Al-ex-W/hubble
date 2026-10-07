@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" font-family="sans-serif">
+  <!-- Drawn for Hubble's asset library (#30): light lines for the black cloth. -->
+  <rect width="400" height="400" fill="#000"/>
+  <line x1="20" y1="200" x2="380" y2="200" stroke="#555" stroke-width="2"/>
+  <line x1="200" y1="20" x2="200" y2="380" stroke="#555" stroke-width="2"/>
+  <circle cx="200" cy="200" r="150" fill="none" stroke="#6cf0ff" stroke-width="4"/>
+  <line x1="200" y1="200" x2="306" y2="94" stroke="#ffd34d" stroke-width="4"/>
+  <line x1="306" y1="94" x2="306" y2="200" stroke="#fff" stroke-width="2" stroke-dasharray="6 6"/>
+  <text x="250" y="225" fill="#fff" font-size="22" text-anchor="middle">cos θ</text>
+  <text x="335" y="150" fill="#fff" font-size="22">sin θ</text>
+  <text x="232" y="182" fill="#ffd34d" font-size="22">θ</text>
+</svg>
