@@ -1,0 +1,144 @@
+{
+  "label": "recording",
+  "model": "aixia-labs",
+  "recordedAt": "2026-10-07T11:50:16.890Z",
+  "case": {
+    "name": "draw-around-cup",
+    "state": {
+      "act": "math",
+      "lesson": null,
+      "surfaces": [],
+      "assets": [
+        {
+          "id": "right-triangle",
+          "kind": "image",
+          "title": "Right triangle with legs a, b and hypotenuse c (Pythagoras)"
+        },
+        {
+          "id": "unit-circle",
+          "kind": "image",
+          "title": "Unit circle with an angle theta, its sine and cosine"
+        },
+        {
+          "id": "worksheet",
+          "kind": "image",
+          "title": "Photo of a handwritten maths worksheet (Swedish tasks)"
+        }
+      ],
+      "webHosts": [
+        "en.wikipedia.org",
+        "sv.wikipedia.org",
+        "www.desmos.com",
+        "developer.mozilla.org"
+      ],
+      "songs": [
+        {
+          "id": "ode-to-joy",
+          "title": "Ode to Joy"
+        },
+        {
+          "id": "twinkle",
+          "title": "Twinkle Twinkle Little Star"
+        }
+      ],
+      "objects": [
+        {
+          "id": "cup",
+          "kind": "cup",
+          "label": "coffee cup",
+          "xMm": 1000,
+          "yMm": 400,
+          "wMm": 85,
+          "hMm": 85
+        }
+      ]
+    },
+    "user": "Draw a circle around my cup",
+    "expect": [
+      "draw_svg"
+    ]
+  },
+  "calls": [
+    {
+      "step": 0,
+      "name": "draw_svg",
+      "input": {
+        "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 200 200\"><circle cx=\"100\" cy=\"100\" r=\"88\" fill=\"none\" stroke=\"#ffd24a\" stroke-width=\"10\"/></svg>",
+        "widthMm": 130,
+        "heightMm": 130,
+        "xMm": 1043,
+        "yMm": 443,
+        "title": "Circle around the cup"
+      },
+      "tMs": 1057
+    }
+  ],
+  "text": "Drew a bright ring right around your cup.",
+  "steps": [
+    {
+      "finishReason": "tool-calls",
+      "toolCalls": [
+        {
+          "name": "draw_svg",
+          "input": {
+            "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 200 200\"><circle cx=\"100\" cy=\"100\" r=\"88\" fill=\"none\" stroke=\"#ffd24a\" stroke-width=\"10\"/></svg>",
+            "widthMm": 130,
+            "heightMm": 130,
+            "xMm": 1043,
+            "yMm": 443,
+            "title": "Circle around the cup"
+          }
+        }
+      ],
+      "text": "\n\n",
+      "usage": {
+        "inputTokens": 2113,
+        "inputTokenDetails": {
+          "noCacheTokens": 2113,
+          "cacheReadTokens": 0
+        },
+        "outputTokens": 331,
+        "outputTokenDetails": {
+          "textTokens": 184,
+          "reasoningTokens": 147
+        },
+        "totalTokens": 2444,
+        "raw": {
+          "prompt_tokens": 2113,
+          "completion_tokens": 331,
+          "total_tokens": 2444,
+          "completion_tokens_details": {
+            "reasoning_tokens": 147
+          }
+        }
+      }
+    },
+    {
+      "finishReason": "stop",
+      "toolCalls": [],
+      "text": "Drew a bright ring right around your cup.",
+      "usage": {
+        "inputTokens": 2320,
+        "inputTokenDetails": {
+          "noCacheTokens": 2320,
+          "cacheReadTokens": 0
+        },
+        "outputTokens": 12,
+        "outputTokenDetails": {
+          "textTokens": 12,
+          "reasoningTokens": 0
+        },
+        "totalTokens": 2332,
+        "raw": {
+          "prompt_tokens": 2320,
+          "completion_tokens": 12,
+          "total_tokens": 2332,
+          "completion_tokens_details": {
+            "reasoning_tokens": 0
+          }
+        }
+      }
+    }
+  ],
+  "totalMs": 1603
+}

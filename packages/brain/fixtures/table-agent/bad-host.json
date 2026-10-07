@@ -1,0 +1,123 @@
+{
+  "label": "recording",
+  "model": "aixia-labs",
+  "recordedAt": "2026-10-06T06:36:04.974Z",
+  "case": {
+    "name": "bad-host",
+    "state": {
+      "act": "math",
+      "lesson": null,
+      "surfaces": [],
+      "assets": [
+        {
+          "id": "right-triangle",
+          "kind": "image",
+          "title": "Right triangle with legs a, b and hypotenuse c (Pythagoras)"
+        },
+        {
+          "id": "unit-circle",
+          "kind": "image",
+          "title": "Unit circle with an angle theta, its sine and cosine"
+        },
+        {
+          "id": "worksheet",
+          "kind": "image",
+          "title": "Photo of a handwritten maths worksheet (Swedish tasks)"
+        }
+      ],
+      "webHosts": [
+        "en.wikipedia.org",
+        "sv.wikipedia.org",
+        "www.desmos.com",
+        "developer.mozilla.org"
+      ],
+      "songs": [
+        {
+          "id": "ode-to-joy",
+          "title": "Ode to Joy"
+        },
+        {
+          "id": "twinkle",
+          "title": "Twinkle Twinkle Little Star"
+        }
+      ]
+    },
+    "user": "Open youtube.com",
+    "expect": [
+      "say"
+    ]
+  },
+  "calls": [
+    {
+      "step": 0,
+      "name": "say",
+      "input": {
+        "text": "Sorry, I can't open youtube.com — only Wikipedia, Desmos, and MDN pages are available on the table."
+      },
+      "tMs": 334
+    }
+  ],
+  "text": "I can't show youtube.com — only Wikipedia, Desmos, and MDN are available here.",
+  "steps": [
+    {
+      "finishReason": "tool-calls",
+      "toolCalls": [
+        {
+          "name": "say",
+          "input": {
+            "text": "Sorry, I can't open youtube.com — only Wikipedia, Desmos, and MDN pages are available on the table."
+          }
+        }
+      ],
+      "text": "\n\n",
+      "usage": {
+        "inputTokens": 1469,
+        "inputTokenDetails": {
+          "noCacheTokens": 1469,
+          "cacheReadTokens": 0
+        },
+        "outputTokens": 71,
+        "outputTokenDetails": {
+          "textTokens": 61,
+          "reasoningTokens": 10
+        },
+        "totalTokens": 1540,
+        "raw": {
+          "prompt_tokens": 1469,
+          "completion_tokens": 71,
+          "total_tokens": 1540,
+          "completion_tokens_details": {
+            "reasoning_tokens": 10
+          }
+        }
+      }
+    },
+    {
+      "finishReason": "stop",
+      "toolCalls": [],
+      "text": "I can't show youtube.com — only Wikipedia, Desmos, and MDN are available here.",
+      "usage": {
+        "inputTokens": 1545,
+        "inputTokenDetails": {
+          "noCacheTokens": 1545,
+          "cacheReadTokens": 0
+        },
+        "outputTokens": 22,
+        "outputTokenDetails": {
+          "textTokens": 22,
+          "reasoningTokens": 0
+        },
+        "totalTokens": 1567,
+        "raw": {
+          "prompt_tokens": 1545,
+          "completion_tokens": 22,
+          "total_tokens": 1567,
+          "completion_tokens_details": {
+            "reasoning_tokens": 0
+          }
+        }
+      }
+    }
+  ],
+  "totalMs": 461
+}

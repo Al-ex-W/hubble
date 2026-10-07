@@ -1,0 +1,123 @@
+{
+  "label": "recording",
+  "model": "aixia-labs",
+  "recordedAt": "2026-10-06T06:36:03.920Z",
+  "case": {
+    "name": "hello",
+    "state": {
+      "act": "math",
+      "lesson": null,
+      "surfaces": [],
+      "assets": [
+        {
+          "id": "right-triangle",
+          "kind": "image",
+          "title": "Right triangle with legs a, b and hypotenuse c (Pythagoras)"
+        },
+        {
+          "id": "unit-circle",
+          "kind": "image",
+          "title": "Unit circle with an angle theta, its sine and cosine"
+        },
+        {
+          "id": "worksheet",
+          "kind": "image",
+          "title": "Photo of a handwritten maths worksheet (Swedish tasks)"
+        }
+      ],
+      "webHosts": [
+        "en.wikipedia.org",
+        "sv.wikipedia.org",
+        "www.desmos.com",
+        "developer.mozilla.org"
+      ],
+      "songs": [
+        {
+          "id": "ode-to-joy",
+          "title": "Ode to Joy"
+        },
+        {
+          "id": "twinkle",
+          "title": "Twinkle Twinkle Little Star"
+        }
+      ]
+    },
+    "user": "Hi Hubble!",
+    "expect": [
+      "say"
+    ]
+  },
+  "calls": [
+    {
+      "step": 0,
+      "name": "say",
+      "input": {
+        "text": "Hi! Ready when you are — ask me a maths question, or say the word and I'll set up a piano lesson."
+      },
+      "tMs": 346
+    }
+  ],
+  "text": "Hi! Ready when you are — ask me a maths question, or say the word and I'll set up a piano lesson.",
+  "steps": [
+    {
+      "finishReason": "tool-calls",
+      "toolCalls": [
+        {
+          "name": "say",
+          "input": {
+            "text": "Hi! Ready when you are — ask me a maths question, or say the word and I'll set up a piano lesson."
+          }
+        }
+      ],
+      "text": "\n\n",
+      "usage": {
+        "inputTokens": 1471,
+        "inputTokenDetails": {
+          "noCacheTokens": 1471,
+          "cacheReadTokens": 0
+        },
+        "outputTokens": 73,
+        "outputTokenDetails": {
+          "textTokens": 62,
+          "reasoningTokens": 11
+        },
+        "totalTokens": 1544,
+        "raw": {
+          "prompt_tokens": 1471,
+          "completion_tokens": 73,
+          "total_tokens": 1544,
+          "completion_tokens_details": {
+            "reasoning_tokens": 11
+          }
+        }
+      }
+    },
+    {
+      "finishReason": "stop",
+      "toolCalls": [],
+      "text": "Hi! Ready when you are — ask me a maths question, or say the word and I'll set up a piano lesson.",
+      "usage": {
+        "inputTokens": 1548,
+        "inputTokenDetails": {
+          "noCacheTokens": 1548,
+          "cacheReadTokens": 0
+        },
+        "outputTokens": 28,
+        "outputTokenDetails": {
+          "textTokens": 28,
+          "reasoningTokens": 0
+        },
+        "totalTokens": 1576,
+        "raw": {
+          "prompt_tokens": 1548,
+          "completion_tokens": 28,
+          "total_tokens": 1576,
+          "completion_tokens_details": {
+            "reasoning_tokens": 0
+          }
+        }
+      }
+    }
+  ],
+  "totalMs": 473
+}

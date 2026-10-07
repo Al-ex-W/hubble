@@ -1,0 +1,47 @@
+{
+ "label": "recording",
+ "recordedAt": "2026-10-05T13:44:12.803Z",
+ "model": "aixia-labs",
+ "stream": "scene-empty-pythagoras",
+ "ms": 455,
+ "steps": [
+  {
+   "kind": "draft",
+   "ms": 2,
+   "text": "<Canvas>\n<Panel x={200} y={160} w={620}>\n<Heading>Pythagorean theorem</Heading>\n<Text>In a right triangle, the two shorter sides squared add to the longest side squared.</Text>\n<Math highlight>a^2 + b^2 = c^2</Math>\n<Text tone=\"muted\">a and b are the legs; c is the hypotenuse, opposite the right angle.</Text>\n</Panel>\n<Panel x={900} y={160} w={560}>\n<Heading>Squares on each side</Heading>\n<List>\n<Item>a-square: area a^2</Item>\n<Item>b-square: area b^2</Item>\n<Item>c-square: area c^2</Item>\n</List>\n<Note kind=\"tip\">The two small squares together fill exactly the big one.</Note>\n</Panel>\n<Panel x={200} y={620} w={620}>\n<Heading>Check a 3-4-5 triangle</Heading>\n<Equations>3^2 + 4^2 &= 9 + 16 \\\\ &= 25 \\\\ c &= \\sqrt{25} = 5</Equations>\n<Note kind=\"check\">The right angle makes c the longest side.</Note>\n</Panel>\n<Plot fn=\"sqrt(25 - x^2)\" xmin={-5} xmax={5} points=\"3,4\" label=\"a=3, b=4, c=5\"/>\n<Label x={900} y={640} tone=\"accent\">Legs 3 and 4 meet at 90 degrees.</Label>\n<Arrow from=\"900,700\" to=\"820,720\" label=\"right angle\"/>\n</Canvas>"
+  },
+  {
+   "kind": "verify",
+   "ms": 1,
+   "ok": false,
+   "problems": [
+    "the Panel at x=200 y=160: overlaps-panel: overlaps panel e1 by 23%",
+    "  a valid spot for it: x={30} y={150} w={620} (estimated height 312 px)",
+    "the Panel at x=900 y=160: overlaps-panel: overlaps panel e1 by 61%",
+    "  a valid spot for it: x={890} y={510} w={560} (estimated height 330 px)"
+   ]
+  },
+  {
+   "kind": "edit",
+   "ms": 0,
+   "edits": [
+    {
+     "find": "<Panel x={200} y={160} w={620}>",
+     "replace": "<Panel x={30} y={150} w={620}>"
+    },
+    {
+     "find": "<Panel x={900} y={160} w={560}>",
+     "replace": "<Panel x={890} y={510} w={560}>"
+    }
+   ]
+  },
+  {
+   "kind": "verify",
+   "ms": 1,
+   "ok": true,
+   "problems": []
+  }
+ ],
+ "finalOk": true,
+ "finalText": "<Canvas>\n<Panel x={30} y={150} w={620}>\n<Heading>Pythagorean theorem</Heading>\n<Text>In a right triangle, the two shorter sides squared add to the longest side squared.</Text>\n<Math highlight>a^2 + b^2 = c^2</Math>\n<Text tone=\"muted\">a and b are the legs; c is the hypotenuse, opposite the right angle.</Text>\n</Panel>\n<Panel x={890} y={510} w={560}>\n<Heading>Squares on each side</Heading>\n<List>\n<Item>a-square: area a^2</Item>\n<Item>b-square: area b^2</Item>\n<Item>c-square: area c^2</Item>\n</List>\n<Note kind=\"tip\">The two small squares together fill exactly the big one.</Note>\n</Panel>\n<Panel x={200} y={620} w={620}>\n<Heading>Check a 3-4-5 triangle</Heading>\n<Equations>3^2 + 4^2 &= 9 + 16 \\\\ &= 25 \\\\ c &= \\sqrt{25} = 5</Equations>\n<Note kind=\"check\">The right angle makes c the longest side.</Note>\n</Panel>\n<Plot fn=\"sqrt(25 - x^2)\" xmin={-5} xmax={5} points=\"3,4\" label=\"a=3, b=4, c=5\"/>\n<Label x={900} y={640} tone=\"accent\">Legs 3 and 4 meet at 90 degrees.</Label>\n<Arrow from=\"900,700\" to=\"820,720\" label=\"right angle\"/>\n</Canvas>"
+}

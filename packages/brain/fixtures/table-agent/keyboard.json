@@ -1,0 +1,160 @@
+{
+  "label": "recording",
+  "model": "aixia-labs",
+  "recordedAt": "2026-10-06T06:36:02.655Z",
+  "case": {
+    "name": "keyboard",
+    "state": {
+      "act": "math",
+      "lesson": null,
+      "surfaces": [],
+      "assets": [
+        {
+          "id": "right-triangle",
+          "kind": "image",
+          "title": "Right triangle with legs a, b and hypotenuse c (Pythagoras)"
+        },
+        {
+          "id": "unit-circle",
+          "kind": "image",
+          "title": "Unit circle with an angle theta, its sine and cosine"
+        },
+        {
+          "id": "worksheet",
+          "kind": "image",
+          "title": "Photo of a handwritten maths worksheet (Swedish tasks)"
+        }
+      ],
+      "webHosts": [
+        "en.wikipedia.org",
+        "sv.wikipedia.org",
+        "www.desmos.com",
+        "developer.mozilla.org"
+      ],
+      "songs": [
+        {
+          "id": "ode-to-joy",
+          "title": "Ode to Joy"
+        },
+        {
+          "id": "twinkle",
+          "title": "Twinkle Twinkle Little Star"
+        }
+      ]
+    },
+    "user": "I want to type something",
+    "expect": [
+      "show_keyboard"
+    ]
+  },
+  "calls": [
+    {
+      "step": 0,
+      "name": "show_keyboard",
+      "input": {},
+      "tMs": 242
+    },
+    {
+      "step": 1,
+      "name": "say",
+      "input": {
+        "text": "Keyboard's up on the table — go ahead and type."
+      },
+      "tMs": 435
+    }
+  ],
+  "text": "The keyboard is projected on the table for you.",
+  "steps": [
+    {
+      "finishReason": "tool-calls",
+      "toolCalls": [
+        {
+          "name": "show_keyboard",
+          "input": {}
+        }
+      ],
+      "text": "\n\n",
+      "usage": {
+        "inputTokens": 1471,
+        "inputTokenDetails": {
+          "noCacheTokens": 1471,
+          "cacheReadTokens": 0
+        },
+        "outputTokens": 33,
+        "outputTokenDetails": {
+          "textTokens": 24,
+          "reasoningTokens": 9
+        },
+        "totalTokens": 1504,
+        "raw": {
+          "prompt_tokens": 1471,
+          "completion_tokens": 33,
+          "total_tokens": 1504,
+          "completion_tokens_details": {
+            "reasoning_tokens": 9
+          }
+        }
+      }
+    },
+    {
+      "finishReason": "tool-calls",
+      "toolCalls": [
+        {
+          "name": "say",
+          "input": {
+            "text": "Keyboard's up on the table — go ahead and type."
+          }
+        }
+      ],
+      "text": "\n\n",
+      "usage": {
+        "inputTokens": 1518,
+        "inputTokenDetails": {
+          "noCacheTokens": 1518,
+          "cacheReadTokens": 0
+        },
+        "outputTokens": 48,
+        "outputTokenDetails": {
+          "textTokens": 48,
+          "reasoningTokens": 0
+        },
+        "totalTokens": 1566,
+        "raw": {
+          "prompt_tokens": 1518,
+          "completion_tokens": 48,
+          "total_tokens": 1566,
+          "completion_tokens_details": {
+            "reasoning_tokens": 0
+          }
+        }
+      }
+    },
+    {
+      "finishReason": "stop",
+      "toolCalls": [],
+      "text": "The keyboard is projected on the table for you.",
+      "usage": {
+        "inputTokens": 1581,
+        "inputTokenDetails": {
+          "noCacheTokens": 1581,
+          "cacheReadTokens": 0
+        },
+        "outputTokens": 12,
+        "outputTokenDetails": {
+          "textTokens": 12,
+          "reasoningTokens": 0
+        },
+        "totalTokens": 1593,
+        "raw": {
+          "prompt_tokens": 1581,
+          "completion_tokens": 12,
+          "total_tokens": 1593,
+          "completion_tokens_details": {
+            "reasoning_tokens": 0
+          }
+        }
+      }
+    }
+  ],
+  "totalMs": 550
+}

@@ -1,0 +1,183 @@
+{
+  "label": "recording",
+  "model": "aixia-labs",
+  "recordedAt": "2026-10-06T06:36:05.835Z",
+  "case": {
+    "name": "followup",
+    "state": {
+      "act": "math",
+      "lesson": null,
+      "surfaces": [
+        {
+          "id": "answer",
+          "kind": "answer",
+          "title": "Pythagorean theorem",
+          "xMm": 172,
+          "yMm": 156,
+          "wMm": 484,
+          "hMm": 300
+        }
+      ],
+      "assets": [
+        {
+          "id": "right-triangle",
+          "kind": "image",
+          "title": "Right triangle with legs a, b and hypotenuse c (Pythagoras)"
+        },
+        {
+          "id": "unit-circle",
+          "kind": "image",
+          "title": "Unit circle with an angle theta, its sine and cosine"
+        },
+        {
+          "id": "worksheet",
+          "kind": "image",
+          "title": "Photo of a handwritten maths worksheet (Swedish tasks)"
+        }
+      ],
+      "webHosts": [
+        "en.wikipedia.org",
+        "sv.wikipedia.org",
+        "www.desmos.com",
+        "developer.mozilla.org"
+      ],
+      "songs": [
+        {
+          "id": "ode-to-joy",
+          "title": "Ode to Joy"
+        },
+        {
+          "id": "twinkle",
+          "title": "Twinkle Twinkle Little Star"
+        }
+      ]
+    },
+    "prior": [
+      {
+        "role": "user",
+        "content": "Explain the Pythagorean theorem"
+      },
+      {
+        "role": "assistant",
+        "content": [
+          {
+            "type": "tool-call",
+            "toolCallId": "p1",
+            "toolName": "render_answer",
+            "input": {
+              "intent": "Explain the Pythagorean theorem with a worked example"
+            }
+          }
+        ]
+      },
+      {
+        "role": "tool",
+        "content": [
+          {
+            "type": "tool-result",
+            "toolCallId": "p1",
+            "toolName": "render_answer",
+            "output": {
+              "type": "json",
+              "value": {
+                "ok": true,
+                "onTable": "answer"
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "user": "Now show me how to prove it",
+    "expect": [
+      "render_answer"
+    ]
+  },
+  "calls": [
+    {
+      "step": 0,
+      "name": "open_asset",
+      "input": {
+        "id": "right-triangle"
+      },
+      "tMs": 643
+    },
+    {
+      "step": 0,
+      "name": "render_answer",
+      "input": {
+        "intent": "Prove the Pythagorean theorem a² + b² = c² using a rearrangement proof with four copies of the right triangle in a square of side a+b, labeling areas at each step"
+      },
+      "tMs": 643
+    }
+  ],
+  "text": "I've put the proof on the table with the right-triangle diagram beside it.",
+  "steps": [
+    {
+      "finishReason": "tool-calls",
+      "toolCalls": [
+        {
+          "name": "open_asset",
+          "input": {
+            "id": "right-triangle"
+          }
+        },
+        {
+          "name": "render_answer",
+          "input": {
+            "intent": "Prove the Pythagorean theorem a² + b² = c² using a rearrangement proof with four copies of the right triangle in a square of side a+b, labeling areas at each step"
+          }
+        }
+      ],
+      "text": "\n\n",
+      "usage": {
+        "inputTokens": 1567,
+        "inputTokenDetails": {
+          "noCacheTokens": 1567,
+          "cacheReadTokens": 0
+        },
+        "outputTokens": 157,
+        "outputTokenDetails": {
+          "textTokens": 107,
+          "reasoningTokens": 50
+        },
+        "totalTokens": 1724,
+        "raw": {
+          "prompt_tokens": 1567,
+          "completion_tokens": 157,
+          "total_tokens": 1724,
+          "completion_tokens_details": {
+            "reasoning_tokens": 50
+          }
+        }
+      }
+    },
+    {
+      "finishReason": "stop",
+      "toolCalls": [],
+      "text": "I've put the proof on the table with the right-triangle diagram beside it.",
+      "usage": {
+        "inputTokens": 1712,
+        "inputTokenDetails": {
+          "noCacheTokens": 1712,
+          "cacheReadTokens": 0
+        },
+        "outputTokens": 19,
+        "outputTokenDetails": {
+          "textTokens": 19,
+          "reasoningTokens": 0
+        },
+        "totalTokens": 1731,
+        "raw": {
+          "prompt_tokens": 1712,
+          "completion_tokens": 19,
+          "total_tokens": 1731,
+          "completion_tokens_details": {
+            "reasoning_tokens": 0
+          }
+        }
+      }
+    }
+  ],
+  "totalMs": 860
+}

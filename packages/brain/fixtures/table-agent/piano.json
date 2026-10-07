@@ -1,0 +1,137 @@
+{
+  "label": "recording",
+  "model": "aixia-labs",
+  "recordedAt": "2026-10-06T06:36:01.686Z",
+  "case": {
+    "name": "piano",
+    "state": {
+      "act": "math",
+      "lesson": null,
+      "surfaces": [],
+      "assets": [
+        {
+          "id": "right-triangle",
+          "kind": "image",
+          "title": "Right triangle with legs a, b and hypotenuse c (Pythagoras)"
+        },
+        {
+          "id": "unit-circle",
+          "kind": "image",
+          "title": "Unit circle with an angle theta, its sine and cosine"
+        },
+        {
+          "id": "worksheet",
+          "kind": "image",
+          "title": "Photo of a handwritten maths worksheet (Swedish tasks)"
+        }
+      ],
+      "webHosts": [
+        "en.wikipedia.org",
+        "sv.wikipedia.org",
+        "www.desmos.com",
+        "developer.mozilla.org"
+      ],
+      "songs": [
+        {
+          "id": "ode-to-joy",
+          "title": "Ode to Joy"
+        },
+        {
+          "id": "twinkle",
+          "title": "Twinkle Twinkle Little Star"
+        }
+      ]
+    },
+    "user": "Let's play piano, teach me Ode to Joy",
+    "expect": [
+      "start_lesson"
+    ]
+  },
+  "calls": [
+    {
+      "step": 0,
+      "name": "set_act",
+      "input": {
+        "act": "lesson"
+      },
+      "tMs": 370
+    },
+    {
+      "step": 0,
+      "name": "start_lesson",
+      "input": {
+        "song": "ode-to-joy"
+      },
+      "tMs": 370
+    }
+  ],
+  "text": "Ode to Joy is up on the MiniLab — let's take it a few notes at a time.",
+  "steps": [
+    {
+      "finishReason": "tool-calls",
+      "toolCalls": [
+        {
+          "name": "set_act",
+          "input": {
+            "act": "lesson"
+          }
+        },
+        {
+          "name": "start_lesson",
+          "input": {
+            "song": "ode-to-joy"
+          }
+        }
+      ],
+      "text": "\n\n",
+      "usage": {
+        "inputTokens": 1477,
+        "inputTokenDetails": {
+          "noCacheTokens": 1477,
+          "cacheReadTokens": 0
+        },
+        "outputTokens": 90,
+        "outputTokenDetails": {
+          "textTokens": 72,
+          "reasoningTokens": 18
+        },
+        "totalTokens": 1567,
+        "raw": {
+          "prompt_tokens": 1477,
+          "completion_tokens": 90,
+          "total_tokens": 1567,
+          "completion_tokens_details": {
+            "reasoning_tokens": 18
+          }
+        }
+      }
+    },
+    {
+      "finishReason": "stop",
+      "toolCalls": [],
+      "text": "Ode to Joy is up on the MiniLab — let's take it a few notes at a time.",
+      "usage": {
+        "inputTokens": 1576,
+        "inputTokenDetails": {
+          "noCacheTokens": 1576,
+          "cacheReadTokens": 0
+        },
+        "outputTokens": 24,
+        "outputTokenDetails": {
+          "textTokens": 24,
+          "reasoningTokens": 0
+        },
+        "totalTokens": 1600,
+        "raw": {
+          "prompt_tokens": 1576,
+          "completion_tokens": 24,
+          "total_tokens": 1600,
+          "completion_tokens_details": {
+            "reasoning_tokens": 0
+          }
+        }
+      }
+    }
+  ],
+  "totalMs": 511
+}

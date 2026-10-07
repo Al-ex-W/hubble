@@ -1,0 +1,16 @@
+{
+  "name": "@hubble/brain",
+  "private": true,
+  "type": "module",
+  "description": "Hubble's model layer: drafts an answer, verifies it with the stage parser and layout report, repairs it with small find/replace edits, then hands the verified pieces to @hubble/stage.",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "dependencies": {
+    "@ai-sdk/openai-compatible": "^3.0.62",
+    "@hubble/stage": "*",
+    "ai": "^7.0.127",
+    "jpeg-js": "^0.4.4",
+    "zod": "^4.6.5"
+  }
+}

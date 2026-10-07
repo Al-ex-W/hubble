@@ -1,0 +1,133 @@
+{
+  "label": "recording",
+  "model": "aixia-labs",
+  "recordedAt": "2026-10-06T06:35:59.781Z",
+  "case": {
+    "name": "notebook",
+    "state": {
+      "act": "math",
+      "lesson": null,
+      "surfaces": [
+        {
+          "id": "notebook",
+          "kind": "notebook",
+          "title": "notebook (object)",
+          "xMm": 230,
+          "yMm": 300,
+          "wMm": 210,
+          "hMm": 297
+        }
+      ],
+      "assets": [
+        {
+          "id": "right-triangle",
+          "kind": "image",
+          "title": "Right triangle with legs a, b and hypotenuse c (Pythagoras)"
+        },
+        {
+          "id": "unit-circle",
+          "kind": "image",
+          "title": "Unit circle with an angle theta, its sine and cosine"
+        },
+        {
+          "id": "worksheet",
+          "kind": "image",
+          "title": "Photo of a handwritten maths worksheet (Swedish tasks)"
+        }
+      ],
+      "webHosts": [
+        "en.wikipedia.org",
+        "sv.wikipedia.org",
+        "www.desmos.com",
+        "developer.mozilla.org"
+      ],
+      "songs": [
+        {
+          "id": "ode-to-joy",
+          "title": "Ode to Joy"
+        },
+        {
+          "id": "twinkle",
+          "title": "Twinkle Twinkle Little Star"
+        }
+      ]
+    },
+    "user": "Solve the task in my notebook",
+    "expect": [
+      "render_answer"
+    ]
+  },
+  "calls": [
+    {
+      "step": 0,
+      "name": "render_answer",
+      "input": {
+        "intent": "Read the tasks in my notebook on the table and solve them step by step, showing the full worked solution for each task."
+      },
+      "tMs": 517
+    }
+  ],
+  "text": "The notebook's task is now worked through on the table, step by step.",
+  "steps": [
+    {
+      "finishReason": "tool-calls",
+      "toolCalls": [
+        {
+          "name": "render_answer",
+          "input": {
+            "intent": "Read the tasks in my notebook on the table and solve them step by step, showing the full worked solution for each task."
+          }
+        }
+      ],
+      "text": "\n\n",
+      "usage": {
+        "inputTokens": 1495,
+        "inputTokenDetails": {
+          "noCacheTokens": 1495,
+          "cacheReadTokens": 0
+        },
+        "outputTokens": 172,
+        "outputTokenDetails": {
+          "textTokens": 63,
+          "reasoningTokens": 109
+        },
+        "totalTokens": 1667,
+        "raw": {
+          "prompt_tokens": 1495,
+          "completion_tokens": 172,
+          "total_tokens": 1667,
+          "completion_tokens_details": {
+            "reasoning_tokens": 109
+          }
+        }
+      }
+    },
+    {
+      "finishReason": "stop",
+      "toolCalls": [],
+      "text": "The notebook's task is now worked through on the table, step by step.",
+      "usage": {
+        "inputTokens": 1579,
+        "inputTokenDetails": {
+          "noCacheTokens": 1579,
+          "cacheReadTokens": 0
+        },
+        "outputTokens": 18,
+        "outputTokenDetails": {
+          "textTokens": 18,
+          "reasoningTokens": 0
+        },
+        "totalTokens": 1597,
+        "raw": {
+          "prompt_tokens": 1579,
+          "completion_tokens": 18,
+          "total_tokens": 1597,
+          "completion_tokens_details": {
+            "reasoning_tokens": 0
+          }
+        }
+      }
+    }
+  ],
+  "totalMs": 642
+}

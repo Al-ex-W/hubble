@@ -1,0 +1,41 @@
+{
+ "label": "recording",
+ "recordedAt": "2026-10-05T13:44:14.386Z",
+ "model": "aixia-labs",
+ "stream": "scene-optimize",
+ "ms": 489,
+ "steps": [
+  {
+   "kind": "draft",
+   "ms": 3,
+   "text": "<Canvas>\n<Mark target=\"notebook\" shape=\"underline\" u={0.5} v={0.42} w={0.8}/>\n<Panel id=\"steps\" near=\"notebook\" side=\"right\" w={580}>\n<Heading>Fence against a wall</Heading>\n<Text tone=\"muted\">One side is the wall, so 100 m covers one width and two lengths.</Text>\n<Equations>2x + y &= 100 \\\\ A &= x y = x(100 - 2x) \\\\ A &= 100x - 2x^2 \\\\ A' &= 100 - 4x = 0 \\\\ x &= 25</Equations>\n<Steps>\n<Step><Text>Width x, length y along the wall.</Text></Step>\n<Step highlight><Text>50 m parallel to the wall, 25 m out.</Text></Step>\n</Steps>\n</Panel>\n<Panel x={980} y={180} w={580}>\n<Plot fn=\"x*(100 - 2*x)\" xmin={0} xmax={50} ymin={0} ymax={1400} points=\"25,1250\" label=\"area peaks at x = 25\"/>\n<Note kind=\"check\">Max area 1250 m².</Note>\n</Panel>\n<Arrow from=\"#steps\" to=\"notebook@0.5,0.5\"/>\n</Canvas>"
+  },
+  {
+   "kind": "verify",
+   "ms": 1,
+   "ok": false,
+   "problems": [
+    "the Panel at x=980 y=180: overlaps-panel: overlaps #steps by 20%",
+    "  a valid spot for it: x={1210} y={170} w={580} (estimated height 486 px)"
+   ]
+  },
+  {
+   "kind": "edit",
+   "ms": 1,
+   "edits": [
+    {
+     "find": "<Panel x={980} y={180} w={580}>",
+     "replace": "<Panel x={1210} y={170} w={580}>"
+    }
+   ]
+  },
+  {
+   "kind": "verify",
+   "ms": 0,
+   "ok": true,
+   "problems": []
+  }
+ ],
+ "finalOk": true,
+ "finalText": "<Canvas>\n<Mark target=\"notebook\" shape=\"underline\" u={0.5} v={0.42} w={0.8}/>\n<Panel id=\"steps\" near=\"notebook\" side=\"right\" w={580}>\n<Heading>Fence against a wall</Heading>\n<Text tone=\"muted\">One side is the wall, so 100 m covers one width and two lengths.</Text>\n<Equations>2x + y &= 100 \\\\ A &= x y = x(100 - 2x) \\\\ A &= 100x - 2x^2 \\\\ A' &= 100 - 4x = 0 \\\\ x &= 25</Equations>\n<Steps>\n<Step><Text>Width x, length y along the wall.</Text></Step>\n<Step highlight><Text>50 m parallel to the wall, 25 m out.</Text></Step>\n</Steps>\n</Panel>\n<Panel x={1210} y={170} w={580}>\n<Plot fn=\"x*(100 - 2*x)\" xmin={0} xmax={50} ymin={0} ymax={1400} points=\"25,1250\" label=\"area peaks at x = 25\"/>\n<Note kind=\"check\">Max area 1250 m².</Note>\n</Panel>\n<Arrow from=\"#steps\" to=\"notebook@0.5,0.5\"/>\n</Canvas>"
+}

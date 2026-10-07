@@ -1,0 +1,66 @@
+{
+ "label": "recording",
+ "recordedAt": "2026-10-05T13:44:15.925Z",
+ "model": "aixia-labs",
+ "stream": "scene-projectile",
+ "ms": 1045,
+ "steps": [
+  {
+   "kind": "draft",
+   "ms": 1,
+   "text": "<Canvas>\n<Mark target=\"notebook\" shape=\"underline\" u={0.5} v={0.4} w={0.75}/>\n<Panel id=\"steps\" near=\"notebook\" side=\"right\" w={560}>\n<Heading>Ball thrown up at 20 m/s</Heading>\n<Steps>\n<Step><Text>At the top, velocity is zero.</Text><Math>v = v_0 - g t = 0</Math></Step>\n<Step><Text>Time to the top.</Text><Math>t = v_0 / g = 20 / 9.8 = 2.04\\ \\text{s}</Math></Step>\n<Step><Text>Height from the average velocity.</Text><Math>h = v_0^2 / (2g) = 400 / 19.6 = 20.4\\ \\text{m}</Math></Step>\n<Step><Text>Down and up take the same time.</Text><Math>T = 2 v_0 / g = 4.08\\ \\text{s}</Math></Step>\n<Step highlight><Text>Answers.</Text><Math>h = 20.4\\ \\text{m},\\quad T = 4.08\\ \\text{s}</Math></Step>\n</Steps>\n<Note kind=\"tip\">Pick up = positive, g = 9.8 m/s² down.</Note>\n</Panel>\n<Panel id=\"graph\" x={620} y={640} w={560}>\n<Plot fn=\"20*x - 4.9*x^2\" xmin={0} xmax={4.1} ymin={0} ymax={22} points=\"2.04,20.4\" label=\"height vs time\"/>\n</Panel>\n<Arrow from=\"#graph\" to=\"notebook@0.9,0.85\"/>\n</Canvas>"
+  },
+  {
+   "kind": "verify",
+   "ms": 2,
+   "ok": false,
+   "problems": [
+    "Panel id=\"steps\": off-surface: runs 131 px past the table edge at x 1461-2021, y 384-1034 (estimated height 650 px; table 1920x1080)",
+    "  a valid spot for it: x={570} y={390} w={560} (estimated height 650 px)",
+    "Panel id=\"graph\": covers-object: covers 2% of itself over \"notebook\" (x 1152-1421, y 384-764)",
+    "  a valid spot for it: x={620} y={640} w={560} (estimated height 405 px)"
+   ]
+  },
+  {
+   "kind": "edit",
+   "ms": 0,
+   "edits": [
+    {
+     "find": "<Panel id=\"steps\" near=\"notebook\" side=\"right\" w={560}>",
+     "replace": "<Panel id=\"steps\" x={570} y={390} w={560}>"
+    },
+    {
+     "find": "<Panel id=\"graph\" x={620} y={640} w={560}>",
+     "replace": "<Panel id=\"graph\" x={620} y={640} w={490}>"
+    }
+   ]
+  },
+  {
+   "kind": "verify",
+   "ms": 2,
+   "ok": false,
+   "problems": [
+    "Panel id=\"graph\": overlaps-panel: overlaps #steps by 100%",
+    "  a valid spot for it: x={70} y={630} w={490} (estimated height 361 px)"
+   ]
+  },
+  {
+   "kind": "edit",
+   "ms": 0,
+   "edits": [
+    {
+     "find": "<Panel id=\"graph\" x={620} y={640} w={490}>",
+     "replace": "<Panel id=\"graph\" x={70} y={630} w={490}>"
+    }
+   ]
+  },
+  {
+   "kind": "verify",
+   "ms": 0,
+   "ok": true,
+   "problems": []
+  }
+ ],
+ "finalOk": true,
+ "finalText": "<Canvas>\n<Mark target=\"notebook\" shape=\"underline\" u={0.5} v={0.4} w={0.75}/>\n<Panel id=\"steps\" x={570} y={390} w={560}>\n<Heading>Ball thrown up at 20 m/s</Heading>\n<Steps>\n<Step><Text>At the top, velocity is zero.</Text><Math>v = v_0 - g t = 0</Math></Step>\n<Step><Text>Time to the top.</Text><Math>t = v_0 / g = 20 / 9.8 = 2.04\\ \\text{s}</Math></Step>\n<Step><Text>Height from the average velocity.</Text><Math>h = v_0^2 / (2g) = 400 / 19.6 = 20.4\\ \\text{m}</Math></Step>\n<Step><Text>Down and up take the same time.</Text><Math>T = 2 v_0 / g = 4.08\\ \\text{s}</Math></Step>\n<Step highlight><Text>Answers.</Text><Math>h = 20.4\\ \\text{m},\\quad T = 4.08\\ \\text{s}</Math></Step>\n</Steps>\n<Note kind=\"tip\">Pick up = positive, g = 9.8 m/s² down.</Note>\n</Panel>\n<Panel id=\"graph\" x={70} y={630} w={490}>\n<Plot fn=\"20*x - 4.9*x^2\" xmin={0} xmax={4.1} ymin={0} ymax={22} points=\"2.04,20.4\" label=\"height vs time\"/>\n</Panel>\n<Arrow from=\"#graph\" to=\"notebook@0.9,0.85\"/>\n</Canvas>"
+}

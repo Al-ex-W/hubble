@@ -1,0 +1,123 @@
+{
+  "label": "recording",
+  "model": "aixia-labs",
+  "recordedAt": "2026-10-06T06:36:04.513Z",
+  "case": {
+    "name": "unknown-asset",
+    "state": {
+      "act": "math",
+      "lesson": null,
+      "surfaces": [],
+      "assets": [
+        {
+          "id": "right-triangle",
+          "kind": "image",
+          "title": "Right triangle with legs a, b and hypotenuse c (Pythagoras)"
+        },
+        {
+          "id": "unit-circle",
+          "kind": "image",
+          "title": "Unit circle with an angle theta, its sine and cosine"
+        },
+        {
+          "id": "worksheet",
+          "kind": "image",
+          "title": "Photo of a handwritten maths worksheet (Swedish tasks)"
+        }
+      ],
+      "webHosts": [
+        "en.wikipedia.org",
+        "sv.wikipedia.org",
+        "www.desmos.com",
+        "developer.mozilla.org"
+      ],
+      "songs": [
+        {
+          "id": "ode-to-joy",
+          "title": "Ode to Joy"
+        },
+        {
+          "id": "twinkle",
+          "title": "Twinkle Twinkle Little Star"
+        }
+      ]
+    },
+    "user": "Show me a picture of a cat",
+    "expect": [
+      "say"
+    ]
+  },
+  "calls": [
+    {
+      "step": 0,
+      "name": "say",
+      "input": {
+        "text": "I don't have a cat picture on the table — only a right triangle, a unit circle, and a worksheet."
+      },
+      "tMs": 404
+    }
+  ],
+  "text": "I don't have a cat picture in my library — the only images on the table are a right triangle, a unit circle, and a maths worksheet.",
+  "steps": [
+    {
+      "finishReason": "tool-calls",
+      "toolCalls": [
+        {
+          "name": "say",
+          "input": {
+            "text": "I don't have a cat picture on the table — only a right triangle, a unit circle, and a worksheet."
+          }
+        }
+      ],
+      "text": "\n\n",
+      "usage": {
+        "inputTokens": 1472,
+        "inputTokenDetails": {
+          "noCacheTokens": 1472,
+          "cacheReadTokens": 0
+        },
+        "outputTokens": 79,
+        "outputTokenDetails": {
+          "textTokens": 60,
+          "reasoningTokens": 19
+        },
+        "totalTokens": 1551,
+        "raw": {
+          "prompt_tokens": 1472,
+          "completion_tokens": 79,
+          "total_tokens": 1551,
+          "completion_tokens_details": {
+            "reasoning_tokens": 19
+          }
+        }
+      }
+    },
+    {
+      "finishReason": "stop",
+      "toolCalls": [],
+      "text": "I don't have a cat picture in my library — the only images on the table are a right triangle, a unit circle, and a maths worksheet.",
+      "usage": {
+        "inputTokens": 1547,
+        "inputTokenDetails": {
+          "noCacheTokens": 1547,
+          "cacheReadTokens": 0
+        },
+        "outputTokens": 33,
+        "outputTokenDetails": {
+          "textTokens": 33,
+          "reasoningTokens": 0
+        },
+        "totalTokens": 1580,
+        "raw": {
+          "prompt_tokens": 1547,
+          "completion_tokens": 33,
+          "total_tokens": 1580,
+          "completion_tokens_details": {
+            "reasoning_tokens": 0
+          }
+        }
+      }
+    }
+  ],
+  "totalMs": 593
+}

@@ -1,0 +1,41 @@
+{
+ "label": "recording",
+ "recordedAt": "2026-10-05T13:44:12.344Z",
+ "model": "aixia-labs",
+ "stream": "scene-empty-compare",
+ "ms": 359,
+ "steps": [
+  {
+   "kind": "draft",
+   "ms": 1,
+   "text": "<Canvas>\n<Columns>\n<Column>\n<Heading>Factor it</Heading>\n<Text tone=\"muted\">Find two numbers: product 5, sum -6.</Text>\n<Equations>x^2 - 6x + 5 &= 0 \\\\ (x-1)(x-5) &= 0 \\\\ x = 1 \\quad &\\text{or} \\quad x = 5</Equations>\n</Column>\n<Column>\n<Heading>Quadratic formula</Heading>\n<Text tone=\"muted\">a = 1, b = -6, c = 5.</Text>\n<Equations>x &= \\frac{6 \\pm \\sqrt{36 - 20}}{2} \\\\ x &= \\frac{6 \\pm 4}{2} \\\\ x = 1 \\quad &\\text{or} \\quad x = 5</Equations>\n</Column>\n</Columns>\n<Panel x={700} y={720} w={520}>\n<Plot fn=\"x^2 - 6*x + 5\" xmin={-1} xmax={7} points=\"1,0; 5,0\" label=\"roots at x = 1 and x = 5\"/>\n</Panel>\n<Note kind=\"check\">Both methods give the same roots: x = 1 and x = 5.</Note>\n</Canvas>"
+  },
+  {
+   "kind": "verify",
+   "ms": 4,
+   "ok": false,
+   "problems": [
+    "the Panel at x=700 y=720: off-surface: runs 50 px past the table edge at x 700-1220, y 720-1100 (estimated height 380 px; table 1920x1080)",
+    "  a valid spot for it: x={700} y={670} w={520} (estimated height 380 px)"
+   ]
+  },
+  {
+   "kind": "edit",
+   "ms": 0,
+   "edits": [
+    {
+     "find": "<Panel x={700} y={720} w={520}>",
+     "replace": "<Panel x={700} y={670} w={520}>"
+    }
+   ]
+  },
+  {
+   "kind": "verify",
+   "ms": 0,
+   "ok": true,
+   "problems": []
+  }
+ ],
+ "finalOk": true,
+ "finalText": "<Canvas>\n<Columns>\n<Column>\n<Heading>Factor it</Heading>\n<Text tone=\"muted\">Find two numbers: product 5, sum -6.</Text>\n<Equations>x^2 - 6x + 5 &= 0 \\\\ (x-1)(x-5) &= 0 \\\\ x = 1 \\quad &\\text{or} \\quad x = 5</Equations>\n</Column>\n<Column>\n<Heading>Quadratic formula</Heading>\n<Text tone=\"muted\">a = 1, b = -6, c = 5.</Text>\n<Equations>x &= \\frac{6 \\pm \\sqrt{36 - 20}}{2} \\\\ x &= \\frac{6 \\pm 4}{2} \\\\ x = 1 \\quad &\\text{or} \\quad x = 5</Equations>\n</Column>\n</Columns>\n<Panel x={700} y={670} w={520}>\n<Plot fn=\"x^2 - 6*x + 5\" xmin={-1} xmax={7} points=\"1,0; 5,0\" label=\"roots at x = 1 and x = 5\"/>\n</Panel>\n<Note kind=\"check\">Both methods give the same roots: x = 1 and x = 5.</Note>\n</Canvas>"
+}
