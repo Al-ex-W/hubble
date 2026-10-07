@@ -1,0 +1,10 @@
+{
+  "name": "@hubble/keybed",
+  "private": true,
+  "description": "The MiniLab 3 keybed detector as a Python sidecar (service.py). Only npm scripts live here; nothing imports it.",
+  "scripts": {
+    "start": "python3 service.py",
+    "fixtures": "python3 scripts/make_fixtures.py",
+    "lab": "python3 lab.py"
+  }
+}

@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Keybed Lab</title>
+<style>
+  :root {
+    --bg: #0f1115; --panel: #171a21; --line: #262b36; --text: #e6e8ee; --muted: #8a91a3;
+    --ok: #3ecf8e; --bad: #ff5c6c; --warn: #f5b84b; --accent: #6aa8ff;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--text); font: 14px/1.45 ui-sans-serif, -apple-system, system-ui, sans-serif; }
+  header { padding: 16px 20px; border-bottom: 1px solid var(--line); display: flex; gap: 16px; align-items: baseline; flex-wrap: wrap; }
+  header h1 { font-size: 17px; margin: 0; }
+  header p { margin: 0; color: var(--muted); }
+  main { display: grid; grid-template-columns: 300px 1fr; gap: 16px; padding: 16px 20px; }
+  @media (max-width: 900px) { main { grid-template-columns: 1fr; } }
+  .panel { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 14px; }
+  label { display: block; color: var(--muted); font-size: 12px; margin: 10px 0 4px; }
+  label span { color: var(--text); float: right; font-variant-numeric: tabular-nums; }
+  select, input[type=range], input[type=number] { width: 100%; }
+  select, input[type=number] { background: #0c0e12; color: var(--text); border: 1px solid var(--line); border-radius: 6px; padding: 6px; }
+  button { background: var(--accent); color: #08101f; border: 0; border-radius: 6px; padding: 8px 12px; font-weight: 600; cursor: pointer; }
+  button.secondary { background: #2a3040; color: var(--text); }
+  button:disabled { opacity: .5; cursor: wait; }
+  .row { display: flex; gap: 8px; margin-top: 14px; flex-wrap: wrap; }
+  .desc { color: var(--muted); font-size: 12px; margin-top: 6px; min-height: 2.6em; }
+  #viewer img { width: 100%; border-radius: 8px; background: #000; display: block; }
+  .controls { display: flex; gap: 10px; align-items: center; margin-top: 10px; }
+  .controls input[type=range] { flex: 1; }
+  .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 8px; margin-top: 12px; }
+  .stat { background: #0c0e12; border: 1px solid var(--line); border-radius: 8px; padding: 8px 10px; }
+  .stat b { display: block; font-size: 18px; font-variant-numeric: tabular-nums; }
+  .stat small { color: var(--muted); }
+  canvas { width: 100%; height: 140px; display: block; margin-top: 12px; background: #0c0e12; border-radius: 8px; border: 1px solid var(--line); }
+  table { width: 100%; border-collapse: collapse; margin-top: 8px; font-variant-numeric: tabular-nums; }
+  th, td { text-align: left; padding: 6px 8px; border-bottom: 1px solid var(--line); font-size: 13px; }
+  th { color: var(--muted); font-weight: 500; }
+  .good { color: var(--ok); } .badc { color: var(--bad); } .warnc { color: var(--warn); }
+  .legend { color: var(--muted); font-size: 12px; margin-top: 6px; }
+  .legend i { display: inline-block; width: 10px; height: 10px; border-radius: 2px; margin: 0 4px 0 10px; vertical-align: -1px; }
+  .refs { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 8px; }
+  .refs img { width: 100%; border-radius: 6px; }
+  h2 { font-size: 14px; margin: 0 0 6px; }
+  #err { color: var(--bad); white-space: pre-wrap; font-size: 12px; }
+</style>
+</head>
+<body>
+<header>
+  <h1>Keybed Lab</h1>
+  <p>MiniLab 3 key detection and tracking, simulated: black cloth, hands, projector light, unknown camera distance.</p>
+</header>
+<main>
+  <section class="panel">
+    <h2>Scenario</h2>
+    <select id="scenario"></select>
+    <div class="desc" id="sdesc"></div>
+    <label>Keyboard width in frame <span id="v_width"></span></label>
+    <input type="range" id="width" min="0.1" max="0.9" step="0.01" value="0.45">
+    <label>Rotation (deg) <span id="v_angle"></span></label>
+    <input type="range" id="angle" min="-180" max="180" step="1" value="0">
+    <label>Camera keystone <span id="v_keystone"></span></label>
+    <input type="range" id="keystone" min="0" max="0.08" step="0.005" value="0.03">
+    <label>Brightness <span id="v_brightness"></span></label>
+    <input type="range" id="brightness" min="0.4" max="1.3" step="0.05" value="1">
+    <label>Noise σ <span id="v_noise"></span></label>
+    <input type="range" id="noise" min="0" max="15" step="1" value="3">
+    <label>Blur σ <span id="v_blur"></span></label>
+    <input type="range" id="blur" min="0" max="3" step="0.1" value="0.6">
+    <label>JPEG quality <span id="v_jpeg"></span></label>
+    <input type="range" id="jpeg" min="20" max="100" step="5" value="80">
+    <label>Frames <span id="v_frames"></span></label>
+    <input type="range" id="frames" min="10" max="80" step="2" value="40">
+    <label>Source image</label>
+    <select id="source"><option value="photo">Thomann photo (800 px)</option><option value="render">Arturia render (2000 px)</option></select>
+    <label>Seed</label>
+    <input type="number" id="seed" value="1">
+    <div class="row">
+      <button id="run">Run</button>
+      <button id="runall" class="secondary">Run all scenarios</button>
+    </div>
+    <div id="err"></div>
+  </section>
+
+  <section>
+    <div class="panel" id="viewer">
+      <img id="frame" alt="">
+      <div class="controls">
+        <button id="play" class="secondary">Play</button>
+        <input type="range" id="scrub" min="0" max="0" value="0">
+        <label style="margin:0"><input type="checkbox" id="raw"> raw camera</label>
+      </div>
+      <canvas id="chart"></canvas>
+      <div class="legend">Error per frame in white-key widths (line), background = tracker status
+        <i style="background:#1f4d3a"></i>locked/refined <i style="background:#4d4220"></i>occluded <i style="background:#4d2228"></i>lost/searching <i style="background:#203a5a"></i>moved
+        · dashed = 0.5 key (wrong key risk) · red tick = wrong key lit
+      </div>
+      <div class="stats" id="stats"></div>
+    </div>
+
+    <div class="panel" style="margin-top:16px">
+      <h2>All scenarios</h2>
+      <table id="summary"><thead><tr><th>Scenario</th><th>Still frames right key</th><th>All frames right key</th><th>Median err</th><th>Max err (still)</th><th>Detect calls</th><th>ms/detect</th></tr></thead><tbody></tbody></table>
+    </div>
+
+    <div class="panel" style="margin-top:16px">
+      <h2>Reference detections</h2>
+      <div class="refs">
+        <img src="/out/white-topdown-photo.overlay.png" alt="photo overlay">
+        <img src="/out/white-topdown-render.overlay.png" alt="render overlay">
+      </div>
+    </div>
+  </section>
+</main>
+<script>
+const $ = (id) => document.getElementById(id);
+const params = ['width', 'angle', 'keystone', 'brightness', 'noise', 'blur', 'jpeg', 'frames'];
+let scen = {}, result = null, timer = null;
+
+params.forEach((p) => { const el = $(p); const upd = () => $('v_' + p).textContent = el.value; el.oninput = upd; upd(); });
+
+fetch('/api/scenarios').then((r) => r.json()).then((s) => {
+  scen = s;
+  $('scenario').innerHTML = Object.keys(s).map((k) => `<option value="${k}">${k}</option>`).join('');
+  $('scenario').value = 'story';
+  $('sdesc').textContent = s.story;
+});
+$('scenario').onchange = () => { $('sdesc').textContent = scen[$('scenario').value]; };
+
+function body(name) {
+  return {
+    scenario: name,
+    width_px: +$('width').value * 1280, angle: +$('angle').value, keystone: +$('keystone').value,
+    brightness: +$('brightness').value, noise: +$('noise').value, blur: +$('blur').value, jpeg: +$('jpeg').value,
+    frames: +$('frames').value, source: $('source').value, seed: +$('seed').value,
+  };
+}
+
+async function runOne(name) {
+  const r = await fetch('/api/run', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body(name)) });
+  const j = await r.json();
+  if (!r.ok) throw new Error(j.error + '\n' + (j.trace || ''));
+  return j;
+}
+
+function pct(x) { return (x * 100).toFixed(0) + '%'; }
+function cls(x) { return x >= 0.99 ? 'good' : x >= 0.9 ? 'warnc' : 'badc'; }
+
+function addSummary(s) {
+  const tr = document.createElement('tr');
+  tr.innerHTML = `<td>${s.scenario}</td><td class="${cls(s.still_correct)}">${pct(s.still_correct)}</td><td class="${cls(s.all_correct)}">${pct(s.all_correct)}</td>`
+    + `<td>${s.still_median_err ?? '–'}</td><td>${s.still_max_err ?? '–'}</td><td>${s.detect_calls}/${s.frames}</td><td>${s.mean_detect_ms}</td>`;
+  $('summary').querySelector('tbody').prepend(tr);
+}
+
+function show(res) {
+  result = res;
+  $('scrub').max = res.frames.length - 1;
+  $('scrub').value = 0;
+  const s = res.summary;
+  $('stats').innerHTML = [
+    ['Right key, still frames', pct(s.still_correct), cls(s.still_correct)],
+    ['Right key, all frames', pct(s.all_correct), cls(s.all_correct)],
+    ['Median error (keys)', s.still_median_err ?? '–', ''],
+    ['Max error, still (keys)', s.still_max_err ?? '–', ''],
+    ['Detect calls', `${s.detect_calls}/${s.frames}`, ''],
+    ['ms per detect', s.mean_detect_ms, ''],
+  ].map(([k, v, c]) => `<div class="stat"><b class="${c}">${v}</b><small>${k}</small></div>`).join('');
+  drawChart();
+  frame(0);
+}
+
+function frame(i) {
+  if (!result) return;
+  const f = result.frames[i];
+  $('frame').src = result.base + ($('raw').checked ? 'raw' : 'f') + String(i).padStart(3, '0') + '.jpg';
+  $('scrub').value = i;
+  drawChart(i);
+}
+$('scrub').oninput = () => frame(+$('scrub').value);
+$('raw').onchange = () => frame(+$('scrub').value);
+$('play').onclick = () => {
+  if (timer) { clearInterval(timer); timer = null; $('play').textContent = 'Play'; return; }
+  $('play').textContent = 'Pause';
+  timer = setInterval(() => { if (!result) return; frame((+$('scrub').value + 1) % result.frames.length); }, 120);
+};
+
+function drawChart(cur = -1) {
+  const c = $('chart'), dpr = devicePixelRatio || 1;
+  c.width = c.clientWidth * dpr; c.height = c.clientHeight * dpr;
+  const g = c.getContext('2d'); g.scale(dpr, dpr);
+  const W = c.clientWidth, H = c.clientHeight;
+  g.clearRect(0, 0, W, H);
+  if (!result) return;
+  const F = result.frames, n = F.length, bw = W / n;
+  const ymax = Math.max(1, ...F.map((f) => f.err ?? 0));
+  const col = { locked: '#1f4d3a', refined: '#1f4d3a', occluded: '#4d4220', lost: '#4d2228', searching: '#4d2228', moved: '#203a5a' };
+  F.forEach((f, i) => { g.fillStyle = col[f.status] || '#333'; g.fillRect(i * bw, 0, bw + 0.5, H); if (!f.correct) { g.fillStyle = '#ff5c6c'; g.fillRect(i * bw, H - 6, bw, 6); } });
+  g.strokeStyle = '#8a91a3'; g.setLineDash([4, 4]); g.beginPath(); const y5 = H - (0.5 / ymax) * (H - 10); g.moveTo(0, y5); g.lineTo(W, y5); g.stroke(); g.setLineDash([]);
+  g.strokeStyle = '#e6e8ee'; g.lineWidth = 1.5; g.beginPath();
+  F.forEach((f, i) => { if (f.err == null) return; const x = i * bw + bw / 2, y = H - (f.err / ymax) * (H - 10); i ? g.lineTo(x, y) : g.moveTo(x, y); });
+  g.stroke();
+  if (cur >= 0) { g.strokeStyle = '#6aa8ff'; g.lineWidth = 2; g.beginPath(); g.moveTo(cur * bw + bw / 2, 0); g.lineTo(cur * bw + bw / 2, H); g.stroke(); }
+  g.fillStyle = '#8a91a3'; g.font = '11px system-ui'; g.fillText(`max ${ymax.toFixed(2)}`, 6, 12);
+}
+addEventListener('resize', () => drawChart(+$('scrub').value));
+
+async function guarded(fn) {
+  $('err').textContent = '';
+  $('run').disabled = $('runall').disabled = true;
+  try { await fn(); } catch (e) { $('err').textContent = e.message; }
+  $('run').disabled = $('runall').disabled = false;
+}
+$('run').onclick = () => guarded(async () => { const r = await runOne($('scenario').value); addSummary(r.summary); show(r); });
+$('runall').onclick = () => guarded(async () => {
+  for (const name of Object.keys(scen)) { $('run').textContent = name + '…'; const r = await runOne(name); addSummary(r.summary); show(r); }
+  $('run').textContent = 'Run';
+});
+</script>
+</body>
+</html>
