@@ -1,0 +1,236 @@
+/*
+ * Stage look. Projected light on a black table cloth:
+ * - black is "no light", so every background is black and only content glows;
+ * - sizes are for reading while standing over a 1.5 m table (~0.8 mm per px);
+ * - effects use only opacity, transform, filter and clip-path, which the
+ *   table Raspberry Pi's Chromium can composite without heavy GPU work.
+ */
+
+.st-frame {
+  --st-ink: #eaf6ff;
+  --st-muted: #8aa4b8;
+  --st-accent: #6cf0ff;
+  --st-answer: #ffd36c;
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  background: #000;
+  color: var(--st-ink);
+  font-family: 'Space Grotesk', 'Inter', system-ui, sans-serif;
+}
+
+.st-surface {
+  position: absolute;
+  inset: 0 auto auto 0;
+  transform-origin: 0 0;
+}
+
+/* ---- panels: HUD frames the model places on the table ---- */
+.st-panel {
+  position: absolute;
+  box-sizing: border-box;
+  padding: 26px 30px 30px;
+  background: radial-gradient(120% 90% at 0% 0%, rgba(108, 240, 255, 0.07), transparent 60%);
+  border: 1px solid rgba(108, 240, 255, 0.16);
+  border-radius: 14px;
+  /* Clips a panel taller than the table (see the overflow policy in
+     StageView); the margin keeps the glowing corners, which sit 2px outside. */
+  overflow: clip;
+  overflow-clip-margin: 6px;
+}
+.st-corner {
+  position: absolute;
+  width: 22px;
+  height: 22px;
+  border-color: var(--st-accent);
+  border-style: solid;
+  border-width: 0;
+  filter: drop-shadow(0 0 5px rgba(108, 240, 255, 0.8));
+}
+.st-corner.tl { top: -2px; left: -2px; border-top-width: 3px; border-left-width: 3px; border-top-left-radius: 14px; }
+.st-corner.tr { top: -2px; right: -2px; border-top-width: 3px; border-right-width: 3px; border-top-right-radius: 14px; }
+.st-corner.bl { bottom: -2px; left: -2px; border-bottom-width: 3px; border-left-width: 3px; border-bottom-left-radius: 14px; }
+.st-corner.br { bottom: -2px; right: -2px; border-bottom-width: 3px; border-right-width: 3px; border-bottom-right-radius: 14px; }
+.st-panel-body { display: flex; flex-direction: column; gap: 16px; }
+
+.st-heading {
+  margin: 0;
+  font-size: var(--st-heading);
+  font-weight: 600;
+  letter-spacing: -0.005em;
+  color: #fff;
+  text-shadow: 0 0 16px rgba(108, 240, 255, 0.35);
+}
+
+.st-text, .st-item { margin: 0; font-size: var(--st-body); line-height: 1.3; }
+.tone-muted { color: var(--st-muted); }
+.tone-accent { color: var(--st-accent); }
+.tone-answer { color: var(--st-answer); }
+.st-word { display: inline-block; white-space: pre; }
+
+.st-math { font-size: var(--st-mathsize); color: var(--st-ink); line-height: 1; }
+.st-math.is-answer { color: var(--st-answer); }
+.st-equations { padding: 4px 0; }
+
+.st-steps, .st-list { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 14px; }
+.st-step { display: grid; grid-template-columns: 38px 1fr; gap: 14px; align-items: start; }
+.st-step-n {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-size: calc(var(--st-body) * 0.75);
+  font-weight: 700;
+  color: #000;
+  background: var(--st-accent);
+  box-shadow: 0 0 12px rgba(108, 240, 255, 0.55);
+}
+.st-step.is-highlight .st-step-n { background: var(--st-answer); box-shadow: 0 0 16px rgba(255, 211, 108, 0.7); }
+.st-step-body { display: flex; flex-direction: column; gap: 8px; }
+.st-list .st-item { position: relative; padding-left: 26px; }
+.st-list .st-item::before {
+  content: '';
+  position: absolute;
+  left: 2px;
+  top: 0.5em;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--st-accent);
+  box-shadow: 0 0 8px var(--st-accent);
+}
+
+.st-note {
+  display: flex;
+  gap: 12px;
+  align-items: baseline;
+  margin: 0;
+  padding: 12px 16px;
+  font-size: calc(var(--st-body) * 0.9);
+  border-left: 4px solid var(--st-accent);
+  background: rgba(108, 240, 255, 0.06);
+  border-radius: 0 10px 10px 0;
+}
+.st-note.kind-warning { border-color: #ff8a6c; background: rgba(255, 138, 108, 0.07); }
+.st-note.kind-check { border-color: #7dffa8; background: rgba(125, 255, 168, 0.06); }
+.st-note-icon { font-weight: 700; color: var(--st-accent); }
+.st-note.kind-warning .st-note-icon { color: #ff8a6c; }
+.st-note.kind-check .st-note-icon { color: #7dffa8; }
+
+.st-table { border-collapse: collapse; font-size: calc(var(--st-body) * 0.9); }
+.st-table td { padding: 8px 14px; border-bottom: 1px solid rgba(108, 240, 255, 0.18); }
+.st-table thead td { color: var(--st-accent); font-weight: 600; border-bottom-width: 2px; }
+
+.st-columns { display: grid; grid-auto-flow: column; grid-auto-columns: 1fr; gap: 28px; }
+.st-column { display: flex; flex-direction: column; gap: 14px; min-width: 0; }
+
+.st-plot { margin: 0; display: flex; flex-direction: column; gap: 6px; }
+.st-plot svg { overflow: visible; }
+.st-plot-grid line { stroke: rgba(138, 164, 184, 0.14); stroke-width: 1; }
+.st-plot-axes line { stroke: rgba(138, 164, 184, 0.7); stroke-width: 2; }
+.st-plot-axes text { fill: var(--st-muted); font-size: 18px; }
+.st-plot-curve { fill: none; stroke: var(--st-accent); stroke-width: 4; stroke-linecap: round; filter: drop-shadow(0 0 6px rgba(108, 240, 255, 0.7)); }
+.st-plot-point circle { fill: var(--st-answer); filter: drop-shadow(0 0 6px rgba(255, 211, 108, 0.9)); }
+.st-plot-point text { fill: var(--st-answer); font-size: 20px; }
+.st-plot figcaption { font-size: var(--st-small); color: var(--st-muted); text-align: center; }
+
+.st-button {
+  align-self: flex-start;
+  font: inherit;
+  font-size: var(--st-body);
+  padding: 12px 30px;
+  color: var(--st-accent);
+  background: rgba(108, 240, 255, 0.06);
+  border: 2px solid var(--st-accent);
+  border-radius: 999px;
+  cursor: pointer;
+  box-shadow: 0 0 16px rgba(108, 240, 255, 0.35), inset 0 0 12px rgba(108, 240, 255, 0.15);
+}
+
+/* ---- light drawn on the table and on objects ---- */
+.st-overlay { position: absolute; inset: 0; overflow: visible; pointer-events: none; }
+.st-mark > * { fill: none; stroke: var(--st-answer); stroke-width: 5; stroke-linecap: round; stroke-linejoin: round; filter: drop-shadow(0 0 8px rgba(255, 211, 108, 0.85)); }
+.st-mark.shape-glow > * { stroke-width: 4; fill: rgba(255, 211, 108, 0.06); }
+.st-arrow { fill: none; stroke: var(--st-accent); stroke-width: 4; stroke-linecap: round; filter: drop-shadow(0 0 6px rgba(108, 240, 255, 0.7)); }
+#st-arrowhead path { fill: var(--st-accent); }
+.st-label { position: absolute; font-size: var(--st-small); white-space: nowrap; text-shadow: 0 0 10px rgba(0, 0, 0, 0.9); }
+.st-object-outline {
+  position: absolute;
+  border: 1px dashed rgba(255, 255, 255, 0.35);
+  color: rgba(255, 255, 255, 0.45);
+  font: 14px ui-monospace, monospace;
+  padding: 4px;
+  box-sizing: border-box;
+}
+@keyframes st-draw {
+  from { stroke-dasharray: 1; stroke-dashoffset: 1; }
+  to { stroke-dasharray: 1; stroke-dashoffset: 0; }
+}
+@keyframes st-pop {
+  from { opacity: 0; transform: scale(0.4); transform-box: fill-box; transform-origin: center; }
+  to { opacity: 1; transform: none; transform-box: fill-box; transform-origin: center; }
+}
+.fx-fade { animation: fx-fade var(--fx-duration, 400ms) ease-out both; }
+@keyframes fx-fade { from { opacity: 0; } to { opacity: 1; } }
+
+/* ---- effects (all driven by --fx-duration, set per piece by the director) ---- */
+.fx-scan { animation: fx-scan var(--fx-duration, 600ms) cubic-bezier(0.2, 0.7, 0.2, 1) both; }
+@keyframes fx-scan {
+  0% { clip-path: inset(0 100% 0 0); opacity: 0.2; filter: brightness(2.2) blur(3px); }
+  60% { opacity: 1; }
+  100% { clip-path: inset(0 0 0 0); opacity: 1; filter: none; }
+}
+
+/* Words: there can be hundreds per answer, so their entrance is opacity and
+   transform only (compositor work). A blur per word made the Pi repaint every
+   word on every frame of its entrance (#17). fx-blur stays for the few labels. */
+.fx-word { animation: fx-word 280ms ease-out both; }
+@keyframes fx-word {
+  0% { opacity: 0; transform: translateY(8px); }
+  100% { opacity: 1; transform: none; }
+}
+
+.fx-blur { animation: fx-blur 280ms ease-out both; }
+@keyframes fx-blur {
+  0% { opacity: 0; filter: blur(10px); transform: translateY(8px); }
+  100% { opacity: 1; filter: blur(0); transform: none; }
+}
+
+/* A short digital "settle": stepped jitter and blur, the pixel/distortion feel
+   without a shader. */
+.fx-glitch { animation: fx-glitch var(--fx-duration, 600ms) steps(1, end) both; }
+@keyframes fx-glitch {
+  0% { opacity: 0; filter: blur(14px); transform: translateX(-10px) skewX(-8deg); }
+  15% { opacity: 0.6; filter: blur(6px); transform: translateX(6px) skewX(4deg); }
+  30% { opacity: 0.3; filter: blur(9px); transform: translateX(-3px); }
+  45% { opacity: 0.9; filter: blur(2px); transform: translateX(2px) skewX(-2deg); }
+  65% { opacity: 1; filter: blur(1px); transform: none; }
+  100% { opacity: 1; filter: none; transform: none; }
+}
+
+.fx-pop { animation: fx-pop var(--fx-duration, 320ms) cubic-bezier(0.3, 1.6, 0.5, 1) both; }
+@keyframes fx-pop {
+  0% { opacity: 0; transform: scale(0.3); }
+  100% { opacity: 1; transform: none; }
+}
+
+/* ---- Pi mode (StageView lite): no glow filters, no soft shadows ----
+   drop-shadow on animated SVG strokes and blurred box/text shadows are the
+   expensive paints on the Pi's Chromium; the look survives as plain colour. */
+.st-lite .st-corner,
+.st-lite .st-plot-curve,
+.st-lite .st-plot-point circle,
+.st-lite .st-mark > *,
+.st-lite .st-arrow,
+.st-lite .mathink-svg.mathink-highlight { filter: none; }
+.st-lite .st-heading,
+.st-lite .st-label { text-shadow: none; }
+.st-lite .st-step-n,
+.st-lite .st-step.is-highlight .st-step-n,
+.st-lite .st-list .st-item::before,
+.st-lite .st-button { box-shadow: none; }
+.st-lite .fx-scan { animation-name: fx-fade; }
+.st-lite .fx-glitch { animation: fx-fade var(--fx-duration, 600ms) ease-out both; }
+.st-lite .fx-blur { animation: fx-word 280ms ease-out both; }

@@ -1,0 +1,109 @@
+/*
+ * Moved here from apps/web/src/swipe/swipe.css (#29) with KeyboardFace, so the
+ * table's keyboard surface and the bench widget share one look. KeyboardFace
+ * imports it, so anything that draws the keyboard gets it; there is no other
+ * entry (swipe.css and this package's ./keyboard.css export are gone).
+ *
+ * The swipe keyboard, drawn as projected light (same rules as the stage:
+ * black is "no light", and only opacity/filter animate, so the table Pi's
+ * Chromium keeps up). Sizes are in mm: the SVG's viewBox is the widget in
+ * millimetres.
+ *
+ * Styled for the room's WHITE table (measured 7 Oct), not the black cloth
+ * the spec promised. On white, projected light is added to an already
+ * bright surface, so the old look (2.5 % cyan keys, faint outlines, light
+ * letters) all but vanished. The one dark thing a projector can draw on a
+ * white table is NO light, so:
+ *
+ *   - keys are filled with blue light (#3d7bff at 60 %), with no outline:
+ *     the unlit gaps between them are what separates the keys;
+ *   - letters and icons are UNLIT and bold: the white table shows through
+ *     as a cut-out in the blue;
+ *   - the key a swipe crosses, the key under the finger and the trail are
+ *     full white light, the strongest contrast against blue keys;
+ *   - text drawn on the bare table (the line, candidates, rules) can't be
+ *     unlit (it would be invisible), so it is solid blue light.
+ *
+ * Source: H28's camera measurements on the real table, through today's
+ * calibration (experiments/room-cli/keyboard_scheme_stats.py; CIELAB dE on
+ * exact masks, score = the weakest of letters, keyboard vs table, pressed
+ * key and trail). Round 1: thin unlit letters on blue60 scored 11.9 (letters
+ * the weak point) against 13.4 for white keys. Round 2: the same scheme
+ * with BOLD letters scored 17.5, the best of all. Not yet verified: the
+ * exact shade on our real page, which rendered paler than the test image
+ * did. That needs one camera photo in a hardware window (n:00-n:20).
+ */
+
+.swk {
+  /* The keys' blue. Text on the bare table uses it at full strength. */
+  --swk-blue: #3d7bff;
+  --swk-key: rgba(61, 123, 255, 0.6);
+  --swk-unlit: #000;
+  --swk-full: #fff;
+  --swk-accent: var(--swk-blue);
+  position: absolute;
+  overflow: visible;
+  font-family: 'Space Grotesk', 'Inter', system-ui, sans-serif;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+/* ---- keys ---- */
+.swk-key rect {
+  fill: var(--swk-key);
+  stroke: none;
+  transition: fill 380ms ease-out;
+}
+.swk-key text {
+  fill: var(--swk-unlit);
+  font-size: 15px;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+}
+.swk-glyph { fill: none; stroke: var(--swk-unlit); stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; }
+
+/* Send is the one action that leaves the keyboard, so it is the one key at
+   full blue (the others are at 60 %). */
+.swk-key.kind-send rect { fill: var(--swk-blue); }
+.swk-key.kind-send .swk-glyph { stroke: var(--swk-unlit); }
+.swk-send-label { fill: var(--swk-unlit) !important; font-size: 9px !important; font-weight: 800 !important; letter-spacing: 0.18em !important; }
+
+/* Crossed by the current swipe, then fading on release (the transition):
+   full white, which the measurements found strongest against blue keys.
+   The letter stays unlit, so it still reads on the white key. */
+.swk-key.lit rect { fill: var(--swk-full); transition-duration: 60ms; }
+/* Under the finger right now. */
+.swk-key.hot rect { fill: var(--swk-full); transition-duration: 0ms; }
+
+/* ---- trail ---- */
+/* White over blue keys (the trail measured 18 dE against blue60). */
+.swk-trail { transition: opacity 420ms ease-out; }
+.swk-trail.gone { opacity: 0; }
+.swk-trail-halo { fill: none; stroke: rgba(255, 255, 255, 0.45); stroke-width: 7; stroke-linecap: round; stroke-linejoin: round; }
+.swk-trail-line { stroke: var(--swk-full); stroke-width: 3; stroke-linecap: round; }
+.swk-tip { fill: var(--swk-full); }
+
+/* ---- text line ---- */
+.swk-text { fill: var(--swk-blue); font-size: 16px; font-weight: 700; letter-spacing: 0.01em; }
+.swk-placeholder { fill: var(--swk-key); font-size: 13px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; }
+.swk-caret { fill: var(--swk-blue); animation: swk-blink 1.1s steps(1) infinite; }
+@keyframes swk-blink { 50% { opacity: 0; } }
+.swk-rule { stroke: var(--swk-key); stroke-width: 1; }
+.swk-bracket { fill: none; stroke: var(--swk-blue); stroke-width: 1.6; stroke-linecap: round; }
+
+/* A sent message lifts off the line and fades: the only motion that says
+   "it went to Hubble" without a toast. */
+.swk-sent { animation: swk-send 700ms ease-out forwards; }
+@keyframes swk-send {
+  from { opacity: 1; transform: translateY(0); }
+  to { opacity: 0; transform: translateY(-14px); }
+}
+
+/* ---- candidates ---- */
+.swk-cand text { fill: var(--swk-key); font-size: 12px; font-weight: 600; transition: fill 200ms; }
+.swk-cand.best text { fill: var(--swk-blue); font-size: 13px; font-weight: 800; }
+.swk-cand-hit { fill: transparent; cursor: pointer; pointer-events: auto; }
+.swk-cand.empty .swk-cand-hit { cursor: default; }
+.swk-divider { stroke: var(--swk-key); stroke-width: 1; }
+
+.swk-hit { fill: transparent; pointer-events: auto; cursor: crosshair; touch-action: none; }

@@ -1,0 +1,16 @@
+{
+  "name": "@hubble/stage-react",
+  "private": true,
+  "type": "module",
+  "description": "Rendering engine renderer: director, components, effects and MathJax pen-writing. Consumes @hubble/stage events; never parses model text.",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "dependencies": {
+    "@hubble/stage": "*",
+    "mathjax-full": "3.2.2"
+  },
+  "peerDependencies": {
+    "react": "^18.3.1"
+  }
+}
