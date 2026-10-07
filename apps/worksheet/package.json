@@ -1,0 +1,12 @@
+{
+  "name": "@hubble/worksheet",
+  "private": true,
+  "type": "module",
+  "description": "The iPad worksheet server (hubble#60): shows one notebook task on an iPad on the table. Started and stopped by apps/server from the operator page's checkbox; `npm start` runs it by hand.",
+  "scripts": {
+    "start": "tsx server.ts"
+  },
+  "dependencies": {
+    "express": "^4.21.2"
+  }
+}

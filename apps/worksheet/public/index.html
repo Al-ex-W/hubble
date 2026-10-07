@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="sv">
+  <head>
+    <meta charset="utf-8" />
+    <!--
+      width=device-width + scale 1, no zoom: one CSS px must be exactly one
+      iPad point for ipad.js's PX_PER_MM to hold. A pinch-zoom would make every
+      "real size" on the page wrong.
+    -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <title>Hubble worksheet</title>
+    <style>
+      /*
+        Looks like a notebook page: off-white paper, faint ruled lines, ink in
+        Noteworthy (built into iOS, so no font download over the room's wifi).
+        All physical sizes come from ipad.js (--text, the ruler); the few px
+        values here are cosmetic and not meant to be real-size.
+      */
+      html, body { margin: 0; height: 100%; background: #fbfaf5; color: #1d2a57; -webkit-user-select: none; user-select: none; }
+      body { font-family: Noteworthy, 'Bradley Hand', 'Comic Sans MS', cursive; overflow: hidden;
+        background-image: repeating-linear-gradient(to bottom, transparent 0 39px, #d9e2f2 39px 40px); }
+      main { box-sizing: border-box; height: 100%; padding: 48px 40px; display: flex; flex-direction: column; }
+      #title { font-size: 22px; color: #8a94b5; margin: 0 0 28px; font-family: -apple-system, system-ui, sans-serif; letter-spacing: 0.04em; }
+      /*
+        #task fills the space between the title and the ruler (flex: 1,
+        min-height: 0) and clips, so ipad.js's fit() can measure overflow as
+        scrollHeight > clientHeight and step the text down until it fits.
+      */
+      #task { font-size: var(--text, 40px); line-height: 1.35; flex: 1 1 auto; min-height: 0; overflow: hidden; list-style: none; margin: 0; padding: 0; }
+      #task p { margin: 0 0 0.35em; }
+      /* Several problems (#88): the number hangs in the margin, a faint rule between them. */
+      #task.many li { position: relative; padding-left: 1.4em; }
+      #task.many li + li { border-top: 1px solid #c8d2e6; padding-top: 0.4em; margin-top: 0.2em; }
+      #task.many .n { position: absolute; left: 0; font-weight: 600; color: #8a94b5; }
+      footer { margin-top: auto; padding-top: 12px; }
+      #ruler { position: relative; height: 60px; border-top: 2px solid #1d2a57; }
+      #ruler i { position: absolute; top: 0; width: 1.5px; margin-left: -0.75px; background: #1d2a57; }
+      #ruler b { position: absolute; top: 34px; transform: translateX(-50%); font: 600 15px -apple-system, system-ui, sans-serif; }
+      .cap { font: 14px -apple-system, system-ui, sans-serif; color: #8a94b5; margin-top: 4px; }
+      #dot { position: fixed; top: 14px; right: 14px; width: 10px; height: 10px; border-radius: 50%; background: #3bb36a; }
+      #dot.off { background: #d24b4b; }
+    </style>
+  </head>
+  <body>
+    <span id="dot" class="off" title="connected to Hubble"></span>
+    <main id="sheet">
+      <h1 id="title">Uppgift</h1>
+      <ol id="task"></ol>
+      <footer>
+        <div id="ruler"></div>
+        <div class="cap">10 cm: lay a real ruler here to check the size</div>
+      </footer>
+    </main>
+    <script type="module">
+      import { drawRuler, follow } from './ipad.js'
+      drawRuler(document.getElementById('ruler'))
+      follow(document.getElementById('sheet'), document.getElementById('dot'))
+    </script>
+  </body>
+</html>
