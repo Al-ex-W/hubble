@@ -1,0 +1,66 @@
+@import '@fontsource/outfit/400.css';
+@import '@fontsource/outfit/500.css';
+@import '@fontsource/outfit/600.css';
+@import 'katex/dist/katex.min.css';
+
+.liquid-theme {
+  --liquid-ink: #edf0ff;
+  --liquid-muted: #a8aec8;
+  --liquid-accent: #becaff;
+  --liquid-line: rgba(216, 224, 255, .15);
+  --liquid-glass: rgba(33, 39, 64, .68);
+  /* Shared page tokens (7 Oct, owner: every page wears our design). One owner here so
+     Julius's pages (surface.css, spatial.css) restyle through variables, never literals.
+     ok/warn/bad are operator SAFETY signals: colour carries state, so a later restyle must
+     not turn them into decoration. */
+  --liquid-bg: #0c1020;
+  --liquid-aurora: radial-gradient(ellipse at 15% 40%, #53639724, transparent 50%), radial-gradient(ellipse at 76% 9%, #72578022, transparent 45%), radial-gradient(ellipse at 88% 76%, #28596618, transparent 45%);
+  --liquid-panel: linear-gradient(145deg, rgba(255,255,255,.06), rgba(255,255,255,.012)), var(--liquid-glass);
+  --liquid-field: #080d2266;
+  --liquid-ok: #98d2b7;
+  --liquid-warn: #d4a16b;
+  --liquid-bad: #ffb9b6;
+  --liquid-live: #98d2b7;
+  --liquid-radius: 20px;
+  --liquid-radius-sm: 12px;
+  color: var(--liquid-ink);
+  font-family: 'Outfit', sans-serif;
+  font-weight: 400;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+.liquid-theme *, .liquid-theme *::before, .liquid-theme *::after { box-sizing: border-box; }
+.liquid-theme button, .liquid-theme input, .liquid-theme textarea, .liquid-theme select { font: inherit; }
+.liquid-theme button { cursor: pointer; }
+.liquid-theme button:disabled { opacity: .45; cursor: default; }
+.liquid-theme :focus-visible { outline: 2px solid var(--liquid-accent); outline-offset: 4px; }
+.liquid-card { border: 1px solid var(--liquid-line); border-radius: 28px; padding: 26px; background: linear-gradient(145deg, rgba(255,255,255,.07), rgba(255,255,255,.015)), var(--liquid-glass); box-shadow: inset 0 1px 0 rgba(255,255,255,.13), 0 20px 60px #03051133; backdrop-filter: blur(28px) saturate(130%); }
+.liquid-stack { display: flex; flex-direction: column; min-width: 0; }
+.liquid-row { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+.liquid-text { margin: 0; font-size: 15px; }
+.liquid-text--small { font-size: 12px; }
+.liquid-text--large { font-size: 19px; }
+.liquid-muted { color: var(--liquid-muted); }
+.liquid-heading { margin: 0; font-size: clamp(21px, 2.3vw, 30px); font-weight: 500; letter-spacing: -.045em; line-height: 1.2; }
+.liquid-badge { display: inline-flex; width: fit-content; font-size: 9px; font-weight: 500; letter-spacing: .15em; color: var(--liquid-accent); padding: 5px 9px; background: #becaff0c; border: 1px solid #becaff20; border-radius: 7px; }
+.liquid-button { border: 1px solid #ffffff21; border-radius: 14px; min-height: 42px; padding: 9px 17px; font-size: 13px !important; font-weight: 500 !important; transition: background .2s, transform .2s; }
+.liquid-button:hover { transform: translateY(-1px); }
+.liquid-button--primary { color: #191f3b; background: linear-gradient(145deg, #e0e5ff, #acbdf9); box-shadow: inset 0 1px 0 #ffffffa0, 0 4px 16px #a2b8ff18; }
+.liquid-button--quiet { color: var(--liquid-ink); background: #ffffff07; }
+.liquid-field { display: flex; flex-direction: column; gap: 9px; }
+.liquid-field label { display: flex; justify-content: space-between; gap: 10px; font-size: 12px; color: var(--liquid-muted); }
+.liquid-field output { color: var(--liquid-ink); font-variant-numeric: tabular-nums; }
+.liquid-field input[type=range] { width: 100%; height: 5px; margin: 8px 0; accent-color: var(--liquid-accent); cursor: pointer; }
+.liquid-field input:not([type=range]) { color: var(--liquid-ink); background: #080d2266; border: 1px solid var(--liquid-line); border-radius: 12px; padding: 10px; }
+.liquid-tabs { display: flex; padding: 4px; border-radius: 14px; background: #080b1b66; border: 1px solid var(--liquid-line); gap: 3px; }
+.liquid-tabs button { flex: 1; color: var(--liquid-muted); background: none; border: 1px solid transparent; border-radius: 10px; padding: 8px 10px; font-size: 12px; }
+.liquid-tabs button[aria-pressed=true] { color: var(--liquid-ink); border-color: #ffffff15; background: #ffffff0f; box-shadow: 0 2px 8px #0002; }
+.liquid-stat > div { font-size: clamp(44px, 7vw, 72px); line-height: 1.15; letter-spacing: -.065em; font-weight: 400; font-variant-numeric: tabular-nums; }
+.liquid-stat small { font-size: 19px; padding-left: 5px; }
+.liquid-stat p { font-size: 12px; color: var(--liquid-muted); margin: 8px 0 0; }
+.liquid-progress { height: 5px; background: #ffffff10; border-radius: 9px; overflow: hidden; }
+.liquid-progress > div { background: var(--liquid-accent); height: 100%; border-radius: inherit; transition: width .4s; }
+.liquid-math { position: relative; padding: 18px; border-radius: 17px; border: 1px solid #b8c8ff1c; background: linear-gradient(110deg, #a3b7ff0e, #cab7ff08); overflow-x: auto; color: #d5ddff; text-align: center; }
+.liquid-math .katex { font-size: 1.3em; }
+.liquid-math-label { display: block; font-family: 'Outfit', sans-serif; text-align: left; font-size: 10px; color: var(--liquid-muted); margin-bottom: 10px; }
+@media (prefers-reduced-motion: reduce) { .liquid-theme *, .liquid-theme *::before, .liquid-theme *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; } }

@@ -1,0 +1,20 @@
+/* Layout for /lab only. Colors, glass and type come from the Liquid Studio
+ * tokens (studio/liquid.css), so the lab looks like the product and moves with it.
+ * Body background is set here because main.tsx's root class only themes text. */
+body { margin: 0; background: radial-gradient(1200px 700px at 20% -10%, #2a3366 0%, #0c1020 60%) fixed #0c1020; }
+.lab-page { max-width: 1280px; margin: 0 auto; padding: 32px 20px 64px; }
+.lab-head { margin-bottom: 24px; display: flex; flex-direction: column; gap: 8px; }
+.lab-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(420px, 1fr)); gap: 24px; align-items: start; }
+@media (max-width: 520px) { .lab-grid { grid-template-columns: 1fr; } }
+.lab-panel { display: flex; flex-direction: column; gap: 14px; min-width: 0; }
+.lab-h3 { margin: 6px 0 0; font-size: 11px; font-weight: 500; letter-spacing: .15em; text-transform: uppercase; color: var(--liquid-muted); }
+.lab-live { margin: 0; font-size: 19px; min-height: 1.5em; overflow-wrap: anywhere; }
+.lab-textarea { color: var(--liquid-ink); background: #080d2266; border: 1px solid var(--liquid-line); border-radius: 12px; padding: 10px; resize: vertical; width: 100%; }
+.lab-pre { margin: 0; padding: 12px; min-height: 2.5em; max-height: 260px; overflow: auto; white-space: pre-wrap; overflow-wrap: anywhere; font: 13px/1.5 ui-monospace, Menlo, monospace; border: 1px solid var(--liquid-line); border-radius: 14px; background: #080d2266; }
+.lab-check { display: inline-flex; align-items: center; gap: 8px; font-size: 13px; }
+.lab-voice { display: inline-flex; align-items: center; gap: 8px; font-size: 13px; color: var(--liquid-muted); }
+.lab-voice select { color: var(--liquid-ink); background: #080d2266; border: 1px solid var(--liquid-line); border-radius: 10px; padding: 8px; max-width: 100%; }
+.lab-audio { width: 100%; }
+.lab-timings { margin: 0; display: grid; grid-template-columns: max-content 1fr; gap: 6px 16px; font-size: 13px; }
+.lab-timings dt { color: var(--liquid-muted); } .lab-timings dd { margin: 0; font-variant-numeric: tabular-nums; overflow-wrap: anywhere; }
+.lab-error { margin: 0; color: #ffb4b4; font-size: 13px; }

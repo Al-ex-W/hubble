@@ -1,0 +1,29 @@
+/* /overall: three screens at native aspect, the projector's touch overlay. Tokens are liquid.css's. */
+.overall { min-height: 100vh; padding: 20px clamp(12px, 3vw, 40px) 40px; background: var(--liquid-bg) var(--liquid-aurora); color: var(--liquid-ink); }
+.overall-bar { display: flex; flex-wrap: wrap; align-items: center; gap: 14px 28px; margin-bottom: 14px; }
+.overall-bar h1 { margin: 0; }
+.overall-switch { display: flex; align-items: center; gap: 10px; font-size: 13px; color: var(--liquid-muted); }
+.overall-switch .on { color: var(--liquid-ink); font-weight: 500; }
+.overall-switch [aria-checked='true'] { border-color: var(--liquid-live); color: var(--liquid-live); }
+.overall-sim { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-left: auto; }
+.overall-chip { display: inline-flex; align-items: center; font-size: 11px; padding: 3px 9px; border-radius: 99px; border: 1px solid var(--liquid-line); color: var(--liquid-muted); white-space: nowrap; }
+.overall-chip.ok { color: var(--liquid-ok); border-color: color-mix(in srgb, var(--liquid-ok) 40%, transparent); }
+.overall-chip.warn { color: var(--liquid-warn); }
+.overall-chip.bad { color: var(--liquid-bad); }
+.overall-note { margin: 0 0 12px; padding: 9px 14px; border-radius: var(--liquid-radius-sm); border: 1px solid var(--liquid-line); background: var(--liquid-field); font-size: 14px; }
+.overall-note.warn { color: var(--liquid-warn); }
+/* TVs side by side on top, the projector (the touch surface) full width below; one column on a narrow window. */
+.overall-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+.overall-table { grid-column: 1 / -1; max-width: min(100%, 1100px); justify-self: center; width: 100%; }
+@media (max-width: 760px) { .overall-grid { grid-template-columns: 1fr; } }
+.overall-cap { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 10px; margin-bottom: 6px; font-size: 14px; }
+.overall-cap select { background: var(--liquid-field); color: var(--liquid-ink); border: 1px solid var(--liquid-line); border-radius: 8px; padding: 2px 6px; }
+.overall-frame { position: relative; width: 100%; overflow: hidden; background: #000; border: 1px solid var(--liquid-line); border-radius: var(--liquid-radius-sm); }
+.overall-frame iframe { position: absolute; left: 0; top: 0; border: 0; transform-origin: 0 0; background: #000; }
+.overall-off { position: absolute; inset: 0; display: grid; place-items: center; color: var(--liquid-muted); font-size: 13px; }
+.overall-touch { position: absolute; inset: 0; cursor: crosshair; touch-action: none; user-select: none; }
+.overall-cross { position: absolute; width: 36px; height: 36px; margin: -18px 0 0 -18px; pointer-events: none; border: 2px solid #ff5c5c; border-radius: 50%; box-shadow: 0 0 0 1px #000a; }
+.overall-cross::before, .overall-cross::after { content: ''; position: absolute; background: #ff5c5c; }
+.overall-cross::before { left: 50%; top: -8px; bottom: -8px; width: 2px; margin-left: -1px; }
+.overall-cross::after { top: 50%; left: -8px; right: -8px; height: 2px; margin-top: -1px; }
+.overall-note.bad { color: var(--liquid-bad); border-color: var(--liquid-bad); }

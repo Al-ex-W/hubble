@@ -1,0 +1,7 @@
+/* 1920x1080 kiosk (pi-tv-1/2). Sizes in vh so they scale if the TV differs. */
+.tv-page { position: fixed; inset: 0; display: flex; align-items: center; gap: 4vw; padding: 0 5vw; background: var(--liquid-bg, #0c1020); background-image: var(--liquid-aurora); overflow: hidden; cursor: none; }
+.tv-page.tv-mirror { flex-direction: row-reverse; }
+.tv-orb { position: relative; flex: 0 0 48vh; height: 48vh; }
+.tv-orb .orb, .tv-orb .orb-fallback { position: absolute; inset: 0; width: 100%; height: 100%; }
+.tv-bubble { flex: 1; font-size: 6.4vh; line-height: 1.25; font-weight: 500; padding: 4vh 4vw; border-radius: 6vh; border: 1px solid var(--liquid-line, #d8e0ff26); background: var(--liquid-panel, #212740ad); opacity: 0; transform: translateY(2vh); transition: opacity .6s ease, transform .6s ease; }
+.tv-bubble-on { opacity: 1; transform: none; }

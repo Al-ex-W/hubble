@@ -1,0 +1,16 @@
+/* /spatial diagnostics in the Liquid design (7 Oct, owner). Chrome (page, buttons, fields,
+   disclosure panels) wears the shared tokens; the two SVG maps keep a dark neutral ground
+   because they are measurement views whose cyan/amber marks are data, not decoration. */
+.spatial { position: relative; min-height: 100%; height: 100%; overflow-y: auto; padding: 24px max(16px, calc((100% - 1200px) / 2)); background: var(--liquid-bg, #0c1020); background-image: var(--liquid-aurora); color: var(--liquid-ink, #edf0ff); font-family: 'Outfit', ui-sans-serif, system-ui, sans-serif; line-height: 1.55; }
+.spatial h1 { font-size: clamp(26px, 3.4vw, 40px); font-weight: 400; letter-spacing: -.05em; margin: 4px 0 12px; }
+.spatial p { color: var(--liquid-muted, #a8aec8); font-size: 14px; }
+.spatial button { font: inherit; font-size: 13px; font-weight: 500; min-height: 42px; padding: 9px 17px; color: var(--liquid-ink, #edf0ff); background: #ffffff07; border: 1px solid var(--liquid-line, #d8e0ff26); border-radius: 14px; cursor: pointer; margin: 4px 8px 4px 0; }
+.spatial button:hover:not(:disabled) { border-color: var(--liquid-accent, #becaff); }
+.spatial button:disabled { opacity: .45; cursor: default; }
+.spatial :focus-visible { outline: 2px solid var(--liquid-accent, #becaff); outline-offset: 3px; }
+.spatial [role=status] { display: inline-block; padding: 6px 12px; border-radius: 999px; border: 1px solid var(--liquid-line, #d8e0ff26); background: #ffffff07; }
+.spatial-map { display: block; width: 100%; background: #0a0d1c; border: 1px solid var(--liquid-line, #d8e0ff26); border-radius: var(--liquid-radius, 20px); }
+.spatial-map--raw { max-height: 320px; }
+.spatial details { margin: 16px 0; padding: 14px 18px; border: 1px solid var(--liquid-line, #d8e0ff26); border-radius: var(--liquid-radius, 20px); background: var(--liquid-panel, #21274099); }
+.spatial summary { cursor: pointer; font-weight: 500; }
+.spatial textarea { width: 100%; color: var(--liquid-ink, #edf0ff); background: var(--liquid-field, #080d2266); border: 1px solid var(--liquid-line, #d8e0ff26); border-radius: 12px; padding: 12px; font: 12px/1.7 ui-monospace, monospace; }

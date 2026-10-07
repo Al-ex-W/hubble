@@ -1,0 +1,7 @@
+/* The Projector canvas | calibrate switch, in the liquid language of the surface bar's mode tabs. */
+.projector-mode { display: inline-flex; align-items: center; gap: 10px; }
+.projector-mode > span { color: var(--liquid-muted); font-size: 12px; letter-spacing: .02em; }
+.projector-mode-tabs { display: flex; padding: 4px; gap: 3px; border-radius: 14px; background: #080b1b66; border: 1px solid var(--liquid-line); }
+.projector-mode-tabs button { font: inherit; font-size: 13px; padding: 6px 16px; background: transparent; color: var(--liquid-muted); border: 1px solid transparent; border-radius: 10px; cursor: pointer; }
+.projector-mode-tabs button[aria-pressed='true'] { color: var(--liquid-ink); border-color: #ffffff15; background: #ffffff0f; box-shadow: 0 2px 8px #0002; font-weight: 500; }
+.projector-mode-error { color: #ff9aa8; font-size: 12px; }

@@ -1,0 +1,111 @@
+.studio { min-height: 100%; height: 100%; overflow: auto; position: relative; isolation: isolate; background: #0c1020; padding: 0 5%; }
+.studio-aurora { position: fixed; z-index: -1; inset: 0; pointer-events: none; background: radial-gradient(ellipse at 15% 40%, #53639724, transparent 50%), radial-gradient(ellipse at 76% 9%, #72578022, transparent 45%), radial-gradient(ellipse at 88% 76%, #28596618, transparent 45%); }
+.studio-header { display: flex; justify-content: space-between; align-items: center; height: 90px; border-bottom: 1px solid #e0e5ff0a; gap: 20px; }
+.studio a { color: inherit; text-decoration: none; }
+.studio-brand { display: flex; align-items: center; gap: 12px; font-size: 19px; font-weight: 500; letter-spacing: -.04em; }
+.studio-mark { color: #d3ddff; font-size: 31px; }
+.studio-brand-divider { height: 18px; width: 1px; background: var(--liquid-line); margin: 0 3px; }
+.studio-header nav { display: flex; align-items: center; gap: 28px; font-size: 11px; color: var(--liquid-muted); }
+.studio-header nav a:hover { color: white; }
+.studio-connection { display: inline-flex; align-items: center; gap: 7px; }
+.studio-connection i, .studio-surface-footer i { display: inline-block; border-radius: 50%; width: 5px; height: 5px; background: #d4a16b; }
+.studio-connection i.is-connected, .studio-surface-footer i { background: #98d2b7; box-shadow: 0 0 8px #98d2b733; }
+.studio-intro { padding: 64px 0 48px; display: flex; justify-content: space-between; align-items: flex-end; }
+.studio-eyebrow { font-size: 9px; letter-spacing: .19em; color: #a6b1d0; font-weight: 500; }
+.studio-intro h1 { font-size: clamp(46px, 4.8vw, 76px); font-weight: 400; line-height: 1.07; letter-spacing: -.065em; margin: 19px 0 20px; }
+.studio-intro h1 span { background: linear-gradient(100deg, #f2f1ff, #aab9e4 80%); color: transparent; background-clip: text; }
+.studio-intro p { font-size: 14px; color: var(--liquid-muted); line-height: 1.7; margin: 0; }
+.studio-intro-note { padding: 0 10px 7px; min-width: 210px; }
+.studio-note-orbit { display: block; color: #afbddd; font-size: 60px; line-height: 1; margin-bottom: 16px; }
+.studio-intro-note p { font-size: 12px; }
+.studio-intro-note > span:last-child { display: block; font-size: 8px; letter-spacing: .17em; color: #66738f; margin-top: 17px; }
+.studio-main { display: grid; grid-template-columns: minmax(0, 1fr) 320px; align-items: start; gap: 30px; }
+.studio-section-label { display: flex; justify-content: space-between; align-items: center; font-size: 9px; color: #9ca7c4; letter-spacing: .13em; margin: 0 0 18px 3px; }
+.studio-section-label > span:last-child { letter-spacing: 0; color: #747f9b; font-size: 10px; }
+.studio-section-label small { margin-left: 10px; padding: 2px 5px; border-radius: 4px; background: #ffffff08; font-size: 8px; }
+.studio-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); align-items: start; gap: 20px; }
+.studio-surface { background: linear-gradient(135deg, #ffffff08, #ffffff02), #20263c7a; border: 1px solid #dce4ff20; border-radius: 25px; padding: 17px 20px 12px; box-shadow: inset 0 1px 0 #ffffff0d, 0 20px 50px #05081620; backdrop-filter: blur(30px); min-width: 0; transition: border-color .2s; }
+.studio-surface.is-selected { border-color: #b2c6ff; box-shadow: 0 0 0 3px #b2c6ff0c; }
+.studio-surface-toolbar { display: flex; justify-content: space-between; align-items: center; gap: 8px; padding-bottom: 17px; color: #929db9; font-size: 10px; }
+.studio-surface-toolbar > span { white-space: nowrap; text-overflow: ellipsis; overflow: hidden; }
+.studio-surface-toolbar > div { display: flex; gap: 3px; }
+.studio-surface-toolbar button { border: none; background: none; color: #99a6c2; padding: 4px 6px; border-radius: 7px; font-size: 12px; }
+.studio-surface-toolbar button:hover { background: #ffffff10; color: white; }
+/* Match the frame document's normal color scheme. Chrome paints an opaque
+   white canvas when a dark embedding element and normal frame disagree,
+   even with transparent html/body; that washes out the Liquid kit's text. */
+.studio-component-body iframe { display: block; border: 0; width: 100%; background: transparent; color-scheme: normal; }
+.studio-surface-footer { display: flex; justify-content: space-between; padding-top: 15px; margin-top: 16px; border-top: 1px solid #ffffff08; font-size: 8px; color: #7985a0; }
+.studio-surface-footer i { width: 4px; height: 4px; margin-right: 6px; }
+.studio-add-tile { width: 100%; min-height: 250px; border: 1px dashed #d5dfff1b; background: #ffffff02; border-radius: 25px; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 35px; color: #a8b4ce; gap: 10px; }
+.studio-add-tile:hover { background: #ffffff04; border-color: #c5d2ff44; }
+.studio-add-tile > span { font-size: 27px; width: 48px; height: 48px; display: grid; place-items: center; background: #d2deff08; border-radius: 17px; margin-bottom: 6px; }
+.studio-add-tile strong { font-size: 15px; font-weight: 400; }
+.studio-add-tile small { font-size: 11px; color: #737f9c; }
+.studio-library { margin: 24px 0; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.studio-library > span { font-size: 8px; letter-spacing: .11em; color: #7a87a3; margin-right: 6px; }
+.studio-library button { background: #ffffff03; border: 1px solid #ffffff12; border-radius: 9px; color: #a8b4ce; padding: 7px 10px; font-size: 10px; }
+.studio-library button span { margin-left: 8px; color: #737f9c; }
+.studio-assistant { position: sticky; top: 24px; padding: 23px; background: linear-gradient(150deg, #ffffff0a, #ffffff02), #21263e88; border: 1px solid #e0e6ff24; border-radius: 27px; backdrop-filter: blur(30px); box-shadow: inset 0 1px 0 #ffffff10, 0 20px 50px #0002; }
+.studio-assistant-top { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
+.studio-assistant-top h2 { font-size: 17px; font-weight: 500; letter-spacing: -.035em; margin: 0; }
+.studio-assistant-top p { color: #929ebc; font-size: 9px; margin: 2px 0 0; }
+.studio-assistant-top .liquid-badge { margin-left: auto; padding: 4px 6px; font-size: 7px; letter-spacing: .04em; }
+.studio-assistant-orb { width: 43px; height: 43px; border: 1px solid #deebff35; border-radius: 50%; box-shadow: inset -4px -4px 13px #91b5f53b, inset 4px 3px 9px #ffffff19, 0 0 23px #a7baff13; background: radial-gradient(circle at 32% 25%, #dce4ff38, #7790d340 40%, #1e264150); position: relative; }
+.studio-assistant-orb span { position: absolute; width: 15px; height: 8px; top: 8px; left: 9px; border-radius: 50%; background: #ffffff30; filter: blur(2px); }
+.studio-assistant-orb.is-thinking { animation: studio-breathe 2s ease-in-out infinite; }
+@keyframes studio-breathe { 50% { box-shadow: 0 0 30px #a7baff44; transform: scale(.92); } }
+.studio-assistant-message { margin-top: 30px; font-size: 23px; font-weight: 400; line-height: 1.3; letter-spacing: -.035em; }
+.studio-assistant-caption { color: #9ba7c3; font-size: 12px; line-height: 1.8; margin: 13px 0 22px; }
+.studio-suggestions { display: flex; flex-direction: column; gap: 8px; }
+.studio-suggestions button { background: #ffffff03; border: 1px solid #ffffff10; border-radius: 12px; padding: 11px 12px; color: #c1cae2; display: flex; align-items: center; gap: 10px; font-size: 11px; text-align: left; }
+.studio-suggestions button:hover { background: #ffffff08; }
+.studio-suggestions button span:first-child { font-size: 17px; color: #a7b7e2; }
+.studio-suggestions button span:last-child { margin-left: auto; color: #667594; }
+.studio-composer { border: 1px solid #d8e3ff24; border-radius: 17px; background: #0b102966; margin-top: 23px; overflow: hidden; }
+.studio-composer:focus-within { border-color: #c1d0ff80; }
+.studio-composer textarea { width: 100%; border: 0; outline: 0; padding: 15px; height: 95px; resize: vertical; min-height: 80px; max-height: 250px; color: #e1e8ff; background: transparent; font-size: 12px; }
+.studio-composer textarea::placeholder { color: #7785a5; line-height: 1.8; }
+.studio-composer-bottom { display: flex; align-items: center; gap: 8px; padding: 0 10px 10px 15px; }
+/* The caption is the only flexible item: it ellipsises first, so the select and the 30px send button never overlap. */
+.studio-composer-bottom span { font-size: 8px; color: #7381a1; flex: 1 1 0; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.studio-composer-bottom button { flex: none; width: 30px; height: 30px; background: #c5d3ff; color: #212948; border: 0; border-radius: 10px; font-size: 20px; }
+.studio-voice-select { display: flex; align-items: center; gap: 6px; font-size: 8px; color: #7381a1; margin: 0; flex: 0 1 auto; min-width: 0; }
+.studio-voice-select select { min-width: 0; max-width: 110px; background: #0b102966; color: #c5d4ff; border: 1px solid #d8e3ff24; border-radius: 8px; padding: 3px 4px; font-size: 10px; }
+.studio-refine { display: flex; justify-content: space-between; padding: 8px 12px; background: #b3c6ff10; font-size: 10px; color: #c5d4ff; }
+.studio-refine button { color: inherit; border: 0; background: none; }
+.studio-assistant-foot { display: flex; gap: 8px; font-size: 8px; color: #7e8bae; border-top: 1px solid #ffffff09; padding-top: 16px; margin-top: 22px; }
+.studio-error { font-size: 12px; color: #ffb9b6; padding: 10px; background: #fa8d830b; border-radius: 10px; overflow-wrap: anywhere; }
+.studio-config-hint { font-size: 10px; color: #99a4be; line-height: 1.7; margin-top: 17px; }
+.studio-config-hint code { font-size: 9px; }
+.studio-footer { display: flex; justify-content: space-between; padding: 28px 0; margin-top: 20px; border-top: 1px solid #ffffff08; color: #626f8b; font-size: 9px; }
+.studio-footer > span:first-child { font-size: 8px; letter-spacing: .13em; }
+.studio--projector { padding: 4%; background: #030409; }
+.studio--projector .studio-main { display: block; }
+.studio--projector .studio-grid { grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); }
+.studio--projector .studio-surface { padding: 25px; }
+.studio-projector-status { position: fixed; bottom: 10px; right: 20px; font-size: 11px; color: #aeb6cf; }
+.studio-empty { font-size: 32px; color: #7985a0; padding: 60px; text-align: center; }
+.studio-visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
+.studio:has(.studio-editor[open]) { overflow: hidden; }
+.studio-editor::backdrop { background: #050918b0; backdrop-filter: blur(16px); }
+/* The modal has its own scroll surface: on a short phone viewport the source
+   must yield space so compilation errors and the action remain reachable. */
+.studio-editor { width: min(900px, calc(100% - 40px)); max-height: calc(100dvh - 40px); overflow: auto; padding: 27px; border-radius: 26px; border: 1px solid #ffffff25; background: #20273b; color: inherit; font: inherit; box-shadow: 0 20px 100px #0007; }
+.studio-editor[open] { display: flex; flex-direction: column; gap: 17px; }
+.studio-editor > * { flex-shrink: 0; }
+.studio :is(button, a, input, textarea):focus-visible { outline: 2px solid #c1d0ff; outline-offset: 3px; }
+.studio-editor header { display: flex; justify-content: space-between; align-items: center; }
+.studio-editor h2 { margin: 5px 0 0; font-weight: 400; font-size: 27px; letter-spacing: -.04em; }
+.studio-editor header button { background: #ffffff09; color: #d5def6; border: 1px solid #ffffff16; border-radius: 12px; width: 34px; height: 34px; font-size: 23px; }
+.studio-editor > label { font-size: 11px; color: #a6b4d3; }
+.studio-editor > textarea { min-height: min(360px, 35dvh); height: 45dvh; resize: vertical; border: 1px solid #ffffff16; border-radius: 13px; padding: 17px; background: #0b1026; color: #c9d7fa; font: 12px/1.8 ui-monospace, monospace; tab-size: 2; }
+.studio-editor-footer { display: flex; justify-content: space-between; align-items: center; gap: 15px; }
+.studio-editor-footer p { font-size: 10px; color: #99a7c4; }
+@media (min-width: 1600px) { .studio { padding-left: max(5%, calc((100% - 1500px) / 2)); padding-right: max(5%, calc((100% - 1500px) / 2)); } }
+@media (max-width: 1150px) { .studio { padding: 0 4%; } .studio-main { gap: 20px; grid-template-columns: minmax(0, 1fr) 300px; } .studio-grid { grid-template-columns: 1fr; } .studio-header nav { gap: 16px; } }
+@media (max-width: 760px) { .studio { padding: 0 20px; } .studio-header { height: 75px; } .studio-header nav > a:first-child, .studio-connection { display: none; } .studio-brand { font-size: 17px; gap: 8px; } .studio-intro { padding: 40px 0 30px; } .studio-intro-note { display: none; } .studio-main { display: flex; flex-direction: column-reverse; gap: 30px; } .studio-assistant { width: 100%; position: static; } .studio-canvas { width: 100%; } .studio-suggestions { flex-direction: row; flex-wrap: wrap; } .studio-suggestions button { flex: 1; min-width: 120px; } .studio-assistant-message { margin-top: 20px; } .studio-footer { gap: 15px; flex-wrap: wrap; } .studio-editor-footer { align-items: start; flex-direction: column; } .studio--projector { padding: 20px; } .studio--projector .studio-grid { grid-template-columns: 1fr; } }
+
+/* Voice-turn feedback. The agent turn is never interrupted by speech, so the user
+   must be able to SEE that talking is currently pointless (busy) and can bail out
+   of a loud hall with "Send now" instead of waiting for silence that never comes. */
