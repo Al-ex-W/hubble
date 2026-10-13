@@ -59,6 +59,14 @@ Without the room's hardware, run against the emulator: set `ROOM=emulator` in `.
 
 The repository holds no keys or tokens: secrets live only in `.env`, which is gitignored.
 
+## Team
+
+| | GitHub | LinkedIn |
+|---|---|---|
+| Julius Olsson | [@Juliusolsson05](https://github.com/Juliusolsson05) | [julius-olsson](https://www.linkedin.com/in/julius-olsson-5432b3269/) |
+| Truls Borgvall | [@truls27a](https://github.com/truls27a) | [truls-borgvall](https://www.linkedin.com/in/truls-borgvall-752355273/) |
+| Alexander Wahlström | [@Al-ex-W](https://github.com/Al-ex-W) | [alexander-e-wahlstrom](https://www.linkedin.com/in/alexander-e-wahlstrom) |
+
 ## Feedback for Aixia
 
 - **What worked:** we got a working demo together in the room: spatial sensing, projection, an agent, voice and keyboard. The room and the mentors were available when we needed them.
